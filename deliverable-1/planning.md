@@ -1,22 +1,24 @@
 # YOUR PRODUCT/TEAM NAME
-> _Note:_ This document is meant to evolve throughout the planning phase of your project.   That is, it makes sense for you commit regularly to this file while working on the project (especially edits/additions/deletions to the _Highlights_ section). Most importantly, it is a reflection of all the planning you work you've done in the first iteration. 
+> _Note:_ This document is meant to evolve throughout the planning phase of your project.   That is, it makes sense for you commit regularly to this file while working on the project (especially edits/additions/deletions to the _Highlights_ section). Most importantly, it is a reflection of all the planning you work you've done in the first iteration.
  > **This document will serve as a master plan between your team, your partner and your TA.**
 
 ## Product Details
- 
+
 #### Q1: What are you planning to build?
 
  > Short (1 - 2 min' read)
- * Start with a single sentence, high-level description of the product.
- * Be clear - Describe the problem you are solving in simple terms.
- * Be concrete. For example:
-    * What are you planning to build? Is it a website, mobile app,
-   browser extension, command-line app, etc.?      
-    * When describing the problem/need, give concrete examples of common use cases.
-    * Assume your the reader knows nothing about the problem domain and provide the necessary context. 
- * Focus on *what* your product does, and avoid discussing *how* you're going to implement it.      
-   For example: This is not the time or the place to talk about which programming language and/or framework you are planning to use.
- * **Feel free (and very much encouraged) to include useful diagrams, mock-ups and/or links**.
+Our team is working with Techfugees Totonto to build an Android mobile app for refugees that facilitates the housing search process for refugees and establishes a better mutual understanding and support between refugees, outreach workers, and housing provides.
+
+In Toronto, only about half of refugees who have gone through the city’s shelter system in the past two years have been settled into permanent housing.[^1] Additionally, Toronto’s shelter system is operating at nearly 100% capacity. 40% of people staying in Toronto shelters are refugees. [^2]
+
+The existing services that assist refugees in their housing services are limited due to chronic understaffing of outreach workers in the shelter system. Additionally, refugees are often subject to discrimiation by housing providers due to xenophobia or unfair cultural or social biases.
+
+The goal of this app is to give refugees exposure to a network of "friendly" housing providers while maintaining accessibility such as ease of access (Android dominates the mobile OS market share) and offline features, such as GPS mapping.
+
+A mock-up of the app can be seen here: https://www.figma.com/file/5FJnnTRoEI6RslFVcAAJXs/Techfugees-Mobile-App?node-id=0%3A1
+
+[^1] The Tyee - “Refugees Are Trapped in Toronto’s Housing Crisis, but Solutions Exist” (2018)
+[^2] Toronto Vital Signs Report 2019
 
 
 #### Q2: Who are your target users?
@@ -28,8 +30,8 @@
 #### Refugees seeking Housing
 Refugees seeking asylum, including government sponsored refugees. Their main goal is to get settled into permanent housing. An obstacle that many refugees face is discrimination from landlords when trying to rent. Due to a lack of existing services, many refugees are forced to rely on outreach workers and their local shelter system which are often understaffed and running at full capacity.
 
-#### Outreach Workers 
-Outreach workers at settlement organizations, who's primary responsibility is to act as a liason between the refugee community and their network of freindly landlords. They are often understaffed and face a large volume of incoming requests, which can make it hard to connect all the refugees they handle with stable housing.
+#### Outreach Workers
+Outreach workers at settlement organizations, who's primary responsibility is to act as a liason between the refugee community and their network of friendly landlords. They are often understaffed and face a large volume of incoming requests, which can make it hard to connect all the refugees they handle with stable housing.
 
 #### Landlords
 Landlords in the Toronto area. Their primary goal is to rent out their property. Their biggest obstacle is finding tenants who they want to lease to. They may deny a tenant based on not having credit history, or those who are short on first and last month rent.
@@ -52,9 +54,9 @@ Landlords in the Toronto area who have helped in the past with refugee support. 
 #### Q4: How will you build it?
 
 > Short (1-2 min' read max)
- * What is the technology stack? Specify any and all languages, frameworks, libraries, PaaS products or tools. 
+ * What is the technology stack? Specify any and all languages, frameworks, libraries, PaaS products or tools.
  * How will you deploy the application?
- * Describe the architecture - what are the high level components or patterns you will use? Diagrams are useful here. 
+ * Describe the architecture - what are the high level components or patterns you will use? Diagrams are useful here.
  * Will you be using third party applications or APIs? If so, what are they?
  * What is your testing strategy?
 
@@ -66,13 +68,13 @@ Landlords in the Toronto area who have helped in the past with refugee support. 
  * If you have a partner, these must be reviewed and accepted by them
 
 ----
-## Intellectual Property Confidentiality Agreement 
+## Intellectual Property Confidentiality Agreement
 > Note this section is **not marked** but must be completed briefly if you have a partner. If you have any questions, please contact David and Adam.
->  
+>
 **By default, you own any work that you do as part of your coursework.** However, some partners may want you to keep the project confidential after the course is complete. As part of your first deliverable, you should discuss and agree upon an option with your partner. Examples include:
 1. You can share the software and the code freely with anyone with or without a license, regardless of domain, for any use.
 2. You can upload the code to GitHub or other similar publicly available domains.
-3. You will only share the code under an open-source license with the partner but agree to not distribute it in any way to any other entity or individual. 
+3. You will only share the code under an open-source license with the partner but agree to not distribute it in any way to any other entity or individual.
 4. You will share the code under an open-source license and distribute it as you wish but only the partner can access the system deployed during the course.
 
 **Briefly describe which option you have agreed to. Your partner cannot ask you to sign any legally binding agreements or documents pertaining to non-disclosure, confidentiality, IP ownership, etc.**
@@ -83,7 +85,7 @@ Landlords in the Toronto area who have helped in the past with refugee support. 
 
 #### Q6: What are the roles & responsibilities on the team?
 
-Describe the different roles on the team and the responsibilities associated with each role. 
+Describe the different roles on the team and the responsibilities associated with each role.
  * Roles should reflect the structure of your team and be appropriate for your project. Not necessarily one role to one team member.
 
 List each team member and:
@@ -92,7 +94,7 @@ List each team member and:
 
 #### Q7: What operational events will you have as a team?
 
-Describe meetings (and other events) you are planning to have. 
+Describe meetings (and other events) you are planning to have.
  * When and where? Recurring or ad hoc? In-person or online?
  * What's the purpose of each meeting?
  * Other events could be coding sessions, code reviews, quick weekly sync meeting online, etc.
@@ -100,11 +102,11 @@ Describe meetings (and other events) you are planning to have.
    * What did you discuss during the meetings?
    * What were the outcomes of each meeting?
    * You must provide meeting minutes.
-   * You must have a regular meeting schedule established by the second meeting.  
-  
+   * You must have a regular meeting schedule established by the second meeting.
+
 #### Q8: What artifacts will you use to self-organize?
 
-List/describe the artifacts you will produce in order to organize your team.       
+List/describe the artifacts you will produce in order to organize your team.
 
  * Artifacts can be To-Do lists, Task boards, schedule(s), meeting minutes, etc.
  * We want to understand:
@@ -118,12 +120,12 @@ List/describe the artifacts you will produce in order to organize your team.
 Describe your team's working culture.
 
 **Communications:**
- * What is the expected frequency? What methods/channels are appropriate? 
+ * What is the expected frequency? What methods/channels are appropriate?
  * If you have a partner project, what is your process (in detail) for communicating with your partner?
- 
+
 **Meetings:**
  * How are people held accountable for attending meetings, completing action items? Is there a moderator or process?
- 
+
 **Conflict Resolution:**
  * List at least three team scenarios/conflicts you discussed in lecture and how you decided you will resolve them. Indecisions? Non-responsive team members? Any other scenarios you can think of?
 
@@ -142,4 +144,4 @@ and/or collaborative process.
     * Present the arguments for each alternative.
     * Explain why the option you decided on makes the most sense for your team/product/users.
  * Essentially, we want to understand how (and why) you ended up with your current product and process plan.
- * This section is useful for important information regarding your decision making process that may not necessarily fit in other sections. 
+ * This section is useful for important information regarding your decision making process that may not necessarily fit in other sections.
