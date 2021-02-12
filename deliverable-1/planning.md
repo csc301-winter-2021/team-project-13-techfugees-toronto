@@ -1,4 +1,4 @@
-# YOUR PRODUCT/TEAM NAME
+# Techfugees Mobile App
 > _Note:_ This document is meant to evolve throughout the planning phase of your project.   That is, it makes sense for you commit regularly to this file while working on the project (especially edits/additions/deletions to the _Highlights_ section). Most importantly, it is a reflection of all the planning you work you've done in the first iteration.
  > **This document will serve as a master plan between your team, your partner and your TA.**
 
@@ -9,16 +9,13 @@
  > Short (1 - 2 min' read)
 Our team is working with Techfugees Totonto to build an Android mobile app for refugees that facilitates the housing search process for refugees and establishes a better mutual understanding and support between refugees, outreach workers, and housing provides.
 
-In Toronto, only about half of refugees who have gone through the city’s shelter system in the past two years have been settled into permanent housing.[^1] Additionally, Toronto’s shelter system is operating at nearly 100% capacity. 40% of people staying in Toronto shelters are refugees. [^2]
+In Toronto, only about half of refugees who have gone through the city’s shelter system in the past two years have been settled into permanent housing. Additionally, Toronto’s shelter system is operating at nearly 100% capacity. 40% of people staying in Toronto shelters are refugees.
 
 The existing services that assist refugees in their housing services are limited due to chronic understaffing of outreach workers in the shelter system. Additionally, refugees are often subject to discrimiation by housing providers due to xenophobia or unfair cultural or social biases.
 
 The goal of this app is to give refugees exposure to a network of "friendly" housing providers while maintaining accessibility such as ease of access (Android dominates the mobile OS market share) and offline features, such as GPS mapping.
 
-A mock-up of the app can be seen here: https://www.figma.com/file/5FJnnTRoEI6RslFVcAAJXs/Techfugees-Mobile-App?node-id=0%3A1
-
-[^1] The Tyee - “Refugees Are Trapped in Toronto’s Housing Crisis, but Solutions Exist” (2018)
-[^2] Toronto Vital Signs Report 2019
+A mock-up of the app can be seen [here](https://www.figma.com/file/5FJnnTRoEI6RslFVcAAJXs/Techfugees-Mobile-App?node-id=0%3A1)
 
 
 #### Q2: Who are your target users?
