@@ -25,6 +25,19 @@
  * Be specific (e.g. a 'a third-year university student studying Computer Science' and not 'a student')
  * **Feel free to use personas. You can create your personas as part of this Markdown file, or add a link to an external site (for example, [Xtensio](https://xtensio.com/user-persona/)).**
 
+#### Refugees seeking Housing
+Refugees seeking asylum, including government sponsored refugees. Their main goal is to get settled into permanent housing. An obstacle that many refugees face is discrimination from landlords when trying to rent. Due to a lack of existing services, many refugees are forced to rely on outreach workers and their local shelter system which are often understaffed and running at full capacity.
+
+#### Outreach Workers 
+Outreach workers at settlement organizations, who's primary responsibility is to act as a liason between the refugee community and their network of freindly landlords. They are often understaffed and face a large volume of incoming requests, which can make it hard to connect all the refugees they handle with stable housing.
+
+#### Landlords
+Landlords in the Toronto area. Their primary goal is to rent out their property. Their biggest obstacle is finding tenants who they want to lease to. They may deny a tenant based on not having credit history, or those who are short on first and last month rent.
+
+#### Friendly Landlords
+Landlords in the Toronto area who have helped in the past with refugee support. Their primary goal is to rent out their property. Their biggest obstacle is getting in contact with tenants.
+
+
 #### Q3: Why would your users choose your product? What are they using today to solve their problem/need?
 
 > Short (1 - 2 min' read max)
