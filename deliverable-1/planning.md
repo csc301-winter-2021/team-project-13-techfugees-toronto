@@ -112,6 +112,15 @@ List/describe the artifacts you will produce in order to organize your team.
    * How do tasks get assigned to team members?
    * How do you determine the status of work from inception to completion?
 
+#### Trello
+We will be using Trello as both a To-Do list, and to keep track of ongoing tasks. Tasks will have a priority level based on deadline and how dependant other features are on the task. Appropriate deadlines for tasks will be discussed amongst team during weekly bilats. Team members can self-assign to tasks they find interesting/align with their area of expertise in order of priority. If a team member is not assigned to an ongoing task, other members can request for additional help. 
+
+#### Discord
+Our primary platform for communication between team members will be discord. This is where we will host our weekly-bilats, and where we can post questions/provide resources to eachother. We will create channels for general chat, session-planning, tech resources, and meeting minutes.
+
+#### Slack
+We will be using slack to communicate with the client.
+
 #### Q9: What are the rules regarding how your team works?
 
 Describe your team's working culture.
