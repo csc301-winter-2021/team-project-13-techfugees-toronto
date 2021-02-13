@@ -68,7 +68,7 @@ For a future tenant to obtain all this info on an apartment would take a lot of 
 - Will you be using third party applications or APIs? If so, what are they?
 - What is your testing strategy?
 
-We'll do an android app, using android studio.
+We'll do an android app, at present, Android Studio is officially recommended by Android, therefore we choose to use Android Studio as our ide and front-end technology, while using Java as the back-end technology to complete the logic and database algorithms.
 
 
 #### Q5: What are the user stories that make up the MVP?
@@ -187,3 +187,5 @@ and/or collaborative process.
   - Explain why the option you decided on makes the most sense for your team/product/users.
 - Essentially, we want to understand how (and why) you ended up with your current product and process plan.
 - This section is useful for important information regarding your decision making process that may not necessarily fit in other sections.
+
+We first decided whether we want to make an app or a website. Most of our team members have experience in making websites, therefore we tend to make a responsive website at the beginning, which can be run on a computer or on a mobile phone. However, TA stated that this proposal may need to support offline operation, so the website may not meet this requirement, hence we finally decided to make an app.
