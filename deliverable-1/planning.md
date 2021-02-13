@@ -21,7 +21,7 @@ A mock-up of the app can be seen [here](https://www.figma.com/file/5FJnnTRoEI6Rs
 
 #### Q2: Who are your target users?
 
-> Short (1 - 2 min' read max)
+> Short (1 - 2 min' read)
 
 - Be specific (e.g. a 'a third-year university student studying Computer Science' and not 'a student')
 - **Feel free to use personas. You can create your personas as part of this Markdown file, or add a link to an external site (for example, [Xtensio](https://xtensio.com/user-persona/)).**
@@ -44,7 +44,7 @@ Landlords in the Toronto area who have helped in the past with refugee support. 
 
 #### Q3: Why would your users choose your product? What are they using today to solve their problem/need?
 
-> Short (1 - 2 min' read max)
+> Short (1 - 2 min' read)
 
 - We want you to "connect the dots" for us - Why does your product (as described in your answer to Q1) fits the needs of your users (as described in your answer to Q2)?
 - Explain the benefits of your product explicitly & clearly. For example:
@@ -53,6 +53,10 @@ Landlords in the Toronto area who have helped in the past with refugee support. 
   - Provide users with more accurate and/or informative data (what kind of data? Why is it useful to them?)
   - Does this application exist in another form? If so, how does your differ and provide value to the users?
   - How does this align with your partner's organization's values/mission/mandate?
+
+Since our app would build a network between refugees, outreach workers and housing providers, it'll help refugee tenants access lists of available housings, in addition to allowing search by location, landlord, number of bedrooms, bathrooms, type of building, etc. This helps refugees save time and effort in their search for suitable rentals. 
+For a future tenant to obtain all this info on an apartment would take a lot of research, all of which has to be done through the internet on a relatively long span of time. Refugees do not have this luxury, and our app aims to solve that. Our Partner's mission is to support the inclusion of displaced people. And through this app, help refugees specifically in finding better housing for themselves.
+
 
 #### Q4: How will you build it?
 
@@ -63,6 +67,9 @@ Landlords in the Toronto area who have helped in the past with refugee support. 
 - Describe the architecture - what are the high level components or patterns you will use? Diagrams are useful here.
 - Will you be using third party applications or APIs? If so, what are they?
 - What is your testing strategy?
+
+We'll do an android app, using android studio.
+
 
 #### Q5: What are the user stories that make up the MVP?
 
@@ -119,6 +126,12 @@ Describe meetings (and other events) you are planning to have.
   - What were the outcomes of each meeting?
   - You must provide meeting minutes.
   - You must have a regular meeting schedule established by the second meeting.
+  
+We'll use discord for organizing any meetings. Any meetings will usually be ad-hoc unless a deadline is coming up, or something that needs more than just chatting. Everything will be online only. 
+Each meeting will have its own purpose. But in general, we'll have meetings to ensure everyone is on the same page, if that can't be done in writing. And also to make sure everything is in working order before presenting something to our partner or the instructors team.
+We did two meetings. One after getting assigned to our partner, and one where we reviewed D1. 
+In the first meeting, which took roughly one hour from 1:00pm to 2:00pm on Sunday February 7th, we agreed that our app would mainly be on android, and it would be best if it could function as much as possible offline. 
+
 
 #### Q8: What artifacts will you use to self-organize?
 
