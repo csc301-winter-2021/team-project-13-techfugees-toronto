@@ -128,9 +128,9 @@ Describe meetings (and other events) you are planning to have.
   - You must have a regular meeting schedule established by the second meeting.
   
 We'll use discord for organizing any meetings. Any meetings will usually be ad-hoc unless a deadline is coming up, or something that needs more than just chatting. Everything will be online only. 
-Each meeting will have its own purpose. But in general, we'll have meetings to ensure everyone is on the same page, if that can't be done in writing. And also to make sure everything is in working order before presenting something to our partner or the instructors team.
+Each meeting will have its own purpose. But in general, we'll have meetings to ensure everyone is on the same page, if that can't be done in writing, and also to make sure everything is in working order before presenting something to our partner or the instructors’ team.
 We did two meetings. One after getting assigned to our partner, and one where we reviewed D1. 
-In the first meeting, which took roughly one hour from 1:00pm to 2:00pm on Sunday February 7th, we agreed that our app would mainly be on android, and it would be best if it could function as much as possible offline. 
+In the first meeting, which took roughly one hour from 1:00pm to 2:00pm on Sunday February 7th, we agreed that our app would mainly be on android, and it would be best if it could function as much as possible offline.
 
 
 #### Q8: What artifacts will you use to self-organize?
