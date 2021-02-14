@@ -17,13 +17,11 @@ The existing services that assist refugees in their housing services are limited
 
 The goal of this app is to give refugees exposure to a network of supportive housing providers while maintaining accessibility such as ease of access (Android dominates the mobile OS market share) and offline features, such as GPS mapping.
 
-
 A mock-up of the app can be seen [here](https://www.figma.com/file/5FJnnTRoEI6RslFVcAAJXs/Techfugees-Mobile-App?node-id=0%3A1).
 
 #### Q2: Who are your target users?
 
 > Short (1 - 2 min' read)
-
 
 #### Refugees seeking Housing
 
@@ -47,7 +45,6 @@ Landlords in the Greater Toronto Area who are recognized by outreach workers as 
 
 Our app aims to solve the problems that refugees face when searching for housing. Refugees do not have the luxury of widespread acceptance by landlords, making their housing search difficult and time consuming. Since our app would build a network between refugees, outreach workers and housing providers, the primary feature of our app is to provide a vetted list of rental options posted by landlords who are flexible and supportive to refugees. This helps refugees save time and effort in their search for suitable rentals. Additionally, the app would have the basic features of a rental listing app, such as searching by location, landlord, number of bedrooms, bathrooms, type of building, etc. Our Partner's mission is to support the inclusion of displaced people. And through this app, help refugees specifically in finding better housing for themselves.
 
-
 #### Q4: How will you build it?
 
 > Short (1-2 min' read max)
@@ -58,7 +55,6 @@ As for our database, we are still exploring our options between a SQL and no-SQL
 
 We will be making and running JUnit tests to test our code, and all code will be looked over by multiple team members during code reviews as needed to ensure we don't miss any edge cases or issues. Additionally, we have Android devices that we can use to test our app first-hand once we reach that stage of development.
 
-
 #### Q5: What are the user stories that make up the MVP?
 
 #### Display Management
@@ -66,11 +62,13 @@ We will be making and running JUnit tests to test our code, and all code will be
 **Landing Page**
 
 As a user that just opened the app, I want to be greeted with a landing page that has registration and login links so that I can login or register if I am a new user.
+
 - Acceptance criteria: Given the landing page, when the user clicks on the login or register links, then they are redirected to the appropriate page.
 
 **Index Page**
 
 As a registered user, I want to view the available listings and sort by cost, distance, and date added when I first open the app. Additionally, I want to be able to filter the listings by my ideal criterias,such as number of bedrooms, bathrooms, and type of building. From the index page, I should be able to access the other pages from a menu, as well as access my account/profile, and create and update rental postings if I am a landlord.
+
 - Acceptance criteria: Given the registered user opens the app and is presented with the index page, clicking on a listing will lead them to the listing’s page with details. The listings can be filtered and sorted by user-defined criteria.
 
 **Rental Posting Details Page**
@@ -78,14 +76,17 @@ As a registered user, I want to view the available listings and sort by cost, di
 Refugee: As a refugee who has registered and logged into the app, I want to be able to see the details regarding the rental posting as well as information about the landlord, so that I can make a more informed decision about my place of residence.
 
 Landlord: As a landlord who has registered and logged into the app, I want to be able to see the details of my own rental postings and have the option to modify the details or delete the posting, as well as view details on other landlords’ postings on the app.
+
 - Acceptance Criteria:
-Given a registered and logged in app user, when the user clicks on a rental posting, the page should then display relevant information about the property, as well as details on the landlord’s criterias for tenants.
+  Given a registered and logged in app user, when the user clicks on a rental posting, the page should then display relevant information about the property, as well as details on the landlord’s criterias for tenants.
 
 #### Member Management
+
 **Registration**
 
 Landlord: As an unregistered landlord, I want to be able to create an account so that I can post my rental openings.
 Refugee: As an unregistered refugee seeking housing, I want to be able to create an account so that I can have a more personalized view of housing listings.
+
 - Acceptance criteria (landlord): Given the unregistered landlord arrives at the registration page, when the user fills out the required form fields, including: Full name, password, and landlord specific fields (TBD, i.e. questions about friendliness to refugees), then their information should be stored. If the landlord posts confirmation that they are recognized as friendly by an outreach worker, their account should have a “friendly” badge.
 
 - Acceptance criteria (refugee): Given the unregistered refugee arrives at the registration page, when the user fills out the required form fields, including: Full name, password, email, phone number, then their information should be stored.
@@ -105,6 +106,7 @@ As a registered and logged in app user, I want to be able to update my profile i
 - Acceptance Criteria: Given the user arrives at the profile page, when the user clicks on the profile update button, then their personal information is updated to match the filled in form-fields.
 
 #### Postings Management
+
 **Rental Posting Creation**
 
 As a landlord, I want to be able to create a rental posting, so that I can advertise my listing to potential tenants.
@@ -128,8 +130,8 @@ As a user viewing a rental posting, I want to be able to leave a comment so othe
 As a user viewing a rental posting, I want to be able to leave a rating for the posting, so that other users can see my opinion of the property.
 
 - Acceptance criteria:
-Given a registered and logged in user who is on the page for a rental posting,
-When the user selects a rating and clicks submit, then the rating is stored and the average rating displayed for the posting is updated to include the newly added rating.
+  Given a registered and logged in user who is on the page for a rental posting,
+  When the user selects a rating and clicks submit, then the rating is stored and the average rating displayed for the posting is updated to include the newly added rating.
 
 ---
 
@@ -154,15 +156,22 @@ Techfugees creates open-source and open-data platforms to identify, list & curat
 **Team Members**
 
 Andi Fan
+
 - Roles: Meeting scribe, Code Reviewer, Front-end, Back-end
 - Strengths: Full-stack web experience (node.js, express.js, Django, bootstrap), industry experience with RDBMS, some knowledge of software security and preventing OWASP top 10 vulnerabilities.
 - Weaknesses: No prior Android app development experience, no experience with flutter, limited experience with noSQL databases
 
 Kim Le
+
 - Roles: Meeting scribe, Meeting host, Front-end developer, Back-end developer
 - Strengths: Full-stack web experience (Django, Bootstrap, Laravel), UI/UX design, graphic design, proficiency in Java and design patterns, some knowledge of software security and preventing OWASP top 10 vulnerabilities.
 - Weaknesses: No prior Android app development experience, limited experience with no-SQL databases.
 
+Mubai Gao
+
+- Roles: Back-end developer, Front-end developer, Code Reviewer
+- Strengths: Development a database use Java for an Android app backend(Java, python, C, Node.js, VUE)
+- Weaknesses: First time Android app frontend development
 
 #### Q7: What operational events will you have as a team?
 
@@ -171,7 +180,6 @@ We will be using Discord for organizing meetings between team members. We will h
 After a task has been completed, it will be placed in the “Code Review” section on Trello. Team members will be expected to review others’ code and have some input prepared for the weekly meeting.
 
 So far we have had two meetings with the client. Our first meeting, which took roughly one hour from 1:00pm to 2:00pm on Sunday February 7th, was introductory and for the purpose of getting a better idea of the direction of our software. In this meeting, we agreed that our app would mainly be on android, and it would be best if it could function as much as possible offline. Our second meeting, which is on February 14, at 1:00pm is to review our planning document with the client. In this meeting, our client gave us valuable feedback on our planning document and guided us in the right direction.
-
 
 #### Q8: What artifacts will you use to self-organize?
 
