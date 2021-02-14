@@ -74,15 +74,15 @@ We will be making and running JUnit tests to test our code, and all code will be
 
 #### Display Management
 
-** Landing Page: **
+**Landing Page:**
 As a user that just opened the app, I want to be greeted with a landing page that has registration and login links so that I can login or register if I am a new user. 
 - Acceptance criteria: Given the landing page, when the user clicks on the login or register links, then they are redirected to the appropriate page.
 
-** Index Page: **
+**Index Page:**
 As a registered user, I want to view the available listings and sort by cost, distance, and date added when I first open the app. Additionally, I want to be able to filter the listings by my ideal criterias,such as number of bedrooms, bathrooms, and type of building. From the index page, I should be able to access the other pages from a menu, as well as access my account/profile, and create and update rental postings if I am a landlord.
 - Acceptance criteria: Given the registered user opens the app and is presented with the index page, clicking on a listing will lead them to the listing’s page with details. The listings can be filtered and sorted by user-defined criteria.
 
-** Rental Posting Details Page: **
+**Rental Posting Details Page:**
 Refugee: As a refugee who has registered and logged into the app, I want to be able to see the details regarding the rental posting as well as information about the landlord, so that I can make a more informed decision about my place of residence.
 
 Landlord: As a landlord who has registered and logged into the app, I want to be able to see the details of my own rental postings and have the option to modify the details or delete the posting, as well as view details on other landlords’ postings on the app.
@@ -90,42 +90,42 @@ Landlord: As a landlord who has registered and logged into the app, I want to be
 Given a registered and logged in app user, when the user clicks on a rental posting, the page should then display relevant information about the property, as well as details on the landlord’s criterias for tenants.
 
 #### Member Management
-** Registration: **
+**Registration:**
 Landlord: As an unregistered landlord, I want to be able to create an account so that I can post my rental openings.
 Refugee: As an unregistered refugee seeking housing, I want to be able to create an account so that I can have a more personalized view of housing listings. 
 - Acceptance criteria (landlord): Given the unregistered landlord arrives at the registration page, when the user fills out the required form fields, including: Full name, password, and landlord specific fields (TBD, i.e. questions about friendliness to refugees), then their information should be stored. If the landlord posts confirmation that they are recognized as friendly by an outreach worker, their account should have a “friendly” badge.
 
 - Acceptance criteria (refugee): Given the unregistered refugee arrives at the registration page, when the user fills out the required form fields, including: Full name, password, email, phone number, then their information should be stored.
 
-** Login: **
+**Login:**
 As a refugee seeking housing, I want to be able to login in order to view the rental postings index page with personalized filters applied.
 
 As a landlord seeking to list property, I want to be able to login in order to view the rental postings index page and post listings on the app.
 
 - Acceptance Criteria: Given the user arrives at the login page, when the user fills out a valid username and password, then they are logged in with the user's personalized settings applied as search filters.
 
-** Profile Update: **
+**Profile Update:**
 As a registered and logged in app user, I want to be able to update my profile information so that my search settings are accurate.
 
 - Acceptance Criteria: Given the user arrives at the profile page, when the user clicks on the profile update button, then their personal information is updated to match the filled in form-fields.
 
 #### Postings Management
-** Rental Posting Creation: ** 
+**Rental Posting Creation:** 
 As a landlord, I want to be able to create a rental posting, so that I can advertise my listing to potential tenants.
 
 - Acceptance Criteria: Given a logged in user registered as a landlord viewing the rental posting creation page, when I fill out the necessary form fields (relevant information about property including: Location, pet tolerance, rent, utility fees), then the posting should be added displayed on the rental index page.
 
-** Rental Posting Update: **
+**Rental Posting Update:**
 As a landlord, I want to be able to visit the posting details page that I created, and be able to edit and update the information displayed to users. 
 
 - Acceptance Criteria: Given a landlord arrives at the details page of a posting he created, when the user clicks on the posting update button, then the posting information is updated to match the filled in form-fields.
 
-** Rental Comments: **
+**Rental Comments:**
 As a user viewing a rental posting, I want to be able to leave a comment so other users can see important information I'd like to share about the property.
 
 - Acceptance Criteria: Given a registered and logged in user who clicks on the comments tab of a rental posting, when the user fills out the comment form field and clicks submit, then the comment is stored and added to the rental postings list of comments.
 
-** Rental Ratings: **
+**Rental Ratings:**
 As a user viewing a rental posting, I want to be able to leave a rating for the posting, so that other users can see my opinion of the property.
 
 - Acceptance criteria:
@@ -162,7 +162,7 @@ List each team member and:
 - A description of their role(s) and responsibilities including the components they'll work on and non-software related work
 - 3 technical strengths and weaknesses each (e.g. languages, frameworks, libraries, development methodologies, etc.)
 
-** Roles **
+**Roles**
 Meeting scribe: A role which rotates week to week, the scribe will record meeting minutes and send them to the team after the meeting. 
 
 Code Reviewer: Will participate in team code review sessions, which are planned on a as needed basis. During code reviews members will explain the intended purpose of their code for context, afterwards the other members will read over the code, noting any questions or concerns that will be discussed with the rest of the group afterwards.
@@ -173,7 +173,7 @@ Front-end developer: Will be assigned tasks related to design and UI/UX.
 
 Back-end developer: Will be assigned tasks relating to the backend.
 
-** Team Members **
+**Team Members**
 Andi Fan
 - Roles: Meeting scribe, Code Reviewer, Front-end, Back-end
 - Strengths: Full-stack web experience (node.js, express.js, Django, bootstrap), industry experience with RDBMS, some knowledge of software security and preventing OWASP top 10 vulnerabilities.
