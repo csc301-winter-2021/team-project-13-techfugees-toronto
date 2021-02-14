@@ -9,15 +9,16 @@
 
 > Short (1 - 2 min' read)
 
-Our team is working with Techfugees Totonto to build an Android mobile app for refugees that facilitates the housing search process for refugees and establishes a better mutual understanding and support between refugees, outreach workers, and housing provides.
+Our team is working with Techfugees Totonto to build an Android mobile app for refugees that facilitates the housing search process for refugees and establishes a better mutual understanding and support between refugees, outreach workers, and housing providers.
 
 In Toronto, only about half of refugees who have gone through the city’s shelter system in the past two years have been settled into permanent housing. Additionally, Toronto’s shelter system is operating at nearly 100% capacity. 40% of people staying in Toronto shelters are refugees.
 
-The existing services that assist refugees in their housing services are limited due to chronic understaffing of outreach workers in the shelter system. Additionally, refugees are often subject to discrimiation by housing providers due to xenophobia or unfair cultural or social biases.
+The existing services that assist refugees in their housing services are limited due to chronic understaffing of outreach workers in the shelter system. Additionally, refugees are often subject to discrimiation by housing providers due to xenophobia or unfair cultural or social biases, so the search for a housing unit can be extremely time-consuming and demoralizing for refugees.
 
-The goal of this app is to give refugees exposure to a network of "friendly" housing providers while maintaining accessibility such as ease of access (Android dominates the mobile OS market share) and offline features, such as GPS mapping.
+The goal of this app is to give refugees exposure to a network of supportive housing providers while maintaining accessibility such as ease of access (Android dominates the mobile OS market share) and offline features, such as GPS mapping.
 
-A mock-up of the app can be seen [here](https://www.figma.com/file/5FJnnTRoEI6RslFVcAAJXs/Techfugees-Mobile-App?node-id=0%3A1)
+
+A mock-up of the app can be seen [here](https://www.figma.com/file/5FJnnTRoEI6RslFVcAAJXs/Techfugees-Mobile-App?node-id=0%3A1).
 
 #### Q2: Who are your target users?
 
@@ -26,41 +27,36 @@ A mock-up of the app can be seen [here](https://www.figma.com/file/5FJnnTRoEI6Rs
 
 #### Refugees seeking Housing
 
-Refugees seeking asylum, including government sponsored refugees. Their main goal is to get settled into permanent housing. An obstacle that many refugees face is discrimination from landlords when trying to rent. Due to a lack of existing services, many refugees are forced to rely on outreach workers and their local shelter system which are often understaffed and running at full capacity.
+Refugees seeking asylum, including government sponsored refugees. Their main goal is to get settled into permanent housing. One of the largest housing obstacles that refugees face is landlord discrimination due to lack of credit history and first/last month payment. Due to a lack of existing services, many refugees must rely on outreach workers and their local shelter system which are often understaffed and running at full capacity.
 
 #### Outreach Workers
 
-Outreach workers at settlement organizations, who's primary responsibility is to act as a liason between the refugee community and their network of friendly landlords. They are often understaffed and face a large volume of incoming requests, which can make it hard to connect all the refugees they handle with stable housing.
+Outreach workers at settlement organizations, whose primary responsibility is to act as a liaison between the refugee community and their network of friendly landlords. The settlement organizations are often understaffed and outreach workers are often overworked and face a large volume of incoming requests, making it hard to connect all the refugees they handle with stable housing.
 
 #### Landlords
 
-Landlords in the Toronto area. Their primary goal is to rent out their property. Their biggest obstacle is finding tenants who they want to lease to. They may deny a tenant based on not having credit history, or those who are short on first and last month rent.
+Landlords in the Greater Toronto Area. Their primary goal is to rent out their property. Their biggest obstacle is finding tenants who they want to lease to. They may deny a tenant based on not having credit history, or those who are short on first and last month rent. This is because refugees are seen as high risk tenants due to their income class. This is even more pronounced because of the housing shortage in Toronto.
 
 #### Friendly Landlords
 
-Landlords in the Toronto area who have helped in the past with refugee support. Their primary goal is to rent out their property. Their biggest obstacle is getting in contact with tenants.
+Landlords in the Greater Toronto Area who are recognized by outreach workers as supportive towards refugees, such as leniency in credit checks, first and last month’s payment, and non-judgmental/discriminating towards refugees. Their primary goal is to rent out their property, however they would not reject a refugee as a tenant over a non-refugee.
 
 #### Q3: Why would your users choose your product? What are they using today to solve their problem/need?
 
 > Short (1 - 2 min' read)
 
-Since our app would build a network between refugees, outreach workers and housing providers, it'll help refugee tenants access lists of available housings, in addition to allowing search by location, landlord, number of bedrooms, bathrooms, type of building, etc. This helps refugees save time and effort in their search for suitable rentals.
-For a future tenant to obtain all this info on an apartment would take a lot of research, all of which has to be done through the internet on a relatively long span of time. Refugees do not have this luxury, and our app aims to solve that. Our Partner's mission is to support the inclusion of displaced people. And through this app, help refugees specifically in finding better housing for themselves.
+Our app aims to solve the problems that refugees face when searching for housing. Refugees do not have the luxury of widespread acceptance by landlords, making their housing search difficult and time consuming. Since our app would build a network between refugees, outreach workers and housing providers, the primary feature of our app is to provide a vetted list of rental options posted by landlords who are flexible and supportive to refugees. This helps refugees save time and effort in their search for suitable rentals. Additionally, the app would have the basic features of a rental listing app, such as searching by location, landlord, number of bedrooms, bathrooms, type of building, etc. Our Partner's mission is to support the inclusion of displaced people. And through this app, help refugees specifically in finding better housing for themselves.
 
 
 #### Q4: How will you build it?
 
 > Short (1-2 min' read max)
 
-- What is the technology stack? Specify any and all languages, frameworks, libraries, PaaS products or tools.
-- How will you deploy the application?
-- Describe the architecture - what are the high level components or patterns you will use? Diagrams are useful here.
-- Will you be using third party applications or APIs? If so, what are they?
-- What is your testing strategy?
+We will be building an Android app. Presently, Android Studio is the official recommendation for development by Android, therefore we will be using Android Studio as our IDE and Flutter as our front-end technology, with Java as the back-end technology to complete the logic and database algorithms.
 
-We will be building an Android app. Presently, Android Studio is the official recommendation for development by Android, therefore we will be using Android Studio as our IDE and front-end technology, with using Java as the back-end technology to complete the logic and database algorithms.
+As for our database, we are still exploring our options between a SQL and no-SQL database as we have no conclusive details yet on implementation. For a SQL database, SQLite is a widely used database for Android app developers. The no-SQL databases that have caught our eye for this particular project are Mongo Realm and Couchbase Mobile, both great options for Android app development, and they also include data level encryption.
 
-As for our database, we are still exploring our options between a SQL and no-SQL database. For a SQL database, SQLite is a widely used database for Android app developers. The no-SQL databases that have caught our eye for this particular project are Mongo Realm and Couchbase Mobile, both great options for Android app development, and they also include data level encryption.
+We will be making and running JUnit tests to test our code, and all code will be looked over by multiple team members during code reviews as needed to ensure we don't miss any edge cases or issues. Additionally, we have Android devices that we can use to test our app first-hand once we reach that stage of development.
 
 
 #### Q5: What are the user stories that make up the MVP?
@@ -93,16 +89,16 @@ when the user fills out the required form fields, including: Name, password, mem
 then their information should be stored in the backend database.
 
 Login Page:
-As an app user, I want to be able to login and access the main features of the app with more personalized search settings. 
+As an app user, I want to be able to login and access the main features of the app with more personalized search settings.
 Acceptance Criteria:
 Given the user arrives at the login page,
-when the user fills out a username and password which matches a user in the database, 
+when the user fills out a username and password which matches a user in the database,
 then they are logged in with the user's personalized settings.
 
 Profile Page:
 As a registered and logged in app user, I want to be able to update my profile information so that my search settings are my accurate.
 Acceptance Criteria:
-Given the user arrives at the profile page, 
+Given the user arrives at the profile page,
 when the user clicks on the profile update button,
 then their personal information stored in the database is updated to match the filled in form-fields
 
@@ -111,7 +107,7 @@ then their personal information stored in the database is updated to match the f
 Rental Listing:
 As a user viewing a rental listing, I want to be able to leave a comment so other users can see important information I'd like to share about the property.
 Acceptance Criteria:
-Given a user who fills out 
+Given a user who fills out
 ---
 
 ## Intellectual Property Confidentiality Agreement
@@ -198,7 +194,7 @@ Our team will meet weekly through zoom call on Sundays at 12:00 noon to discuss 
 We will be hosting Bi-weekly zoom call with partner Sundays at 1:00pm, to discuss what we’ve worked on and receive feedback. Additionally there will be ongoing communication through slack for quick clarification questions, and to send any relevant information prior to Sunday meetings.
 
 **Meetings:**
-Our team will prioritize communication, members should alert the team during weekly zoom calls if an action plan can’t be completed on time, and when they think they’d be able to complete it, extra members will be added to the task as needed on a voluntary basis. 
+Our team will prioritize communication, members should alert the team during weekly zoom calls if an action plan can’t be completed on time, and when they think they’d be able to complete it, extra members will be added to the task as needed on a voluntary basis.
 
 Every week a different member will be responsible for meeting minutes. Members who miss meetings will be sent the document, and clarification can be provided over text through discord. If a team member misses two weeks of meetings without any communication, they will be categorized as a non-responsive team member and dealt with as such. Members will be held accountable through the final peer review at end of the course
 
@@ -207,7 +203,7 @@ For non-responsive team members, if the rest of the team agrees during the weekl
 
 When dealing with tech related indecisions, we will first ask our partner’s main tech contact from CanSettle for advice. Higher level indecisions that can't be resolved through our partners input will also be discussed during zoom calls, or over discord and will be decided by a majority vote.
 
-In the event that a team member completes a task but fails to meet the acceptance criteria, discussion will be held during weekly zoom calls clarifying the criteria. The team member can also clarify why the acceptance criteria might not be feasible. Team members can be added to the incomplete task as needed on a voluntary basis. 
+In the event that a team member completes a task but fails to meet the acceptance criteria, discussion will be held during weekly zoom calls clarifying the criteria. The team member can also clarify why the acceptance criteria might not be feasible. Team members can be added to the incomplete task as needed on a voluntary basis.
 
 
 
@@ -229,6 +225,6 @@ and/or collaborative process.
 
 We first decided whether we want to make a mobile app or a web app. Most of our team members have experience in making web apps, therefore we tend to make a responsive website at the beginning, which can be run on a computer or on a mobile phone. However, our partner stated that this proposal may need to support offline operation, so the website may not meet this requirement. Hence, we decided to make an Android mobile app. This is also a great learning experience for our members who have not yet explored this realm of software development.
 
-Additionally, our partner mentioned putting us in contact with the product owner and sole developer of Cansettle, another application catered to refugees in Canada. Our partner mentioned Cansettle leveraging Flutter for its front-end. Considering the advice we could receive from Cansettle’s owner, we decided to use similar technologies and chose Flutter for the front-end of our app. 
+Additionally, our partner mentioned putting us in contact with the product owner and sole developer of Cansettle, another application catered to refugees in Canada. Our partner mentioned Cansettle leveraging Flutter for its front-end. Considering the advice we could receive from Cansettle’s owner, we decided to use similar technologies and chose Flutter for the front-end of our app.
 
-During our second meeting with our partner, we consolidated our understanding of the application's unique identity. A refugee’s search for housing is an arduous process, frequently met with un-accommodating landlords that don’t respond. Our application seeks to make the process easier and less discriminatory for the refugees. Initially we had planned to allow all landlords to post rental openings, hoping to expose refugees to as many housing options as possible. Upon further discussion with our partner, we decided in an effort to save the refugee time and effort, we would only allow refugee friendly landlords to make rental postings.   
+During our second meeting with our partner, we consolidated our understanding of the application's unique identity. A refugee’s search for housing is an arduous process, frequently met with un-accommodating landlords that don’t respond. Our application seeks to make the process easier and less discriminatory for the refugees. Initially we had planned to allow all landlords to post rental openings, hoping to expose refugees to as many housing options as possible. Upon further discussion with our partner, we decided in an effort to save the refugee time and effort, we would only allow refugee friendly landlords to make rental postings.
