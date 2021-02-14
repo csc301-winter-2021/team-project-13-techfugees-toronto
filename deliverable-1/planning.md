@@ -193,17 +193,24 @@ We will be using Slack to communicate with the client.
 Describe your team's working culture.
 
 **Communications:**
+Our team will meet weekly through zoom call on Sundays at 12:00 noon to discuss what we are working on. We will also have ongoing text communication through discord.
 
-- What is the expected frequency? What methods/channels are appropriate?
-- If you have a partner project, what is your process (in detail) for communicating with your partner?
+We will be hosting Bi-weekly zoom call with partner Sundays at 1:00pm, to discuss what we’ve worked on and receive feedback. Additionally there will be ongoing communication through slack for quick clarification questions, and to send any relevant information prior to Sunday meetings.
 
 **Meetings:**
+Our team will prioritize communication, members should alert the team during weekly zoom calls if an action plan can’t be completed on time, and when they think they’d be able to complete it, extra members will be added to the task as needed on a voluntary basis. 
 
-- How are people held accountable for attending meetings, completing action items? Is there a moderator or process?
+Every week a different member will be responsible for meeting minutes. Members who miss meetings will be sent the document, and clarification can be provided over text through discord. If a team member misses two weeks of meetings without any communication, they will be categorized as a non-responsive team member and dealt with as such. Members will be held accountable through the final peer review at end of the course
 
 **Conflict Resolution:**
+For non-responsive team members, if the rest of the team agrees during the weekly calls, we will contact TA for further enforcement action.
 
-- List at least three team scenarios/conflicts you discussed in lecture and how you decided you will resolve them. Indecisions? Non-responsive team members? Any other scenarios you can think of?
+When dealing with tech related indecisions, we will first ask our partner’s main tech contact from CanSettle for advice. Higher level indecisions that can't be resolved through our partners input will also be discussed during zoom calls, or over discord and will be decided by a majority vote.
+
+In the event that a team member completes a task but fails to meet the acceptance criteria, discussion will be held during weekly zoom calls clarifying the criteria. The team member can also clarify why the acceptance criteria might not be feasible. Team members can be added to the incomplete task as needed on a voluntary basis. 
+
+
+
 
 ---
 
