@@ -188,4 +188,4 @@ and/or collaborative process.
 - Essentially, we want to understand how (and why) you ended up with your current product and process plan.
 - This section is useful for important information regarding your decision making process that may not necessarily fit in other sections.
 
-We first decided whether we want to make an app or a website. Most of our team members have experience in making websites, therefore we tend to make a responsive website at the beginning, which can be run on a computer or on a mobile phone. However, TA stated that this proposal may need to support offline operation, so the website may not meet this requirement, hence we finally decided to make an app.
+We first decided whether we want to make an app or a website. Most of our team members have experience in making websites, therefore we tend to make a responsive website at the beginning, which can be run on a computer or on a mobile phone. However, our partner stated that this proposal may need to support offline operation, so the website may not meet this requirement, hence we finally decided to make an app.
