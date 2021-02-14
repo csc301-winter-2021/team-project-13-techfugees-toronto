@@ -61,71 +61,70 @@ We will be making and running JUnit tests to test our code, and all code will be
 
 #### Q5: What are the user stories that make up the MVP?
 
-- At least 5 user stories concerning the main features of the application - note that this can broken down further
-- You must follow proper user story format (as taught in lecture) `As a <user of the app>, I want to <do something in the app> in order to <accomplish some goal>`
-- User stories must contain acceptance criteria. Examples of user stories with different formats can be found here: https://www.justinmind.com/blog/user-story-examples/. **It is important that you provide a link to an artifact containing your user stories**.
-- If you have a partner, these must be reviewed and accepted by them
-
-- As a Refugees seeking Housing, I want to find some friendly landlords in order to find a house that is more convenient for me.
-- As a Landlords, I want to find reassuring tenants in order to keep my house clean and good.
-- As a Friendly Landlords, I want to find good Refugees in order to help them and keep my house clean.
-- As a Refugees, I want to find a house by the number of bedrooms in order to find a house that suits my family.
-- As a Refugees, I want to find a place to live by type of build in order to find a place with economic price.
-
 #### Display Management
 
-**Landing Page:**
-As a user that just opened the app, I want to be greeted with a landing page that has registration and login links so that I can login or register if I am a new user. 
+**Landing Page**
+
+As a user that just opened the app, I want to be greeted with a landing page that has registration and login links so that I can login or register if I am a new user.
 - Acceptance criteria: Given the landing page, when the user clicks on the login or register links, then they are redirected to the appropriate page.
 
-**Index Page:**
+**Index Page**
+
 As a registered user, I want to view the available listings and sort by cost, distance, and date added when I first open the app. Additionally, I want to be able to filter the listings by my ideal criterias,such as number of bedrooms, bathrooms, and type of building. From the index page, I should be able to access the other pages from a menu, as well as access my account/profile, and create and update rental postings if I am a landlord.
 - Acceptance criteria: Given the registered user opens the app and is presented with the index page, clicking on a listing will lead them to the listing’s page with details. The listings can be filtered and sorted by user-defined criteria.
 
-**Rental Posting Details Page:**
+**Rental Posting Details Page**
+
 Refugee: As a refugee who has registered and logged into the app, I want to be able to see the details regarding the rental posting as well as information about the landlord, so that I can make a more informed decision about my place of residence.
 
 Landlord: As a landlord who has registered and logged into the app, I want to be able to see the details of my own rental postings and have the option to modify the details or delete the posting, as well as view details on other landlords’ postings on the app.
-- Acceptance Criteria: 
+- Acceptance Criteria:
 Given a registered and logged in app user, when the user clicks on a rental posting, the page should then display relevant information about the property, as well as details on the landlord’s criterias for tenants.
 
 #### Member Management
-**Registration:**
+**Registration**
+
 Landlord: As an unregistered landlord, I want to be able to create an account so that I can post my rental openings.
-Refugee: As an unregistered refugee seeking housing, I want to be able to create an account so that I can have a more personalized view of housing listings. 
+Refugee: As an unregistered refugee seeking housing, I want to be able to create an account so that I can have a more personalized view of housing listings.
 - Acceptance criteria (landlord): Given the unregistered landlord arrives at the registration page, when the user fills out the required form fields, including: Full name, password, and landlord specific fields (TBD, i.e. questions about friendliness to refugees), then their information should be stored. If the landlord posts confirmation that they are recognized as friendly by an outreach worker, their account should have a “friendly” badge.
 
 - Acceptance criteria (refugee): Given the unregistered refugee arrives at the registration page, when the user fills out the required form fields, including: Full name, password, email, phone number, then their information should be stored.
 
-**Login:**
+**Login**
+
 As a refugee seeking housing, I want to be able to login in order to view the rental postings index page with personalized filters applied.
 
 As a landlord seeking to list property, I want to be able to login in order to view the rental postings index page and post listings on the app.
 
 - Acceptance Criteria: Given the user arrives at the login page, when the user fills out a valid username and password, then they are logged in with the user's personalized settings applied as search filters.
 
-**Profile Update:**
+**Profile Update**
+
 As a registered and logged in app user, I want to be able to update my profile information so that my search settings are accurate.
 
 - Acceptance Criteria: Given the user arrives at the profile page, when the user clicks on the profile update button, then their personal information is updated to match the filled in form-fields.
 
 #### Postings Management
-**Rental Posting Creation:** 
+**Rental Posting Creation**
+
 As a landlord, I want to be able to create a rental posting, so that I can advertise my listing to potential tenants.
 
 - Acceptance Criteria: Given a logged in user registered as a landlord viewing the rental posting creation page, when I fill out the necessary form fields (relevant information about property including: Location, pet tolerance, rent, utility fees), then the posting should be added displayed on the rental index page.
 
-**Rental Posting Update:**
-As a landlord, I want to be able to visit the posting details page that I created, and be able to edit and update the information displayed to users. 
+**Rental Posting Update**
+
+As a landlord, I want to be able to visit the posting details page that I created, and be able to edit and update the information displayed to users.
 
 - Acceptance Criteria: Given a landlord arrives at the details page of a posting he created, when the user clicks on the posting update button, then the posting information is updated to match the filled in form-fields.
 
-**Rental Comments:**
+**Rental Comments**
+
 As a user viewing a rental posting, I want to be able to leave a comment so other users can see important information I'd like to share about the property.
 
 - Acceptance Criteria: Given a registered and logged in user who clicks on the comments tab of a rental posting, when the user fills out the comment form field and clicks submit, then the comment is stored and added to the rental postings list of comments.
 
-**Rental Ratings:**
+**Rental Ratings**
+
 As a user viewing a rental posting, I want to be able to leave a rating for the posting, so that other users can see my opinion of the property.
 
 - Acceptance criteria:
@@ -136,16 +135,7 @@ When the user selects a rating and clicks submit, then the rating is stored and 
 
 ## Intellectual Property Confidentiality Agreement
 
-> Note this section is **not marked** but must be completed briefly if you have a partner. If you have any questions, please contact David and Adam.
->
-> **By default, you own any work that you do as part of your coursework.** However, some partners may want you to keep the project confidential after the course is complete. As part of your first deliverable, you should discuss and agree upon an option with your partner. Examples include:
-
-1. You can share the software and the code freely with anyone with or without a license, regardless of domain, for any use.
-2. You can upload the code to GitHub or other similar publicly available domains.
-3. You will only share the code under an open-source license with the partner but agree to not distribute it in any way to any other entity or individual.
-4. You will share the code under an open-source license and distribute it as you wish but only the partner can access the system deployed during the course.
-
-**Briefly describe which option you have agreed to. Your partner cannot ask you to sign any legally binding agreements or documents pertaining to non-disclosure, confidentiality, IP ownership, etc.**
+Techfugees creates open-source and open-data platforms to identify, list & curate tech-enabled solutions empowering displaced people across the world. The code will be shared under an open-source license and distributed as members wish, but only the partner and their contacts can access the system deployed during the course.
 
 ---
 
@@ -153,63 +143,39 @@ When the user selects a rating and clicks submit, then the rating is stored and 
 
 #### Q6: What are the roles & responsibilities on the team?
 
-Describe the different roles on the team and the responsibilities associated with each role.
-
-- Roles should reflect the structure of your team and be appropriate for your project. Not necessarily one role to one team member.
-
-List each team member and:
-
-- A description of their role(s) and responsibilities including the components they'll work on and non-software related work
-- 3 technical strengths and weaknesses each (e.g. languages, frameworks, libraries, development methodologies, etc.)
-
 **Roles**
-Meeting scribe: A role which rotates week to week, the scribe will record meeting minutes and send them to the team after the meeting. 
 
-Code Reviewer: Will participate in team code review sessions, which are planned on a as needed basis. During code reviews members will explain the intended purpose of their code for context, afterwards the other members will read over the code, noting any questions or concerns that will be discussed with the rest of the group afterwards.
-
-Meeting Host: Will go over the meeting agenda with the client, and lead the discussion. Will defer to other team members when discussing their specific deliverables
-
-Front-end developer: Will be assigned tasks related to design and UI/UX.
-
-Back-end developer: Will be assigned tasks relating to the backend.
+- **Meeting scribe**: A role which rotates week to week, the scribe will record meeting minutes and send them to the team after the meeting.
+- **Code Reviewer**: Will participate in team code review sessions, which are planned on a as needed basis. During code reviews members will explain the intended purpose of their code for context, afterwards the other members will read over the code, noting any questions or concerns that will be discussed with the rest of the group afterwards.
+- **Meeting Host**: Will go over the meeting agenda with the client, and lead the discussion. Will defer to other team members when discussing their specific deliverables
+- **Front-end developer**: Will be assigned tasks related to design and UI/UX.
+- **Back-end developer**: Will be assigned tasks relating to the backend.
 
 **Team Members**
+
 Andi Fan
 - Roles: Meeting scribe, Code Reviewer, Front-end, Back-end
 - Strengths: Full-stack web experience (node.js, express.js, Django, bootstrap), industry experience with RDBMS, some knowledge of software security and preventing OWASP top 10 vulnerabilities.
 - Weaknesses: No prior Android app development experience, no experience with flutter, limited experience with noSQL databases
 
+Kim Le
+- Roles: Meeting scribe, Meeting host, Front-end developer, Back-end developer
+- Strengths: Full-stack web experience (Django, Bootstrap, Laravel), UI/UX design, graphic design, proficiency in Java and design patterns, some knowledge of software security and preventing OWASP top 10 vulnerabilities.
+- Weaknesses: No prior Android app development experience, limited experience with no-SQL databases.
+
+
 #### Q7: What operational events will you have as a team?
 
-Describe meetings (and other events) you are planning to have.
+We will be using Discord for organizing meetings between team members. We will have weekly Zoom meetings to stay on top of the tasks and update each other with our progress and what we are working on. Meetings will be online only. We will be meeting more than once when deadlines are coming up and as needed. But in general, we'll have meetings to ensure everyone is on the same page, if that can't be done in writing, and also to make sure everything is in working order before presenting something to our partner or the instructors’ team.
 
-- When and where? Recurring or ad hoc? In-person or online?
-- What's the purpose of each meeting?
-- Other events could be coding sessions, code reviews, quick weekly sync meeting online, etc.
-- You must have at least 2 meetings with your project partner (if you have one) before D1 is due. Describe them here:
-  - What did you discuss during the meetings?
-  - What were the outcomes of each meeting?
-  - You must provide meeting minutes.
-  - You must have a regular meeting schedule established by the second meeting.
+After a task has been completed, it will be placed in the “Code Review” section on Trello. Team members will be expected to review others’ code and have some input prepared for the weekly meeting.
 
-We will be using Discord for organizing any meetings. Any meetings will usually be ad-hoc unless a deadline is coming up, or something that needs more than just chatting. Everything will be online only.
-Each meeting will have its own purpose. But in general, we'll have meetings to ensure everyone is on the same page, if that can't be done in writing, and also to make sure everything is in working order before presenting something to our partner or the instructors’ team.
-We did two meetings. One after getting assigned to our partner, and one where we reviewed D1.
-In the first meeting, which took roughly one hour from 1:00pm to 2:00pm on Sunday February 7th, we agreed that our app would mainly be on android, and it would be best if it could function as much as possible offline.
+So far we have had two meetings with the client. Our first meeting, which took roughly one hour from 1:00pm to 2:00pm on Sunday February 7th, was introductory and for the purpose of getting a better idea of the direction of our software. In this meeting, we agreed that our app would mainly be on android, and it would be best if it could function as much as possible offline. Our second meeting, which is on February 14, at 1:00pm is to review our planning document with the client. In this meeting, our client gave us valuable feedback on our planning document and guided us in the right direction.
 
 
 #### Q8: What artifacts will you use to self-organize?
 
-List/describe the artifacts you will produce in order to organize your team.
-
-- Artifacts can be To-Do lists, Task boards, schedule(s), meeting minutes, etc.
-- We want to understand:
-  - How do you keep track of what needs to get done?
-  - **How do you prioritize tasks?**
-  - How do tasks get assigned to team members?
-  - How do you determine the status of work from inception to completion?
-
-#### Trello
+**Trello**
 
 We will be using Trello as both a To-Do list, and to keep track of ongoing tasks. Tasks will have a priority level based on deadline and how dependant other features are on the task. Appropriate deadlines for tasks will be discussed amongst team during weekly bilats. Team members can self-assign to tasks they find interesting/align with their area of expertise in order of priority. If a team member is not assigned to an ongoing task, other members can request for additional help.
 
@@ -217,11 +183,11 @@ Trello has the option to create multiple task boards, where we can keep track of
 
 Additionally, we will be sharing this task board with our client so they have an idea of our progress.
 
-#### Discord
+**Discord**
 
 Our primary platform for communication between team members will be Discord. This is where we will host our weekly-bilats, and where we can post questions/provide resources to eachother. We will create channels for general chat, session-planning, tech resources, and meeting minutes.
 
-#### Slack
+**Slack**
 
 We will be using Slack to communicate with the client.
 
@@ -229,40 +195,29 @@ We will be using Slack to communicate with the client.
 
 Describe your team's working culture.
 
-**Communications:**
+**Communications**
+
 Our team will meet weekly through zoom call on Sundays at 12:00 noon to discuss what we are working on. We will also have ongoing text communication through discord.
 
 We will be hosting Bi-weekly zoom call with partner Sundays at 1:00pm, to discuss what we’ve worked on and receive feedback. Additionally there will be ongoing communication through slack for quick clarification questions, and to send any relevant information prior to Sunday meetings.
 
-**Meetings:**
+**Meetings**
+
 Our team will prioritize communication, members should alert the team during weekly zoom calls if an action plan can’t be completed on time, and when they think they’d be able to complete it, extra members will be added to the task as needed on a voluntary basis.
 
 Every week a different member will be responsible for meeting minutes. Members who miss meetings will be sent the document, and clarification can be provided over text through discord. If a team member misses two weeks of meetings without any communication, they will be categorized as a non-responsive team member and dealt with as such. Members will be held accountable through the final peer review at end of the course
 
-**Conflict Resolution:**
+**Conflict Resolution**
+
 For non-responsive team members, if the rest of the team agrees during the weekly calls, we will contact TA for further enforcement action.
 
 When dealing with tech related indecisions, we will first ask our partner’s main tech contact from CanSettle for advice. Higher level indecisions that can't be resolved through our partners input will also be discussed during zoom calls, or over discord and will be decided by a majority vote.
 
 In the event that a team member completes a task but fails to meet the acceptance criteria, discussion will be held during weekly zoom calls clarifying the criteria. The team member can also clarify why the acceptance criteria might not be feasible. Team members can be added to the incomplete task as needed on a voluntary basis.
 
-
-
-
 ---
 
 ## Highlights
-
-Specify 3 - 5 key decisions and/or insights that came up during your meetings
-and/or collaborative process.
-
-- Short (5 min' read max)
-- Decisions can be related to the product and/or the team process.
-  - Mention which alternatives you were considering.
-  - Present the arguments for each alternative.
-  - Explain why the option you decided on makes the most sense for your team/product/users.
-- Essentially, we want to understand how (and why) you ended up with your current product and process plan.
-- This section is useful for important information regarding your decision making process that may not necessarily fit in other sections.
 
 We first decided whether we want to make a mobile app or a web app. Most of our team members have experience in making web apps, therefore we tend to make a responsive website at the beginning, which can be run on a computer or on a mobile phone. However, our partner stated that this proposal may need to support offline operation, so the website may not meet this requirement. Hence, we decided to make an Android mobile app. This is also a great learning experience for our members who have not yet explored this realm of software development.
 
