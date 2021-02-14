@@ -23,8 +23,6 @@ A mock-up of the app can be seen [here](https://www.figma.com/file/5FJnnTRoEI6Rs
 
 > Short (1 - 2 min' read)
 
-- Be specific (e.g. a 'a third-year university student studying Computer Science' and not 'a student')
-- **Feel free to use personas. You can create your personas as part of this Markdown file, or add a link to an external site (for example, [Xtensio](https://xtensio.com/user-persona/)).**
 
 #### Refugees seeking Housing
 
@@ -46,15 +44,7 @@ Landlords in the Toronto area who have helped in the past with refugee support. 
 
 > Short (1 - 2 min' read)
 
-- We want you to "connect the dots" for us - Why does your product (as described in your answer to Q1) fits the needs of your users (as described in your answer to Q2)?
-- Explain the benefits of your product explicitly & clearly. For example:
-  - Save users time (how much?)
-  - Allow users to discover new information (which information? And, why couldn't they discover it before?)
-  - Provide users with more accurate and/or informative data (what kind of data? Why is it useful to them?)
-  - Does this application exist in another form? If so, how does your differ and provide value to the users?
-  - How does this align with your partner's organization's values/mission/mandate?
-
-Since our app would build a network between refugees, outreach workers and housing providers, it'll help refugee tenants access lists of available housings, in addition to allowing search by location, landlord, number of bedrooms, bathrooms, type of building, etc. This helps refugees save time and effort in their search for suitable rentals. 
+Since our app would build a network between refugees, outreach workers and housing providers, it'll help refugee tenants access lists of available housings, in addition to allowing search by location, landlord, number of bedrooms, bathrooms, type of building, etc. This helps refugees save time and effort in their search for suitable rentals.
 For a future tenant to obtain all this info on an apartment would take a lot of research, all of which has to be done through the internet on a relatively long span of time. Refugees do not have this luxury, and our app aims to solve that. Our Partner's mission is to support the inclusion of displaced people. And through this app, help refugees specifically in finding better housing for themselves.
 
 
@@ -68,7 +58,9 @@ For a future tenant to obtain all this info on an apartment would take a lot of 
 - Will you be using third party applications or APIs? If so, what are they?
 - What is your testing strategy?
 
-We'll do an android app, at present, Android Studio is officially recommended by Android, therefore we choose to use Android Studio as our ide and front-end technology, while using Java as the back-end technology to complete the logic and database algorithms.
+We will be building an Android app. Presently, Android Studio is the official recommendation for development by Android, therefore we will be using Android Studio as our IDE and front-end technology, with using Java as the back-end technology to complete the logic and database algorithms.
+
+As for our database, we are still exploring our options between a SQL and no-SQL database. For a SQL database, SQLite is a widely used database for Android app developers. The no-SQL databases that have caught our eye for this particular project are Mongo Realm and Couchbase Mobile, both great options for Android app development, and they also include data level encryption.
 
 
 #### Q5: What are the user stories that make up the MVP?
@@ -126,10 +118,10 @@ Describe meetings (and other events) you are planning to have.
   - What were the outcomes of each meeting?
   - You must provide meeting minutes.
   - You must have a regular meeting schedule established by the second meeting.
-  
-We'll use discord for organizing any meetings. Any meetings will usually be ad-hoc unless a deadline is coming up, or something that needs more than just chatting. Everything will be online only. 
+
+We will be using Discord for organizing any meetings. Any meetings will usually be ad-hoc unless a deadline is coming up, or something that needs more than just chatting. Everything will be online only.
 Each meeting will have its own purpose. But in general, we'll have meetings to ensure everyone is on the same page, if that can't be done in writing, and also to make sure everything is in working order before presenting something to our partner or the instructors’ team.
-We did two meetings. One after getting assigned to our partner, and one where we reviewed D1. 
+We did two meetings. One after getting assigned to our partner, and one where we reviewed D1.
 In the first meeting, which took roughly one hour from 1:00pm to 2:00pm on Sunday February 7th, we agreed that our app would mainly be on android, and it would be best if it could function as much as possible offline.
 
 
@@ -148,13 +140,17 @@ List/describe the artifacts you will produce in order to organize your team.
 
 We will be using Trello as both a To-Do list, and to keep track of ongoing tasks. Tasks will have a priority level based on deadline and how dependant other features are on the task. Appropriate deadlines for tasks will be discussed amongst team during weekly bilats. Team members can self-assign to tasks they find interesting/align with their area of expertise in order of priority. If a team member is not assigned to an ongoing task, other members can request for additional help.
 
+Trello has the option to create multiple task boards, where we can keep track of our backlog, to-do tasks, in-progress tasks, code-review, testing, and completed tasks.
+
+Additionally, we will be sharing this task board with our client so they have an idea of our progress.
+
 #### Discord
 
-Our primary platform for communication between team members will be discord. This is where we will host our weekly-bilats, and where we can post questions/provide resources to eachother. We will create channels for general chat, session-planning, tech resources, and meeting minutes.
+Our primary platform for communication between team members will be Discord. This is where we will host our weekly-bilats, and where we can post questions/provide resources to eachother. We will create channels for general chat, session-planning, tech resources, and meeting minutes.
 
 #### Slack
 
-We will be using slack to communicate with the client.
+We will be using Slack to communicate with the client.
 
 #### Q9: What are the rules regarding how your team works?
 
@@ -188,4 +184,4 @@ and/or collaborative process.
 - Essentially, we want to understand how (and why) you ended up with your current product and process plan.
 - This section is useful for important information regarding your decision making process that may not necessarily fit in other sections.
 
-We first decided whether we want to make an app or a website. Most of our team members have experience in making websites, therefore we tend to make a responsive website at the beginning, which can be run on a computer or on a mobile phone. However, our partner stated that this proposal may need to support offline operation, so the website may not meet this requirement, hence we finally decided to make an app.
+We first decided whether we want to make a mobile app or a web app. Most of our team members have experience in making web apps, therefore we tend to make a responsive website at the beginning, which can be run on a computer or on a mobile phone. However, our partner stated that this proposal may need to support offline operation, so the website may not meet this requirement. Hence, we decided to make an Android mobile app. This is also a great learning experience for our members who have not yet made explored this realm of software development.
