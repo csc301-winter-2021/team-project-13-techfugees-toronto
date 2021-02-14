@@ -84,6 +84,24 @@ We'll do an android app, at present, Android Studio is officially recommended by
 - As a Refugees, I want to find a house by the number of bedrooms in order to find a house that suits my family.
 - As a Refugees, I want to find a place to live by type of build in order to find a place with economic price.
 
+#### Main screen
+
+Landing Page:
+As user that just opened the app, I want to be greeted with a landing page that has a registration and login link so that I can login or register if I am a new user.
+Acceptance criteria:
+Given the landing page, when the user clicks on the login or register links, then they are redirected to the appropriate page.
+
+#### Member Management
+
+Registration page:
+As an unregistered user, I want to be able to create an account so that I can have a more personalized view.
+Acceptance criteria:
+Given the unregistered user arrives at the registration page,
+when the user fills out the reequired form fields, including: Name, password, member type(landlord, tenant, etc),
+then their information should be stored in the backend database.
+
+
+
 ---
 
 ## Intellectual Property Confidentiality Agreement
