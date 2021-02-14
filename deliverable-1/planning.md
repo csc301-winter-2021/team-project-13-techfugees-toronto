@@ -106,6 +106,12 @@ Given the user arrives at the profile page,
 when the user clicks on the profile update button,
 then their personal information stored in the database is updated to match the filled in form-fields
 
+#### Postings Management
+
+Rental Listing:
+As a user viewing a rental listing, I want to be able to leave a comment so other users can see important information I'd like to share about the property.
+Acceptance Criteria:
+Given a user who fills out 
 ---
 
 ## Intellectual Property Confidentiality Agreement
@@ -215,3 +221,7 @@ and/or collaborative process.
 - This section is useful for important information regarding your decision making process that may not necessarily fit in other sections.
 
 We first decided whether we want to make a mobile app or a web app. Most of our team members have experience in making web apps, therefore we tend to make a responsive website at the beginning, which can be run on a computer or on a mobile phone. However, our partner stated that this proposal may need to support offline operation, so the website may not meet this requirement. Hence, we decided to make an Android mobile app. This is also a great learning experience for our members who have not yet explored this realm of software development.
+
+Additionally, our partner mentioned putting us in contact with the product owner and sole developer of Cansettle, another application catered to refugees in Canada. Our partner mentioned Cansettle leveraging Flutter for its front-end. Considering the advice we could receive from Cansettle’s owner, we decided to use similar technologies and chose Flutter for the front-end of our app. 
+
+During our second meeting with our partner, we consolidated our understanding of the application's unique identity. A refugee’s search for housing is an arduous process, frequently met with un-accommodating landlords that don’t respond. Our application seeks to make the process easier and less discriminatory for the refugees. Initially we had planned to allow all landlords to post rental openings, hoping to expose refugees to as many housing options as possible. Upon further discussion with our partner, we decided in an effort to save the refugee time and effort, we would only allow refugee friendly landlords to make rental postings.   
