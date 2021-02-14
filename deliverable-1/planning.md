@@ -86,13 +86,25 @@ Given the landing page, when the user clicks on the login or register links, the
 #### Member Management
 
 Registration page:
-As an unregistered user, I want to be able to create an account so that I can have a more personalized view.
+As an unregistered user, I want to be able to create an account so that I can stored my information in the app's database.
 Acceptance criteria:
 Given the unregistered user arrives at the registration page,
-when the user fills out the reequired form fields, including: Name, password, member type(landlord, tenant, etc),
+when the user fills out the required form fields, including: Name, password, member type(landlord, tenant, etc),
 then their information should be stored in the backend database.
 
+Login Page:
+As an app user, I want to be able to login and access the main features of the app with more personalized search settings. 
+Acceptance Criteria:
+Given the user arrives at the login page,
+when the user fills out a username and password which matches a user in the database, 
+then they are logged in with the user's personalized settings.
 
+Profile Page:
+As a registered and logged in app user, I want to be able to update my profile information so that my search settings are my accurate.
+Acceptance Criteria:
+Given the user arrives at the profile page, 
+when the user clicks on the profile update button,
+then their personal information stored in the database is updated to match the filled in form-fields
 
 ---
 
@@ -202,4 +214,4 @@ and/or collaborative process.
 - Essentially, we want to understand how (and why) you ended up with your current product and process plan.
 - This section is useful for important information regarding your decision making process that may not necessarily fit in other sections.
 
-We first decided whether we want to make a mobile app or a web app. Most of our team members have experience in making web apps, therefore we tend to make a responsive website at the beginning, which can be run on a computer or on a mobile phone. However, our partner stated that this proposal may need to support offline operation, so the website may not meet this requirement. Hence, we decided to make an Android mobile app. This is also a great learning experience for our members who have not yet made explored this realm of software development.
+We first decided whether we want to make a mobile app or a web app. Most of our team members have experience in making web apps, therefore we tend to make a responsive website at the beginning, which can be run on a computer or on a mobile phone. However, our partner stated that this proposal may need to support offline operation, so the website may not meet this requirement. Hence, we decided to make an Android mobile app. This is also a great learning experience for our members who have not yet explored this realm of software development.
