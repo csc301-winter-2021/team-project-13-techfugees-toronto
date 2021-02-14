@@ -173,6 +173,12 @@ Mubai Gao
 - Strengths: Development a database use Java for an Android app backend(Java, python, C, Node.js, VUE)
 - Weaknesses: First time Android app frontend development
 
+Ahmad Rehan:
+- Roles: Meeting scribe, Code Reviewer, Frond-end developer, Back-end developer.
+- Strengths: Light problem solving experience. Made multiple small desktop applications. Some experience in Java, C++. Applied SOLID and few design patterns in CSC207.
+- Weaknesses: No prior SQL, noSQL, Android or Web development experience. Haven’t worked with flutter nor Android Studio before.
+
+
 #### Q7: What operational events will you have as a team?
 
 We will be using Discord for organizing meetings between team members. We will have weekly Zoom meetings to stay on top of the tasks and update each other with our progress and what we are working on. Meetings will be online only. We will be meeting more than once when deadlines are coming up and as needed. But in general, we'll have meetings to ensure everyone is on the same page, if that can't be done in writing, and also to make sure everything is in working order before presenting something to our partner or the instructors’ team.
