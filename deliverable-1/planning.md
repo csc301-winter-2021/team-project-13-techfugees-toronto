@@ -174,9 +174,22 @@ Mubai Gao
 - Weaknesses: First time Android app frontend development
 
 Ahmad Rehan:
+
 - Roles: Meeting scribe, Code Reviewer, Frond-end developer, Back-end developer.
 - Strengths: Light problem solving experience. Made multiple small desktop applications. Some experience in Java, C++. Applied SOLID and few design patterns in CSC207.
 - Weaknesses: No prior SQL, noSQL, Android or Web development experience. Haven’t worked with flutter nor Android Studio before.
+
+Raymond Lu:
+
+- Roles: Meeting scribe, Front-end developer, Back-end developer
+- Strengths: Little bit Android Studio experience, took CSC343 (know how to write sql but haven’t done any sql project)
+- Weaknesses: No web development experience
+
+Haotian Zhu:
+
+- Roles: Meeting scribe, Front-end developer, Back-end developer.
+- Weaknesses: No prior Sql or internet experience.
+- Strengths: Have software development experience (java, Android Studio, c# ,unity). Also has knowledge in C/C++, python.
 
 
 #### Q7: What operational events will you have as a team?
