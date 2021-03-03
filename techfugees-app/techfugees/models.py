@@ -1,4 +1,4 @@
-from techfugees import db, login_manager
+from techfugees import db, login_manager, app
 from datetime import datetime
 from flask_login import UserMixin #adds attributes lik authenticated, active, anon
 
