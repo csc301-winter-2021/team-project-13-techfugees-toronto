@@ -1,20 +1,26 @@
-import sqlite3, secrets
-from flask import Flask, render_template, url_for, flash, redirect
-from forms import RegistrationForm, LoginForm
+from flask import render_template, url_for, flash, redirect
+from techfugees import app
+from techfugees.models import User, Post
+from techfugees.forms import RegistrationForm, LoginForm
 
-def get_db_connection():
-    conn = sqlite3.connect('database.db')
-    conn.row_factory = sqlite3.Row
-    return conn
+posts = [
+    {
+        'author': 'test',
+        'title': 'Blog Post 1',
+        'content': 'First post content',
+        'date_posted': 'April 20, 2018'
+    },
+    {
+        'author': 'Jane Doe',
+        'title': 'Blog Post 2',
+        'content': 'Second post content',
+        'date_posted': 'April 21, 2018'
+    }
+]
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = secrets.token_hex(16)
 
 @app.route('/')
 def index():
-    conn = get_db_connection()
-    posts = conn.execute('SELECT * FROM posts').fetchall()
-    conn.close()
     return render_template('index.html', posts=posts)
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -35,6 +41,3 @@ def login():
         else:
             flash('Invalid Credentials!', 'danger')
     return render_template('login.html', title='login', form=form)
-
-if __name__ == "__main__":
-    app.run(debug=True)
