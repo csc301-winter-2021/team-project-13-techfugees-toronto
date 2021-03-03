@@ -1,28 +1,13 @@
 from flask import render_template, url_for, flash, redirect, request
 from techfugees import app, db, bcrypt
-from techfugees.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from techfugees.forms import RegistrationForm, LoginForm, UpdateAccountForm, NewListingForm
 from techfugees.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 
 
-posts = [
-    {
-        'author': 'test',
-        'title': 'Blog Post 1',
-        'content': 'First post content',
-        'date_posted': 'April 20, 2018'
-    },
-    {
-        'author': 'Jane Doe',
-        'title': 'Blog Post 2',
-        'content': 'Second post content',
-        'date_posted': 'April 21, 2018'
-    }
-]
-
-
 @app.route('/')
 def index():
+    posts = Post.query.all()
     return render_template('index.html', posts=posts)
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -76,5 +61,16 @@ def account():
     elif request.method == 'GET': #populate fields
         form.username.data = current_user.username
         form.email.data = current_user.email
-
     return render_template('account.html', title='Account', form=form)
+
+@app.route('/post/new', methods=['GET','POST'])
+@login_required
+def new_rental_posting():
+    form = NewListingForm()
+    if form.validate_on_submit():
+        listing = Post(title=form.title.data, content=form.content.data, author=current_user)
+        db.session.add(listing)
+        db.session.commit()
+        flash('Listing Added!', 'success')
+        return redirect(url_for('index'))
+    return render_template('create_post.html', title='Add New Listing', form=form)

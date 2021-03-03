@@ -3,11 +3,19 @@
 {% block content %}
     <h1>{% block title %} Techfugees {% endblock %}</h1>
     {% for post in posts %}
-    <a href="#">
-        <h2>{{ post['title'] }}</h2>
-    </a>
-    <span class="badge badge-primary">{{ post['date_posted'] }}</span>
-    
+
+    <div>
+        <h2>
+            <a href="#">
+                {{ post['title'] }}
+            </a>
+        </h2>
+        <p class="article-content">{{ post['content'] }}</p>
+        
+        <span class="badge badge-primary">{{ post['date_posted'] }}</span>
+        <span class="badge badge-primary">{{ post['author'].username }}</span>
+    </div>
+
     <hr>
     {% endfor %}
 {% endblock %}
