@@ -6,7 +6,7 @@
 
     <div>
         <h2>
-            <a href="#">
+            <a href="{{ url_for('listing', post_id = post.id) }}">
                 {{ post['title'] }}
             </a>
         </h2>
