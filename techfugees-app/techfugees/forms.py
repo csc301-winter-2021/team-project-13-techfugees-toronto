@@ -11,12 +11,12 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Sign Up')
 
     def validate_username(self, username):
-        user = User.query.filter_by(username=username.data.first()) #none if no user
+        user = User.query.filter_by(username=username.data).first() #none if no user
         if user is not None:
             raise ValidationError('That username is taken. Please choose a different one.')
 
     def validate_email(self, email):
-        user = User.query.filter_by(email=email.data.first()) #none if not taken
+        user = User.query.filter_by(email=email.data).first() #none if not taken
         if user is not None:
             raise ValidationError('That email is taken. Please choose a different one.')
 
