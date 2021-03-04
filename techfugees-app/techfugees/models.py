@@ -19,8 +19,8 @@ class User(db.Model, UserMixin):
         return f"User('{self.username}, {self.email}, {self.image_file}')"
 
 class Landlord(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
+    user = db.relationship('User', backref='landlord', lazy=True)
     username = db.Column(db.String(20), db.ForeignKey('user.username'), unique=True, nullable=False)
     credit_check = db.Column(db.Boolean, default=False)
     first_last = db.Column(db.Boolean, default=False)
