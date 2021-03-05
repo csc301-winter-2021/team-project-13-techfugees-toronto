@@ -3,8 +3,10 @@ from flask_login import current_user, login_required
 from techfugees import db
 from techfugees.models import Post, User
 from techfugees.posts.forms import NewListingForm
+from techfugees import app
+import os
 
-
+app.config['UPLOAD_FOLDER'] = 'techfugees-app/techfugees/static/HousePhoto'
 posts = Blueprint('posts', __name__)
 
 
@@ -33,6 +35,14 @@ def new_rental_posting():
                        type_of_building=form.type_of_building.data,
                        content=form.content.data,
                        author=current_user)
+        uploaded_file = request.files['file']
+        if uploaded_file.filename != '':
+            print('ok')
+            folder = os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], form.title.data))
+            if not folder:
+                os.makedirs(os.path.join(app.config['UPLOAD_FOLDER'], form.title.data))
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], form.title.data + '/' + uploaded_file.filename)
+            uploaded_file.save(file_path)
         db.session.add(listing)
         db.session.commit()
         flash('Listing Added!', 'success')
