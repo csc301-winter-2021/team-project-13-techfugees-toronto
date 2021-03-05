@@ -1,4 +1,4 @@
-name: Run tests on any Push event
+name: flask test.py on Push events
 on:
   push:
     tags:
