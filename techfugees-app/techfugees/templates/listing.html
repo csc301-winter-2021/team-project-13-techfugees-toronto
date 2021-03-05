@@ -6,27 +6,46 @@
         <h2 class="article-title">
             {{ post['title'] }}
         </h2>
-        <p class="article-content">{{ post['address'] }}</p>
-        <p class="article-content">{{ post['city'] }}</p>
+        <h4>Address</h4>
+        <span class="article-content">{{ post['address'] }}</span>
+        <span class="article-content">{{ post['city'] }}</span>
+        <h4>Type of Building</h4>
+        <p class="article-content">{{ post['type_of_building'] }}</p>
+        <h4>Basic Info</h4>
         <div>
+          <span># of bedrooms</span>
           <span class="article-content">{{ post['num_bedrooms'] }}</span>
+          <br />
+          <span># of bathrooms</span>
           <span class="article-content">{{ post['num_bathrooms'] }}</span>
         </div>
-        <p class="article-content">{{ post['type_of_building'] }}</p>
         <div>
-          <span class="article-content">{{ post['pet'] }}</span>
-          <span class="article-content">{{ post['smoking'] }}</span>
-          <span class="article-content">{{ post['balcony'] }}</span>
-          <span class="article-content">{{ post['air_conditioning'] }}</span>
-          <span class="article-content">{{ post['stove_oven'] }}</span>
-          <span class="article-content">{{ post['washer'] }}</span>
-          <span class="article-content">{{ post['deyer'] }}</span>
-          <span class="article-content">{{ post['dishwasher'] }}</span>
-          <span class="article-content">{{ post['microwave'] }}</span>
-          <span class="article-content">{{ post['cable'] }}</span>
-          <span class="article-content">{{ post['water'] }}</span>
-          <span class="article-content">{{ post['electricity'] }}</span>
+          <span>Pet</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['pet'] }}</span>
+          <span>Smoking</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['smoking'] }}</span>
+          <span>Balcony</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['balcony'] }}</span>
+          <span>Air Conditioning</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['air_conditioning'] }}</span>
+          <span>Stove & Oven</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['stove_oven'] }}</span>
+          <span>Washer</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['washer'] }}</span>
+          <span>Dryer</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['dryer'] }}</span>
+          <span>Dishwasher</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['dishwasher'] }}</span>
+          <span>Microwave</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['microwave'] }}</span>
+          <span>Cable</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['cable'] }}</span>
+          <span>Water</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['water'] }}</span>
+          <span>Electricity</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['electricity'] }}</span>
         </div>
+        <h4>Content</h4>
         <p class="article-content">{{ post['content'] }}</p>
 
         
