@@ -6,7 +6,29 @@
         <h2 class="article-title">
             {{ post['title'] }}
         </h2>
+        <p class="article-content">{{ post['address'] }}</p>
+        <p class="article-content">{{ post['city'] }}</p>
+        <div>
+          <span class="article-content">{{ post['num_bedrooms'] }}</span>
+          <span class="article-content">{{ post['num_bathrooms'] }}</span>
+        </div>
+        <p class="article-content">{{ post['type_of_building'] }}</p>
+        <div>
+          <span class="article-content">{{ post['pet'] }}</span>
+          <span class="article-content">{{ post['smoking'] }}</span>
+          <span class="article-content">{{ post['balcony'] }}</span>
+          <span class="article-content">{{ post['air_conditioning'] }}</span>
+          <span class="article-content">{{ post['stove_oven'] }}</span>
+          <span class="article-content">{{ post['washer'] }}</span>
+          <span class="article-content">{{ post['deyer'] }}</span>
+          <span class="article-content">{{ post['dishwasher'] }}</span>
+          <span class="article-content">{{ post['microwave'] }}</span>
+          <span class="article-content">{{ post['cable'] }}</span>
+          <span class="article-content">{{ post['water'] }}</span>
+          <span class="article-content">{{ post['electricity'] }}</span>
+        </div>
         <p class="article-content">{{ post['content'] }}</p>
+
         
         <span class="badge badge-primary">{{ post['date_posted'] }}</span>
         <span class="badge badge-primary">{{ post['author'].username }}</span>
