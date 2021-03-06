@@ -1,8 +1,8 @@
 from flask import render_template, url_for, flash, redirect, request, Blueprint, abort
 from flask_login import login_user, current_user, logout_user, login_required
 from techfugees import db, bcrypt
-from techfugees.models import User, Post, Refugee
-from techfugees.users.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from techfugees.models import User, Post, Refugee, Landlord
+from techfugees.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, LandlordRegistrationForm
 
 
 users = Blueprint('users', __name__)

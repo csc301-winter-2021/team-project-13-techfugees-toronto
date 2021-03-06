@@ -14,42 +14,45 @@ posts = Blueprint('posts', __name__)
 @login_required
 def new_rental_posting():
     form = NewListingForm()
-    if form.validate_on_submit():
-        listing = Post(title=form.title.data,
-                       address=form.address.data,
-                       city=form.city.data,
-                       pet=form.pet.data,
-                       smoking=form.smoking.data,
-                       balcony=form.balcony.data,
-                       air_conditioning=form.air_conditioning.data,
-                       stove_oven=form.stove_oven.data,
-                       washer=form.washer.data,
-                       dryer=form.dryer.data,
-                       dishwasher=form.dishwasher.data,
-                       microwave=form.microwave.data,
-                       cable=form.cable.data,
-                       water=form.water.data,
-                       electricity=form.electricity.data,
-                       num_bathrooms=form.num_bathrooms.data,
-                       num_bedrooms=form.num_bedrooms.data,
-                       type_of_building=form.type_of_building.data,
-                       content=form.content.data,
-                       author=current_user)
-        """
-        uploaded_file = request.files['file']
-        if uploaded_file.filename != '':
-            print('ok')
-            folder = os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], form.title.data))
-            if not folder:
-                os.makedirs(os.path.join(app.config['UPLOAD_FOLDER'], form.title.data))
-            file_path = os.path.join(app.config['UPLOAD_FOLDER'], form.title.data + '/' + uploaded_file.filename)
-            uploaded_file.save(file_path)
-        """
-        db.session.add(listing)
-        db.session.commit()
-        flash('Listing Added!', 'success')
+    if current_user.checker == 'landlord':
+        if form.validate_on_submit():
+            listing = Post(title=form.title.data,
+                        address=form.address.data,
+                        city=form.city.data,
+                        pet=form.pet.data,
+                        smoking=form.smoking.data,
+                        balcony=form.balcony.data,
+                        air_conditioning=form.air_conditioning.data,
+                        stove_oven=form.stove_oven.data,
+                        washer=form.washer.data,
+                        dryer=form.dryer.data,
+                        dishwasher=form.dishwasher.data,
+                        microwave=form.microwave.data,
+                        cable=form.cable.data,
+                        water=form.water.data,
+                        electricity=form.electricity.data,
+                        num_bathrooms=form.num_bathrooms.data,
+                        num_bedrooms=form.num_bedrooms.data,
+                        type_of_building=form.type_of_building.data,
+                        content=form.content.data,
+                        author=current_user)
+            """
+            uploaded_file = request.files['file']
+            if uploaded_file.filename != '':
+                print('ok')
+                folder = os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], form.title.data))
+                if not folder:
+                    os.makedirs(os.path.join(app.config['UPLOAD_FOLDER'], form.title.data))
+                file_path = os.path.join(app.config['UPLOAD_FOLDER'], form.title.data + '/' + uploaded_file.filename)
+                uploaded_file.save(file_path)
+            """
+            db.session.add(listing)
+            db.session.commit()
+            flash('Listing Added!', 'success')
+            return redirect(url_for('main.index'))
+        return render_template('create_post.html', title='Add New Listing', form=form)
+    else:
         return redirect(url_for('main.index'))
-    return render_template('create_post.html', title='Add New Listing', form=form)
 
 
 @posts.route('/post/<int:post_id>', methods=['GET', 'POST'])
@@ -57,7 +60,7 @@ def listing(post_id):
     wish = False
     listing = Post.query.get_or_404(post_id)
     if current_user.is_authenticated:
-        if not current_user.landlord:
+        if not current_user.checker == 'landlord':
             user = Refugee.query.filter_by(username=current_user.username).first()
             wishes = user.wish_list.split(",")
             if str(post_id) in wishes:
