@@ -2,7 +2,7 @@
 
 {% block content %}  
 <div>
-    <form method="POST" action="">
+    <form method="POST" action="" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         <legend> {{ title }}</legend>
         <fieldset class=form-group>
@@ -129,6 +129,9 @@
                 {% endif %}
             </div>
         </fieldset>
+
+        <p>Upload your image</p>
+        <p><input type="file" name="file[]" multiple="multiple"></p>
 
         <div class=form-group>
             {{ form.submit(class="btn btn-outline-info") }}

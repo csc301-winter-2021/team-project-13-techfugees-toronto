@@ -57,7 +57,7 @@ class Refugee(User):
 #template class, eventually change to fit rental postings
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(20), nullable=False)
+    title = db.Column(db.String(20), nullable=False, unique=True)
     content = db.Column(db.String(120), nullable=False)
     address = db.Column(db.String(120), nullable=False)
     city = db.Column(db.String(20), nullable=False)
