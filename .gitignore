@@ -1,2 +1,6 @@
 venv/
 .vscode/
+techfugees-app/techfugees/__pycache__/
+techfugees-app/techfugees/main/__pycache__/
+techfugees-app/techfugees/users/__pycache__/
+techfugees-app/techfugees/posts/__pycache__/
