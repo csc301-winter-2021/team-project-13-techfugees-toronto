@@ -14,6 +14,13 @@
         
         <span class="badge badge-primary">{{ post['date_posted'] }}</span>
         <span class="badge badge-primary">{{ post['author'].username }}</span>
+        {% if current_user.is_authenticated %}
+            {% if current_user.landlord == False %}
+                {% if current_user.username in post['wish_user'] %}
+                <span class="badge badge-success">wish</span>
+                {% endif %}
+            {% endif %}
+        {% endif %}
     </div>
 
     <hr>

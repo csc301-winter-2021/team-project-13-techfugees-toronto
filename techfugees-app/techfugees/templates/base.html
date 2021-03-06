@@ -30,6 +30,9 @@
                 <a class="nav-item nav-link" href="{{ url_for('users.account') }}">Account</a>
                 <a class="nav-item nav-link" href="{{ url_for('posts.new_rental_posting') }}">Add Listing</a>
                 <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a>
+                {% if current_user.landlord == False %}
+                <a class="nav-item nav-link" href="{{ url_for('users.wishList') }}">Wish List</a>
+                {% endif %}
             {% else %}
                 <a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
                 <a class="nav-item nav-link" href="{{ url_for('users.register') }}">Register</a>
