@@ -3,13 +3,70 @@
 {% block content %}
     <h1>{% block title %} Listing {% endblock %}</h1>
     <div>
+        {% if current_user.is_authenticated %}
+            {% if post.author != current_user %}
+                {% if user_type == 0 %}
+                    {% if wish == False %}
+                    <form action="{{ url_for('posts.wish_list', post_id=post.id) }}" method="POST">
+                        <input style="float: right" class="btn btn-info btn-sm mt-1 mb-1" type="submit" value="Wish list">
+                    </form>
+                    {% else %}
+                    <form action="{{ url_for('posts.unWish', post_id=post.id) }}" method="POST">
+                        <input style="float: right" class="btn btn-secondary btn-sm mt-1 mb-1" type="submit" value="Remove Wish">
+                    </form>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% endif %}
         <h2 class="article-title">
             {{ post['title'] }}
         </h2>
+        <h4>Address</h4>
+        <span class="article-content">{{ post['address'] }}</span>
+        <span class="article-content">{{ post['city'] }}</span>
+        <h4>Type of Building</h4>
+        <p class="article-content">{{ post['type_of_building'] }}</p>
+        <h4>Basic Info</h4>
+        <div>
+          <span># of bedrooms</span>
+          <span class="article-content">{{ post['num_bedrooms'] }}</span>
+          <br />
+          <span># of bathrooms</span>
+          <span class="article-content">{{ post['num_bathrooms'] }}</span>
+        </div>
+        <div>
+          <span>Pet</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['pet'] }}</span>
+          <span>Smoking</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['smoking'] }}</span>
+          <span>Balcony</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['balcony'] }}</span>
+          <span>Air Conditioning</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['air_conditioning'] }}</span>
+          <span>Stove & Oven</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['stove_oven'] }}</span>
+          <span>Washer</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['washer'] }}</span>
+          <span>Dryer</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['dryer'] }}</span>
+          <span>Dishwasher</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['dishwasher'] }}</span>
+          <span>Microwave</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['microwave'] }}</span>
+          <span>Cable</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['cable'] }}</span>
+          <span>Water</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['water'] }}</span>
+          <span>Electricity</span>
+          <span class="article-content" style="margin-right: 25px;">{{ post['electricity'] }}</span>
+        </div>
+        <h4>Content</h4>
         <p class="article-content">{{ post['content'] }}</p>
+
         
         <span class="badge badge-primary">{{ post['date_posted'] }}</span>
         <span class="badge badge-primary">{{ post['author'].username }}</span>
+        <span class="badge badge-primary">{{ post['author'].checker }}</span>
     </div>
 
     {% if post.author == current_user %}
@@ -18,6 +75,7 @@
             <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
         </div>
     {% endif %}
+
     <hr>
 
     <!-- Bootstrap Modal -->
