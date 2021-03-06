@@ -65,7 +65,7 @@ def listing(post_id):
             wishes = user.wish_list.split(",")
             if str(post_id) in wishes:
                 wish = True
-    if current_user.is_authenticated and not current_user.landlord:
+    if current_user.is_authenticated and current_user.checker == 'refugee':
         return render_template('listing.html', title=listing.title, post=listing, wish=wish, user_type=0)
     elif current_user.is_authenticated:
         return render_template('listing.html', title=listing.title, post=listing, user_type=1)
