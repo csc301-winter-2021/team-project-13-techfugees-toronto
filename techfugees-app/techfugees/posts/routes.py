@@ -6,7 +6,7 @@ from techfugees.posts.forms import NewListingForm
 from techfugees import app
 import os
 
-app.config['UPLOAD_FOLDER'] = 'techfugees-app/techfugees/static/HousePhoto'
+app.config['UPLOAD_FOLDER'] = 'techfugees/static/HousePhoto'
 posts = Blueprint('posts', __name__)
 
 
@@ -36,20 +36,21 @@ def new_rental_posting():
                         type_of_building=form.type_of_building.data,
                         content=form.content.data,
                         author=current_user)
-            """
-            uploaded_file = request.files['file']
-            if uploaded_file.filename != '':
-                print('ok')
-                folder = os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], form.title.data))
+            uploaded_file = request.files.getlist("file[]")
+            if uploaded_file != []:
+                folder = os.path.exists(os.path.join(
+                    app.config['UPLOAD_FOLDER'], form.title.data))
                 if not folder:
-                    os.makedirs(os.path.join(app.config['UPLOAD_FOLDER'], form.title.data))
-                file_path = os.path.join(app.config['UPLOAD_FOLDER'], form.title.data + '/' + uploaded_file.filename)
-                uploaded_file.save(file_path)
-            """
+                    os.makedirs(os.path.join(
+                        app.config['UPLOAD_FOLDER'], form.title.data))
+                i = 1
+                for im in uploaded_file:
+                    file_path = os.path.join(
+                        app.config['UPLOAD_FOLDER'], form.title.data + '/' + "im{}".format(i))
+                    im.save(file_path)
             db.session.add(listing)
             db.session.commit()
             flash('Listing Added!', 'success')
-            return redirect(url_for('main.index'))
         return render_template('create_post.html', title='Add New Listing', form=form)
     else:
         return redirect(url_for('main.index'))
@@ -60,15 +61,14 @@ def listing(post_id):
     wish = False
     listing = Post.query.get_or_404(post_id)
     if current_user.is_authenticated:
-        if not current_user.checker == 'landlord':
+        if current_user.checker == 'refugee':
             user = Refugee.query.filter_by(username=current_user.username).first()
             wishes = user.wish_list.split(",")
             if str(post_id) in wishes:
                 wish = True
-    if current_user.is_authenticated and current_user.checker == 'refugee':
-        return render_template('listing.html', title=listing.title, post=listing, wish=wish, user_type=0)
-    elif current_user.is_authenticated:
-        return render_template('listing.html', title=listing.title, post=listing, user_type=1)
+            return render_template('listing.html', title=listing.title, post=listing, wish=wish, user_type=0)
+        elif current_user.checker == 'landlord':
+            return render_template('listing.html', title=listing.title, post=listing, user_type=1)
     else:
         return render_template('listing.html', title=listing.title, post=listing, user_type=-1)
 
@@ -126,7 +126,7 @@ def wish_list(post_id):
     post.wish_user = ",".join(wish_users)
 
     db.session.commit()
-    return redirect(url_for('main.index'))
+    return redirect(url_for('posts.listing', post_id=post_id))
 
 
 @posts.route("/post/<int:post_id>/unwish", methods=['POST'])
@@ -159,5 +159,4 @@ def unWish(post_id):
         post.wish_user = ",".join(wish_users)
 
     db.session.commit()
-    return redirect(url_for('main.index'))
-
+    return redirect(url_for('posts.listing', post_id=post_id))
