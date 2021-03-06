@@ -10,6 +10,7 @@
         
         <span class="badge badge-primary">{{ post['date_posted'] }}</span>
         <span class="badge badge-primary">{{ post['author'].username }}</span>
+        <span class="badge badge-primary">{{ post['author'].checker }}</span>
     </div>
 
     {% if post.author == current_user %}
