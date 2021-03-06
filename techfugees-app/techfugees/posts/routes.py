@@ -58,7 +58,7 @@ def listing(post_id):
     wish = False
     listing = Post.query.get_or_404(post_id)
     if current_user.is_authenticated:
-        if not current_user.landlord:
+        if not current_user.checker == 'landlord':
             user = Refugee.query.filter_by(
                 username=current_user.username).first()
             wishes = user.wish_list.split(",")
