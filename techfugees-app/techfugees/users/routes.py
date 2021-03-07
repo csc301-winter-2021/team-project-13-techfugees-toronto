@@ -92,3 +92,13 @@ def wishList():
             wish_list.append(p)
     return render_template('wishList.html', title='Wish List', wish_list=wish_list)
 
+#should add custom @landlord decorator
+@users.route('/my-listings', methods=['GET','POST'])
+@login_required
+def my_listings():
+    post_arr = Post.query.all()
+    listings = []
+    for p in post_arr:
+        if p.user_id == current_user.id:
+            listings.append(p)
+    return render_template('my_listings.html', title='My Listings', listings=listings)
