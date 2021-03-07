@@ -13,7 +13,7 @@
         <p class="article-content">{{ post['content'] }}</p>
         
         <span class="badge badge-primary">{{ post['date_posted'] }}</span>
-        <span class="badge badge-primary">{{ post['author'].username }}</span>
+        <a href="{{ url_for('users.profile', username=post['author'].username) }}"><span class="badge badge-primary">{{ post['author'].username }}</span></a>
         {% if current_user.is_authenticated %}
             {% if current_user.landlord == False %}
                 {% if current_user.username in post['wish_user'] %}

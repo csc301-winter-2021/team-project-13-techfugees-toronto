@@ -102,3 +102,33 @@ def my_listings():
         if p.user_id == current_user.id:
             listings.append(p)
     return render_template('my_listings.html', title='My Listings', listings=listings)
+
+#should add custom @landlord decorator
+@users.route('/profile/<string:username>', methods=['GET','POST'])
+@login_required
+def profile(username):
+    user = User.query.filter_by(username=username).first()
+    if user.checker == "landlord":
+        
+        #obtain listings information of landlord
+        post_arr = Post.query.all()
+        listings = []
+        for p in post_arr:
+            if p.user_id == user.id:
+                listings.append(p)
+        if current_user.username == user.username:
+            return render_template('profile/landlord-profile.html', title='My Profile', listings=listings, user=current_user)
+        else:
+            return render_template('profile/landlord-profile.html', title='Other Landlord Profile', listings=listings, user=user)
+
+    elif user.checker == "refugee":
+        return render_template('profile/refugee-profile.html', title='Refugee Profile', user=user)
+
+
+
+
+        
+
+  
+
+    #return render_template('my_listings.html', title='My Listings', listings=listings)

@@ -1,7 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'profile/profile.html' %}
 
-{% block content %}
-    <h1>{% block title %} Techfugees {% endblock %}</h1>
+{% block prof_content %}
+    <p class="text-secondary">{{ user.username }}</p>
+    <p class="text-secondary">{{ user.email }}</p>
+    <p class="text-secondary">{{ user.credit_check }}</p>
+    <p class="text-secondary">{{ user.first_last }}</p>
+
     {% for post in listings %}
 
     <div>
@@ -18,11 +22,5 @@
     </div>
     <hr>
     {% endfor %}
-    {% if prev_url %}
-    <a href="{{ prev_url }}">Newer posts</a>
-    {% endif %}
-    {% if next_url %}
-    <a href="{{ next_url }}">Older posts</a>
-    {% endif %}
-    
-{% endblock %}
+
+{% endblock prof_content %}
