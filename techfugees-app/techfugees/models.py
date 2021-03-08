@@ -20,6 +20,7 @@ class User(db.Model, Base, UserMixin):
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     password = db.Column(db.String(60), nullable=False)
     type = db.Column(db.String(50))
+    reviews = db.relationship('Review', backref='user')
 
     __mapper_args__ = {
         'polymorphic_on':type,
@@ -56,6 +57,7 @@ class Refugee(User):
 
 #template class, eventually change to fit rental postings
 class Post(db.Model):
+    __tablename__ = 'post'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(20), nullable=False, unique=True)
     content = db.Column(db.String(120), nullable=False)
@@ -78,7 +80,19 @@ class Post(db.Model):
     type_of_building = db.Column(db.String(20), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    wish_user = db.Column(db.String(2000), default='')
+    wish_user = db.Column(db.String, default='')
+    reviews = db.relationship('Review', backref='post')
 
     def __repr__(self):
         return f"Post('{self.title}, {self.id}, {self.date_posted}, {self.address}, {self.city}, {self.pet}, {self.smoking}, {self.balcony}, {self.air_conditioning}, {self.stove_oven}, {self.washer}, {self.dryer}, {self.dishwasher}, {self.microwave}, {self.cable}, {self.water}, {self.electricity}, {self.num_bathrooms}, {self.num_bedrooms}, {self.type_of_building},')"
+
+
+class Review(db.Model):
+    __tablename__ = 'review'
+    id = db.Column(db.Integer, primary_key=True)
+    stars = db.Column(db.Integer, nullable=False)
+    comment = db.Column(db.String(500), default='')
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=False)
+

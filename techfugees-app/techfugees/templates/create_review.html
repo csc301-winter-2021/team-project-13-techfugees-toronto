@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <legend> {{ title }}</legend>
+        <fieldset class=form-group>
+            <div>
+                {{ form.stars.label(class="form-control-label") }}<br/>
+
+                {% if form.stars.errors %}
+                <div class="invalid-feedback">
+                    {% for error in form.stars.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.stars(class="form-control form-control-lg") }}
+                {% endif %}
+            </div><br/>
+
+            <div class=form-group>
+                {{ form.comment.label(class="form-control-label") }}
+
+                {% if form.comment.errors %}
+                {{ form.comment(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.comment.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.comment(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+
+        <p>Upload your image</p>
+        <p><input type="file" name="file[]" multiple="multiple"></p>
+
+        <div class=form-group>
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+{% endblock %}

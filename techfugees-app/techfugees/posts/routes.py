@@ -1,8 +1,8 @@
 from flask import render_template, url_for, flash, redirect, request, abort, Blueprint
 from flask_login import current_user, login_required
 from techfugees import db
-from techfugees.models import Post, User, Refugee
-from techfugees.posts.forms import NewListingForm
+from techfugees.models import Post, User, Refugee, Review
+from techfugees.posts.forms import NewListingForm, NewReviewForm
 from techfugees import app
 import os
 
@@ -56,21 +56,38 @@ def new_rental_posting():
         return redirect(url_for('main.index'))
 
 
+@posts.route('/post/<int:post_id>/new_review', methods=['GET', 'POST'])
+@login_required
+def new_review(post_id):
+    form = NewReviewForm()
+    if form.validate_on_submit():
+        review = Review(stars=form.stars.data,  comment=form.comment.data)
+        review.user_id = current_user.id
+        review.post_id = post_id
+        db.session.add(review)
+        db.session.commit()
+        flash('Review Added!', 'success')
+        return redirect(url_for('posts.listing', post_id=post_id))
+    return render_template('create_review.html', title='Add review', form=form)
+
+
 @posts.route('/post/<int:post_id>', methods=['GET', 'POST'])
 def listing(post_id):
     wish = False
     listing = Post.query.get_or_404(post_id)
+    reviews = listing.reviews
     if current_user.is_authenticated:
         if current_user.checker == 'refugee':
             user = Refugee.query.filter_by(username=current_user.username).first()
             wishes = user.wish_list.split(",")
             if str(post_id) in wishes:
                 wish = True
-            return render_template('listing.html', title=listing.title, post=listing, wish=wish, user_type=0)
+            return render_template('listing.html', title=listing.title, post=listing, wish=wish, user_type=0,
+                                   reviews=reviews)
         elif current_user.checker == 'landlord':
-            return render_template('listing.html', title=listing.title, post=listing, user_type=1)
+            return render_template('listing.html', title=listing.title, post=listing, user_type=1, reviews=reviews)
     else:
-        return render_template('listing.html', title=listing.title, post=listing, user_type=-1)
+        return render_template('listing.html', title=listing.title, post=listing, user_type=-1, reviews=reviews)
 
 
 @posts.route('/post/<int:post_id>/update', methods=['GET', 'POST'])
@@ -92,6 +109,18 @@ def update_listing(post_id):
         form.content.data = listing.content
 
     return render_template('create_post.html', title='Update Post', form=form)
+
+
+@posts.route('/post/<int:post_id>/<int:review_id>/delete_review', methods=['GET', 'POST'])
+@login_required
+def delete_review(post_id, review_id):
+    review = Review.query.get_or_404(review_id)
+    if review.user != current_user:
+        abort(403)
+    db.session.delete(review)
+    db.session.commit()
+    flash('Your review has been deleted!', 'success')
+    return redirect(url_for('posts.listing', post_id=post_id))
 
 
 @posts.route("/post/<int:post_id>/delete", methods=['POST'])

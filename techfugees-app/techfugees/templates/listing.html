@@ -69,12 +69,38 @@
         <span class="badge badge-primary">{{ post['author'].checker }}</span>
     </div>
 
-    {% if post.author == current_user %}
-        <div>
-            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.update_listing', post_id=post.id) }}">Update</a>
-            <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
+
+    <div>
+        <a class="btn btn-primary btn-sm mt-1 mb-1" href="{{ url_for('posts.new_review', post_id=post.id) }}">Review</a>
+        {% if post.author == current_user %}
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.update_listing', post_id=post.id) }}">Update</a>
+        <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
+        {% endif %}
+    </div>
+
+    <div id="review_div" style="margin: 20px">
+        {% for r in reviews %}
+
+        <div class="border border-primary rounded" style="margin: 10px">
+            <div>
+                <img style="border-radius: 50%; width: 10%; height: auto; margin: 1%"
+                     src="https://i.pinimg.com/originals/5f/df/91/5fdf914e80e58a43f052a219343e60b1.png" alt="icon">
+            </div>
+            <div>
+                <span style="left: 5.5%; margin-bottom: 3%">{{ r.user.username }}</span>
+                <span class="badge badge-primary">{{ r.date_posted }}</span>
+            </div>
+            {% if r.user == current_user %}
+            <a class="btn btn-primary btn-sm mt-1 mb-1" href="{{ url_for('posts.delete_review', post_id=post.id, review_id=r.id) }}">Delete</a>
+            {% endif %}
+            <div>
+                <h3>
+                    {{ r.comment }}
+                </h3>
+            </div>
         </div>
-    {% endif %}
+        {% endfor %}
+    </div>
 
     <hr>
 

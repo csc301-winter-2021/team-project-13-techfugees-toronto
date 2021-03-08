@@ -23,6 +23,7 @@ def register():
         return redirect(url_for('users.login'))
     return render_template('register.html', title="Create an Account", form=form)
 
+
 @users.route('/register/landlord', methods=['GET', 'POST'])
 def LandRegister():
     if current_user.is_authenticated:
@@ -64,6 +65,7 @@ def logout():
 @users.route('/account', methods=['GET','POST'])
 @login_required
 def account():
+    print(current_user.reviews)
     form = UpdateAccountForm()
     if form.validate_on_submit():
         current_user.username = form.username.data
