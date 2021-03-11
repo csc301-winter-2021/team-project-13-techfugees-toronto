@@ -5,9 +5,20 @@ from techfugees.models import Post, User, Refugee
 from techfugees.posts.forms import NewListingForm
 from techfugees import app
 import os
+import time
 
-app.config['UPLOAD_FOLDER'] = 'techfugees/static/HousePhoto'
+app.config['UPLOAD_FOLDER'] = 'techfugees-app/techfugees/static/HousePhoto'
 posts = Blueprint('posts', __name__)
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'JPG', 'PNG'])
+
+def allowed_file(filename):
+    return '.' in filename and filename.split('.')[-1] in ALLOWED_EXTENSIONS
+
+@app.route('/post/new')
+@login_required
+def new_rental_posting_template():
+    form = NewListingForm()
+    return render_template('create_post.html', title='Add New Listing', form=form)
 
 
 @posts.route('/post/new', methods=['GET', 'POST'])
@@ -38,22 +49,21 @@ def new_rental_posting():
                         author=current_user)
             uploaded_file = request.files.getlist("file[]")
             if uploaded_file != []:
-                folder = os.path.exists(os.path.join(
-                    app.config['UPLOAD_FOLDER'], form.title.data))
+                folder = os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], form.title.data))
                 if not folder:
-                    os.makedirs(os.path.join(
-                        app.config['UPLOAD_FOLDER'], form.title.data))
+                    os.makedirs(os.path.join(app.config['UPLOAD_FOLDER'], form.title.data))
                 i = 1
                 for im in uploaded_file:
-                    file_path = os.path.join(
-                        app.config['UPLOAD_FOLDER'], form.title.data + '/' + "im{}".format(i))
-                    im.save(file_path)
+                    file_path = os.path.join(app.config['UPLOAD_FOLDER'], form.title.data + '/' + "{}.{}".format(time.time(), im.filename[-3:]))
+                    if allowed_file(im.filename):
+                        print(im.filename)
+                        print(allowed_file(im.filename))
+                        im.save(file_path)
+                    i = i + 1
             db.session.add(listing)
             db.session.commit()
             flash('Listing Added!', 'success')
-        return render_template('create_post.html', title='Add New Listing', form=form)
-    else:
-        return redirect(url_for('main.index'))
+    return redirect(url_for('main.index'))
 
 
 @posts.route('/post/<int:post_id>', methods=['GET', 'POST'])
