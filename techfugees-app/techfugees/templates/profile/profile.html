@@ -4,15 +4,15 @@
     <div>
         <div class="container">
             <div class="row">
-                <div class="col-md-4 text-center card mx-2 p-4">
-                    <img src="{{ user.image_file }}" class="m-auto p-3 rounded-circle account-img">
+                <div class="col-md-4 text-center card m-2 p-4">
+                    <img src="/static/images/profile/{{ user.image_file }}" width="175" class="m-auto p-3 rounded-circle account-img">
                     <h2 class="account-heading">{{ user.username }}</h2>
                     {% block user_type %}{% endblock %}
                     {% if current_user.id == user.id %}
                     <a href="{{ url_for('users.account') }}"><button class="btn">Edit</button></a>
                     {% endif %}
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-7 mx-3">
 
                     {% block prof_content %}{% endblock prof_content %}
                 </div>
