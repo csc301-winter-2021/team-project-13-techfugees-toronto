@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect, request, abort, Blu
 from flask_login import current_user, login_required
 from techfugees import db
 from techfugees.models import Post, User, Refugee, Review
-from techfugees.posts.forms import NewListingForm, NewReviewForm
+from techfugees.posts.forms import NewListingForm, NewReviewForm, NewSearchForm
 from techfugees import app
 import os
 
@@ -189,3 +189,39 @@ def unWish(post_id):
 
     db.session.commit()
     return redirect(url_for('posts.listing', post_id=post_id))
+
+
+@posts.route("/post/search", methods=['GET', 'POST'])
+def search():
+    form = NewSearchForm()
+    form.address.choices = [("-1", "N/A")] + list(set([(p.address, p.address) for p in Post.query.order_by(Post.address)]))
+    form.city.choices = [("-1", "N/A")] + list(set([(p.city, p.city) for p in Post.query.order_by(Post.city)]))
+
+    if form.validate_on_submit():
+        l = [form.address.data, form.city.data]
+        c = [form.pet.data, form.smoking.data, form.balcony.data, form.air_conditioning.data, form.stove_oven.data,
+             form.washer.data, form.dryer.data, form.dishwasher.data, form.microwave.data, form.cable.data, form.water.data,
+             form.electricity.data, form.num_bathrooms.data, form.type_of_building.data]
+        """
+        clean c
+        
+        temp_post = get all post:
+        for i in temp_post:
+           if 
+
+        posts = all post met c
+        """
+
+        if form.address.data != "-1" and form.city.data != "-1":
+            posts = Post.query.filter_by(address=form.address.data, city=form.city.data).all()
+        elif form.address.data != "-1":
+            posts = Post.query.filter_by(address=form.address.data).all()
+        elif form.city.data != "-1":
+            posts = Post.query.filter_by(city=form.city.data).all()
+        else:
+            posts = Post.query.filter_by().all()
+
+        return render_template('search.html', form=form, posts=posts)
+    return render_template('search.html', form=form)
+
+

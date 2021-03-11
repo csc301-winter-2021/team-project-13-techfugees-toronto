@@ -81,23 +81,24 @@
     <div id="review_div" style="margin: 20px">
         {% for r in reviews %}
 
-        <div class="border border-primary rounded" style="margin: 10px">
-            <div>
-                <img style="border-radius: 50%; width: 10%; height: auto; margin: 1%"
+        <div class="border border-primary rounded" style="margin: 10px; position: relative; min-height: 150px">
+            <div style="height: 120px; width: 120px; float: left">
+                <img style="border-radius: 50%; width: 100%; height: auto; margin: 1%"
                      src="https://i.pinimg.com/originals/5f/df/91/5fdf914e80e58a43f052a219343e60b1.png" alt="icon">
+                <span style="left: 50px; margin-bottom: 3%; position: relative">{{ r.user.username }}</span>
+            </div>
+            <div style="float: left">
+                <p>
+                    {{ r.comment }}
+                </p>
             </div>
             <div>
-                <span style="left: 5.5%; margin-bottom: 3%">{{ r.user.username }}</span>
                 <span class="badge badge-primary">{{ r.date_posted }}</span>
             </div>
             {% if r.user == current_user %}
-            <a class="btn btn-primary btn-sm mt-1 mb-1" href="{{ url_for('posts.delete_review', post_id=post.id, review_id=r.id) }}">Delete</a>
+            <a class="btn btn-primary btn-sm mt-1 mb-1" style="float: right; margin: 10px"
+               href="{{ url_for('posts.delete_review', post_id=post.id, review_id=r.id) }}">Delete</a>
             {% endif %}
-            <div>
-                <h3>
-                    {{ r.comment }}
-                </h3>
-            </div>
         </div>
         {% endfor %}
     </div>
