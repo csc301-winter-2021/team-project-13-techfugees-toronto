@@ -1,0 +1,33 @@
+{% extends 'profile/profile.html' %}
+
+{% block user_type %}
+    <h5>Landlord</h5>
+    {% if user.credit_check %}
+        <p>Does not require a credit check</p>
+    {% endif %}
+    {% if user.credit_check %}
+        <p>Does not require first and last month's payment upfront</p>
+    {% endif %}
+{% endblock %}
+{% block prof_content %}
+<h3 class="text-right">Listings</h3>
+
+    <hr>
+    {% for post in listings %}
+
+    <div>
+        <h2>
+            <a href="{{ url_for('posts.listing', post_id = post.id) }}">
+                {{ post['title'] }}
+            </a>
+        </h2>
+        <p class="article-content">{{ post['content'] }}</p>
+
+        <span class="badge badge-primary">{{ post['date_posted'] }}</span>
+        <span class="badge badge-primary">{{ post['author'].username }}</span>
+
+    </div>
+    <hr>
+    {% endfor %}
+
+{% endblock prof_content %}

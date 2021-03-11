@@ -63,7 +63,12 @@ def new_rental_posting():
             db.session.add(listing)
             db.session.commit()
             flash('Listing Added!', 'success')
-    return redirect(url_for('main.index'))
+            return redirect(url_for('main.index'))
+        else: 
+            #form not submitted
+            return render_template('create_post.html', title='Add New Listing', form=form)
+    else:
+        return redirect(url_for('main.index'))
 
 
 @posts.route('/post/<int:post_id>', methods=['GET', 'POST'])
