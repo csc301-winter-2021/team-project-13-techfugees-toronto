@@ -1,8 +1,8 @@
 from flask import render_template, url_for, flash, redirect, request, Blueprint, abort
 from flask_login import login_user, current_user, logout_user, login_required
 from techfugees import db, bcrypt
-from techfugees.models import User, Post, Refugee
-from techfugees.users.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from techfugees.models import User, Post, Refugee, Landlord
+from techfugees.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, LandlordRegistrationForm
 
 
 users = Blueprint('users', __name__)
@@ -16,6 +16,22 @@ def register():
         #password hashing to lessen impact of man in the middle attacks
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = Refugee(username=form.username.data, email=form.email.data, password=hashed_password)
+        db.session.add(user)
+        db.session.commit()
+
+        flash('Account Created!', 'success')
+        return redirect(url_for('users.login'))
+    return render_template('register.html', title="Create an Account", form=form)
+
+@users.route('/register/landlord', methods=['GET', 'POST'])
+def LandRegister():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.index'))
+    form = LandlordRegistrationForm()
+    if form.validate_on_submit():
+        #password hashing to lessen impact of man in the middle attacks
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = Landlord(username=form.username.data, email=form.email.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
 
