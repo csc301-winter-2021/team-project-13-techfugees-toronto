@@ -1,6 +1,8 @@
 {% extends 'profile/profile.html' %}
 
-
-{% block prof_content %}
-    <p class="text-secondary">{{ user.sponsor_name }}</p>
-{% endblock prof_content %}
+{% block user_type %}
+    <h5>Refugee</h5>
+    {% if user.sponsor_name != "none" %}
+        <p>Sponsored by {{ user.sponsor_name }}</p>
+    {% endif %}
+{% endblock %}

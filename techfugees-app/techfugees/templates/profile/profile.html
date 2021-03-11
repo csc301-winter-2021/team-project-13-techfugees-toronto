@@ -2,22 +2,22 @@
 
 {% block content %}
     <div>
-        <div class="media">
-            <img class="rounded-circle account-img" src="" alt="">
-            <div class="media-body">
-                <h2 class="account-heading">{{ title }}</h2>
-                {{ current_user.user_type }}
-                {% if current_user.id == user.id %}
-                    <a class="nav-item nav-link" href="{{ url_for('users.account') }}">Edit</a>
-                {% endif %}
-                <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 text-center card mx-2 p-4">
+                    <img src="{{ user.image_file }}" class="m-auto p-3 rounded-circle account-img">
+                    <h2 class="account-heading">{{ user.username }}</h2>
+                    {% block user_type %}{% endblock %}
+                    {% if current_user.id == user.id %}
+                    <a href="{{ url_for('users.account') }}"><button class="btn">Edit</button></a>
+                    {% endif %}
+                </div>
+                <div class="col-md-7">
 
-                <p class="text-secondary">{{ user.username }}</p>
-                <p class="text-secondary">{{ user.email }}</p>
-                
-                {% block prof_content %}{% endblock prof_content %}
-
+                    {% block prof_content %}{% endblock prof_content %}
+                </div>
             </div>
+
         </div>
     </div>
 {% endblock %}
