@@ -63,11 +63,13 @@
         <h4>Content</h4>
         <p class="article-content">{{ post['content'] }}</p>
 
-        {% for photo in files_list %}
-          <div>
-            <img src="{{ url_for('static', filename='techfugees-app/techfugees/static/HousePhoto/{{ title }}/') }}" width="112" height="112">
-          </div>
-        {% endfor %}
+        <div>
+          {% for photo in files_list %}
+            <span>
+              <img src="{{ url_for('static', filename='HousePhoto/' + title + '/' + photo) }}" width="112" height="112">
+            </span>
+          {% endfor %}
+        </div>
 
         
         <span class="badge badge-primary">{{ post['date_posted'] }}</span>
