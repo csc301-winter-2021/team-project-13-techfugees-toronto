@@ -6,6 +6,7 @@ from techfugees.posts.forms import NewListingForm
 from techfugees import app
 import os
 import time
+import shutil
 
 app.config['UPLOAD_FOLDER'] = 'techfugees-app/techfugees/static/HousePhoto'
 posts = Blueprint('posts', __name__)
@@ -52,14 +53,10 @@ def new_rental_posting():
                 folder = os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], form.title.data))
                 if not folder:
                     os.makedirs(os.path.join(app.config['UPLOAD_FOLDER'], form.title.data))
-                i = 1
                 for im in uploaded_file:
                     file_path = os.path.join(app.config['UPLOAD_FOLDER'], form.title.data + '/' + "{}.{}".format(time.time(), im.filename[-3:]))
                     if allowed_file(im.filename):
-                        print(im.filename)
-                        print(allowed_file(im.filename))
                         im.save(file_path)
-                    i = i + 1
             db.session.add(listing)
             db.session.commit()
             flash('Listing Added!', 'success')
@@ -96,6 +93,11 @@ def update_listing(post_id):
         # SQLalchemy convention, post refers to Post class, and is lowercase here
         listing.title = form.title.data
         listing.content = form.content.data
+        uploaded_file = request.files.getlist("file[]")
+        for im in uploaded_file:
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], form.title.data + '/' + "{}.{}".format(time.time(), im.filename[-3:]))
+            if allowed_file(im.filename):
+                im.save(file_path)
         db.session.commit()
         flash('Post updated', 'success')
         return redirect(url_for('posts.listing', post_id=listing.id))
@@ -114,6 +116,7 @@ def delete_post(post_id):
         abort(403)
     db.session.delete(post)
     db.session.commit()
+    shutil.rmtree(os.path.join(app.config['UPLOAD_FOLDER'], post.title))
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('main.index'))
 
