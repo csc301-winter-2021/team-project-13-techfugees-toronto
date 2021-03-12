@@ -196,12 +196,11 @@ def search():
     form = NewSearchForm()
     form.address.choices = [("-1", "N/A")] + list(set([(p.address, p.address) for p in Post.query.order_by(Post.address)]))
     form.city.choices = [("-1", "N/A")] + list(set([(p.city, p.city) for p in Post.query.order_by(Post.city)]))
-
+    form.type_of_building.choices = [("-1", "N/A")] + list(set([(p.type_of_building, p.type_of_building) for p in Post.query.order_by(Post.type_of_building)]))
+    form.num_bedrooms.choices = [("-1", "N/A")] + list(set([(str(p.num_bedrooms), str(p.num_bedrooms)) for p in Post.query.order_by(Post.num_bedrooms)]))
+    form.num_bathrooms.choices = [("-1", "N/A")] + list(set([(str(p.num_bathrooms), str(p.num_bathrooms)) for p in Post.query.order_by(Post.num_bathrooms)]))
     if form.validate_on_submit():
-        l = [form.address.data, form.city.data]
-        c = [form.pet.data, form.smoking.data, form.balcony.data, form.air_conditioning.data, form.stove_oven.data,
-             form.washer.data, form.dryer.data, form.dishwasher.data, form.microwave.data, form.cable.data, form.water.data,
-             form.electricity.data, form.num_bathrooms.data, form.type_of_building.data]
+
         """
         clean c
         
@@ -220,6 +219,51 @@ def search():
             posts = Post.query.filter_by(city=form.city.data).all()
         else:
             posts = Post.query.filter_by().all()
+
+        if form.num_bedrooms.data != "-1":
+            posts = [post for post in posts if post.num_bedrooms == form.num_bedrooms.data]
+
+        if form.num_bathrooms.data != "-1":
+            posts = [post for post in posts if post.num_bathrooms == form.num_bathrooms.data]
+
+        if form.type_of_building.data != "-1":
+            posts = [post for post in posts if post.type_of_building == form.type_of_building.data]
+
+        if form.pet.data:
+            posts = [post for post in posts if post.pet]
+
+        if form.smoking.data:
+            posts = [post for post in posts if post.smoking]
+
+        if form.balcony.data:
+            posts = [post for post in posts if post.balcony]
+
+        if form.air_conditioning.data:
+            posts = [post for post in posts if post.air_conditioning]
+
+        if form.stove_oven.data:
+            posts = [post for post in posts if post.stove_oven]
+
+        if form.washer.data:
+            posts = [post for post in posts if post.washer]
+
+        if form.dryer.data:
+            posts = [post for post in posts if post.dryer]
+
+        if form.dishwasher.data:
+            posts = [post for post in posts if post.dishwasher]
+
+        if form.microwave.data:
+            posts = [post for post in posts if post.microwave]
+
+        if form.cable.data:
+            posts = [post for post in posts if post.cable]
+
+        if form.water.data:
+            posts = [post for post in posts if post.water]
+
+        if form.electricity.data:
+            posts = [post for post in posts if post.electricity]
 
         return render_template('search.html', form=form, posts=posts)
     return render_template('search.html', form=form)

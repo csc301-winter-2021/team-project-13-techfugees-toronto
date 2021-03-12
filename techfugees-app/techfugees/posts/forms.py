@@ -37,6 +37,9 @@ class NewReviewForm(FlaskForm):
 class NewSearchForm(FlaskForm):
     address = SelectField('Address')
     city = SelectField('City')
+    type_of_building = SelectField('Type of Building')
+    num_bedrooms = SelectField('# of Bedrooms')
+    num_bathrooms = SelectField('# of bathrooms')
     pet = BooleanField('Pet Friendly')
     smoking = BooleanField('Smoking Allow')
     balcony = BooleanField('Balcony')
@@ -49,8 +52,4 @@ class NewSearchForm(FlaskForm):
     cable = BooleanField('Cable')
     water = BooleanField('Water')
     electricity = BooleanField('Electricity')
-    content = TextAreaField('Content')
-    num_bedrooms = StringField('# of Bedrooms')
-    num_bathrooms = StringField('# of bathrooms')
-    type_of_building = StringField('Type of Building')
     submit = SubmitField('Search')
