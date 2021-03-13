@@ -7,8 +7,8 @@ from techfugees.users.forms import RegistrationForm, LoginForm, UpdateAccountFor
 
 users = Blueprint('users', __name__)
 
-@users.route('/register', methods=['GET', 'POST'])
-def register():
+@users.route('/register/refugee', methods=['GET', 'POST'])
+def refugee_register():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
     form = RegistrationForm()
@@ -21,10 +21,10 @@ def register():
 
         flash('Account Created!', 'success')
         return redirect(url_for('users.login'))
-    return render_template('register.html', title="Create an Account", form=form)
+    return render_template('register.html', title="Create A Refugee Account", form=form)
 
 @users.route('/register/landlord', methods=['GET', 'POST'])
-def LandRegister():
+def landlord_register():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
     form = LandlordRegistrationForm()
@@ -37,7 +37,7 @@ def LandRegister():
 
         flash('Account Created!', 'success')
         return redirect(url_for('users.login'))
-    return render_template('register.html', title="Create an Account", form=form)
+    return render_template('register.html', title="Create A Landlord Account", form=form)
 
 @users.route('/login', methods=['GET','POST'])
 def login():
@@ -54,7 +54,7 @@ def login():
             return redirect(url_for('main.index'))
         else:
             flash('Invalid Credentials!', 'danger')
-    return render_template('login.html', title='login', form=form)
+    return render_template('login.html', title='Login', form=form)
 
 @users.route('/logout')
 def logout():
@@ -109,7 +109,7 @@ def my_listings():
 def profile(username):
     user = User.query.filter_by(username=username).first()
     if user.checker == "landlord":
-        
+
         #obtain listings information of landlord
         post_arr = Post.query.all()
         listings = []
@@ -127,8 +127,8 @@ def profile(username):
 
 
 
-        
 
-  
+
+
 
     #return render_template('my_listings.html', title='My Listings', listings=listings)

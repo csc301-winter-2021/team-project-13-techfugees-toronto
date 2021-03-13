@@ -8,7 +8,7 @@
             <fieldset class=form-group>
                 <div class=form-group>
                     {{ form.email.label(class="form-control-label") }}
-                    
+
                     {% if form.email.errors %}
                         {{ form.email(class="form-control form-control-lg is-invalid") }}
                         <div class="invalid-feedback">
@@ -23,7 +23,7 @@
 
                 <div class=form-group>
                     {{ form.password.label(class="form-control-label") }}
-                    
+
                     {% if form.password.errors %}
                         {{ form.password(class="form-control form-control-lg is-invalid") }}
                         <div class="invalid-feedback">
@@ -51,7 +51,8 @@
 
             <div class="border-top pt-3">
                 <small>
-                    <a href="{{ url_for('users.register') }}">Sign Up</a>
+                    <a href="{{ url_for('users.refugee_register') }}">Sign up as a Refugee</a><br/>
+                    <a href="{{ url_for('users.landlord_register') }}">Sign up as a Landlord</a>
                 </small>
             </div>
         </form>
