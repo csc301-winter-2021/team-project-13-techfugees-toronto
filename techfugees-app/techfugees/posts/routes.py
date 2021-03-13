@@ -221,10 +221,10 @@ def search():
             posts = Post.query.filter_by().all()
 
         if form.num_bedrooms.data != "-1":
-            posts = [post for post in posts if post.num_bedrooms == form.num_bedrooms.data]
+            posts = [post for post in posts if str(post.num_bedrooms) == form.num_bedrooms.data]
 
         if form.num_bathrooms.data != "-1":
-            posts = [post for post in posts if post.num_bathrooms == form.num_bathrooms.data]
+            posts = [post for post in posts if str(post.num_bathrooms) == form.num_bathrooms.data]
 
         if form.type_of_building.data != "-1":
             posts = [post for post in posts if post.type_of_building == form.type_of_building.data]
