@@ -35,11 +35,11 @@
                 <a class="nav-item nav-link" href="{{ url_for('users.wishList') }}">Wish List</a>
                 {% endif %}
                 <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a>
-                
+
             {% else %}
                 <a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
-                <a class="nav-item nav-link" href="{{ url_for('users.register') }}">Register</a>
-                <a class="nav-item nav-link" href="{{ url_for('users.LandRegister') }}">LandRegister</a>
+                <a class="nav-item nav-link" href="{{ url_for('users.refugee_register') }}">Refugee Registration</a>
+                <a class="nav-item nav-link" href="{{ url_for('users.landlord_register') }}">Landlord Registration</a>
             {% endif %}
         </div>
     </nav>

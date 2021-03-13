@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Listing {% endblock %}</h1>
+    <h1>{% block title %} {{ post['title'] }} {% endblock %}</h1>
     <div>
         {% if current_user.is_authenticated %}
             {% if post.author != current_user %}
@@ -18,9 +18,7 @@
                 {% endif %}
             {% endif %}
         {% endif %}
-        <h2 class="article-title">
-            {{ post['title'] }}
-        </h2>
+
         <h4>Address</h4>
         <span class="article-content">{{ post['address'] }}</span>
         <span class="article-content">{{ post['city'] }}</span>
@@ -63,7 +61,7 @@
         <h4>Content</h4>
         <p class="article-content">{{ post['content'] }}</p>
 
-        
+
         <span class="badge badge-primary">{{ post['date_posted'] }}</span>
         <a href="{{ url_for('users.profile', username=post['author'].username) }}"><span class="badge badge-primary">{{ post['author'].username }}</span></a>
         <span class="badge badge-primary">{{ post['author'].checker }}</span>
@@ -74,7 +72,7 @@
             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.update_listing', post_id=post.id) }}">Update</a>
             <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
         </div>
-        
+
     {% endif %}
 
     <hr>
@@ -98,5 +96,5 @@
       </div>
     </div>
   </div>
-    
+
 {% endblock %}
