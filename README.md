@@ -29,12 +29,14 @@ A feature which is only accessible to users that have the landlord role. Landlor
 Displays a preview of the nine most recently posted rental listings. Users can choose to click on any of the previews and be taken to a more detailed breakdown of the rental posting, where they can also leave a review, or visit the profile of the listing's author. The listings index page is paginated, and sorted by most to least recent by default.
 
 #### Add listing reviews
+The tenant can write a review about this listing and post it on the page of this listing. Tenants can delete their own reviews at any time. Review include star ratings, comments, and photos (optional).
 
-#### Search tab
+#### Wish List
+Tenants can add their favorite listings to their wish list, or remove a listing from the wish list.  Also if a listing is in the wish list, it will be marked in the list on the main page.
 
+#### Search tab 
 Landlords signup to post property listings with pictures and basic information like location, number of rooms, etc. 
 Refugees can sign up to view housings, search through them by number of bedrooms, bathrooms, building type, reviews, landlord's name and reviews. 
-The website allows wish listing properties as well.
 
 ## Instructions
  * Clear instructions for how to use the application from the end-user's perspective
