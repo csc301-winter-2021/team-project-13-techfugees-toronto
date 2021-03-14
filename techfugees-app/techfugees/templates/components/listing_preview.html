@@ -1,0 +1,49 @@
+<div class="col-sm-6 col-md-4 my-3 listing-preview">
+    <div class="listing-preview-content">
+        <h4>
+            <a href="{{ url_for('posts.listing', post_id = post.id) }}">
+                {{ post['title'] }}
+            </a>
+        </h4>
+        <span class="badge badge-secondary">{{ post['city'] }}</span>
+        <span class="badge badge-secondary">{{ post['type_of_building'] }}</span>
+        {% if post['num_bedrooms'] > 1 %}
+        <span class="badge badge-secondary">{{ post['num_bedrooms'] }} Bedrooms</span>
+        {% else %}
+        <span class="badge badge-secondary">{{ post['num_bedrooms'] }} Bedroom</span>
+        {% endif %}
+        {% if post['num_bathrooms'] > 1 %}
+        <span class="badge badge-secondary">{{ post['num_bathrooms'] }} Bathrooms</span>
+        {% else %}
+        <span class="badge badge-secondary">{{ post['num_bathrooms'] }} Bathroom</span>
+        {% endif %}
+        <p class="article-content py-2">
+        {% if post['content']|length > 60 %}
+        {{ post['content'][:60] }}...
+        {% elif post['content']|length > 0 %}
+        { post['content']}}
+        {% else %}
+        No description for this listing available.
+        {% endif %}
+        <br/>
+        </p>
+        <div class="row justify-content-start listing-footer">
+            <div class="col align-self-end">
+                <span class="badge badge-primary">{{ post['date_posted'].strftime('%Y-%m-%d') }}</span>
+            </div>
+            <div class="col align-self-end">
+                <a href="{{ url_for('users.profile', username=post['author'].username) }}">
+                    <span class="badge badge-primary">Posted by: {{ post['author'].username }}</span>
+                </a>
+            </div>
+
+            {% if current_user.is_authenticated %}
+            {% if current_user.landlord == False %}
+            {% if current_user.username in post['wish_user'] %}
+            <span class="badge badge-success">Saved to wish list</span>
+            {% endif %}
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
