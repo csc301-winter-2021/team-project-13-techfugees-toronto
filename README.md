@@ -16,6 +16,22 @@ This website allows landlords to post housing listings aimed for refugees, with 
  * Provide a breakdown or detail for each feature that is most appropriate for your application
  * This section will be used to assess the value of the features built
 
+#### Seperate Registration for Landlords and Refugees
+In addition to basic user information, landlord and refugee registration has been seperated due to necessity of role specific questions which seek to improve transparency. Landlord registration includes qustions which assesss payment and credit history leniency, whereas refugees are asked to provide sponsor names. We felt it was pertinent to require these fields during registration due to the nature of our app, as a landlord's tolerance of missing credit history can often be a deal breaker during negotiations.
+
+#### Profiles for Landlords and Refugees
+Users can access their own profile and the profiles of other users. Landlord profiles display basic user information, role specific information, and displays all the landlord's listings if present. Refugee profiles follow a similar structure. User's can also edit their own profile, which is auto-filled with their current information. 
+
+#### Add/Update Rental Listings
+A feature which is only accessible to users that have the landlord role. Landlord's can add new rental postings. Once added, the listing is viewable by all users on the listings index. Only the landlord who created the post can edit the details of the rental posting.
+
+#### Listings Index
+Displays a preview of the nine most recently posted rental listings. Users can choose to click on any of the previews and be taken to a more detailed breakdown of the rental posting, where they can also leave a review, or visit the profile of the listing's author. The listings index page is paginated, and sorted by most to least recent by default.
+
+#### Add listing reviews
+
+#### Search tab
+
 Landlords signup to post property listings with pictures and basic information like location, number of rooms, etc. 
 Refugees can sign up to view housings, search through them by number of bedrooms, bathrooms, building type, reviews, landlord's name and reviews. 
 The website allows wish listing properties as well.
