@@ -1,0 +1,33 @@
+{% extends 'register/register.html' %}
+
+
+{% block type_specifics %}
+    <div class=form-group>
+        {{ form.credit_check.label(class="form-control-label") }}
+        {% if form.credit_check.errors %}
+        {{ form.credit_check(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+            {% for error in form.credit_check.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+            {{ form.credit_check(class="form-control form-control-lg") }}
+        {% endif %}
+    </div>
+
+    <div class=form-group>
+        {{ form.first_last.label(class="form-control-label") }}
+        {% if form.first_last.errors %}
+        {{ form.first_last(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+            {% for error in form.first_last.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+            {{ form.first_last(class="form-control form-control-lg") }}
+        {% endif %}
+    </div>
+
+{% endblock type_specifics %}
