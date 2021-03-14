@@ -119,6 +119,24 @@ def update_listing(post_id):
         # SQLalchemy convention, post refers to Post class, and is lowercase here
         listing.title = form.title.data
         listing.content = form.content.data
+        listing.address = form.address.data
+        listing.city=form.city.data
+        listing.pet=form.pet.data
+        listing.smoking=form.smoking.data
+        listing.balcony=form.balcony.data
+        listing.air_conditioning=form.air_conditioning.data
+        listing.stove_oven=form.stove_oven.data
+        listing.washer=form.washer.data
+        listing.dryer=form.dryer.data
+        listing.dishwasher=form.dishwasher.data
+        listing.microwave=form.microwave.data
+        listing.cable=form.cable.data
+        listing.water=form.water.data
+        listing.electricity=form.electricity.data
+        listing.num_bathrooms=form.num_bathrooms.data
+        listing.num_bedrooms=form.num_bedrooms.data
+        listing.type_of_building=form.type_of_building.data
+        listing.author=current_user
         uploaded_file = request.files.getlist("file[]")
         for im in uploaded_file:
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], form.title.data + '/' + "{}.{}".format(time.time(), im.filename[-3:]))
@@ -130,6 +148,24 @@ def update_listing(post_id):
     elif request.method == 'GET':
         form.title.data = listing.title
         form.content.data = listing.content
+        form.address.data = listing.address
+        form.city.data = listing.city
+        form.pet.data = listing.pet
+        form.smoking.data = listing.smoking
+        form.balcony.data = listing.balcony
+        form.air_conditioning.data = listing.air_conditioning
+        form.stove_oven.data = listing.stove_oven
+        form.washer.data = listing.washer
+        form.dryer.data = listing.dryer
+        form.dishwasher.data = listitng.dishwasher
+        form.microwave.data = listing.microwave
+        form.cable.data = listing.cable
+        form.water.data = listing.water
+        form.electricity.data = listing.electricity
+        form.num_bathrooms.data = listing.num_bathrooms
+        form.num_bedrooms.data = listing.num_bedrooms
+        form.type_of_building.data = listing.type_of_building
+
 
     return render_template('create_post.html', title='Update Post', form=form)
 
