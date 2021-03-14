@@ -66,6 +66,10 @@
                 <a class="nav-link" id="amenities-tab" data-toggle="tab" href="#amenities" role="tab"
                     aria-controls="amenities" aria-selected="false">Amenities</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab"
+                    aria-controls="reviews" aria-selected="false">Reviews</a>
+            </li>
         </ul>
         <div class="tab-content" id="listing_tabs_content">
             <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
@@ -236,6 +240,32 @@
                     </div>
                 </div>
 
+            </div>
+            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                <div class="row p-3">
+                    <div class="col-12 py-3 border-bottom">
+                        {% for r in reviews %}
+
+                        <div class="row">
+                            <div class="text-center col-md-2 col-xs-4">
+                                <img src="/static/images/profile/{{ r.user.image_file }}" width="100" class="rounded-circle account-img">
+                                <h6 class="p-3">{{ r.user.username}}</h6>
+                            </div>
+                            <div class="col-md-8 col-xs-8">
+                                <span class="badge badge-primary"><i class="fas fa-calendar-day fa-sm" style="vertical-align: top;"></i>&nbsp;{{ r['date_posted'].strftime('%Y-%m-%d') }}</span>
+                                <p class="my-3">
+                                    {{ r.comment }}
+                                </p>
+                            </div>
+                            <div class="col-md-2 col-xs-12 text-right">
+                                {% if r.user == current_user %}
+                                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{{ url_for('posts.delete_review', post_id=post.id, review_id=r.id) }}">Delete review</a>
+                                {% endif %}
+                            </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
