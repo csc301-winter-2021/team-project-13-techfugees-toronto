@@ -1,5 +1,5 @@
 from techfugees import app
-from techfugees import db
+from techfugees import db, bcrypt
 
 if __name__ == "__main__":
     from techfugees.models import User, Landlord, Refugee
