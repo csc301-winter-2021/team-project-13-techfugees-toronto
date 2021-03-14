@@ -1,4 +1,7 @@
 <div class="col-sm-6 col-md-4 my-3 listing-preview">
+    {% for photo in files_list %}
+    <img src="{{ url_for('static', filename='HousePhoto/' + post['title'] + '/' + photo) }}" class="img-fluid img-responsive">
+    {% endfor %}
     <div class="listing-preview-content">
         <h4>
             <a href="{{ url_for('posts.listing', post_id = post.id) }}">
@@ -18,22 +21,22 @@
         <span class="badge badge-secondary">{{ post['num_bathrooms'] }} Bathroom</span>
         {% endif %}
         <p class="article-content py-2">
-        {% if post['content']|length > 60 %}
-        {{ post['content'][:60] }}...
-        {% elif post['content']|length > 0 %}
-        {{ post['content']}}
-        {% else %}
-        No description for this listing available.
-        {% endif %}
-        <br/>
+            {% if post['content']|length > 60 %}
+            {{ post['content'][:60] }}...
+            {% elif post['content']|length > 0 %}
+            {{ post['content']}}
+            {% else %}
+            No description for this listing available.
+            {% endif %}
+            <br />
         </p>
         <div class="row justify-content-start listing-footer">
             <div class="col align-self-end">
-                <span class="badge badge-primary">{{ post['date_posted'].strftime('%Y-%m-%d') }}</span>
+                <span class="badge badge-primary"><i class="fas fa-calendar-day fa-sm" style="vertical-align: top;"></i>&nbsp;{{ post['date_posted'].strftime('%Y-%m-%d') }}</span>
             </div>
             <div class="col align-self-end">
                 <a href="{{ url_for('users.profile', username=post['author'].username) }}">
-                    <span class="badge badge-primary">Posted by: {{ post['author'].username }}</span>
+                    <span class="badge badge-primary"><i class="fas fa-user fa-sm" style="vertical-align: top;"></i>&nbsp;{{ post['author'].username }}</span>
                 </a>
             </div>
 

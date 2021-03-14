@@ -1,33 +1,28 @@
 {% extends 'profile/profile.html' %}
-
+{% block title %}{{user.username}} | Profile{% endblock %}
 {% block user_type %}
-    <h5>Landlord</h5>
+<div class="py-2 mx-auto">
     {% if user.credit_check %}
-        <p>Does not require a credit check</p>
+    <p><i class="fas fa-check-circle"></i> Does not require a credit check</p>
     {% endif %}
     {% if user.first_last %}
-        <p>Does not require first and last month's payment upfront</p>
+    <p><i class="fas fa-check-circle"></i> Does not require first and last month's payment upfront</p>
     {% endif %}
+    <a href="mailto:{{user.email}}"><i class="fas fa-envelope-square fa-lg"></i></a>
+    <a href="tel:0"><i class="fas fa-phone-square fa-lg"></i></a>
+</div>
 {% endblock %}
 {% block prof_content %}
-<h3 class="text-right">Listings</h3>
+<h3>Listings</h3>
 
-    <hr>
+<hr>
+<div class="row">
+    {% with files_list=files_list %}
     {% for post in listings %}
 
-    <div>
-        <h2>
-            <a href="{{ url_for('posts.listing', post_id = post.id) }}">
-                {{ post['title'] }}
-            </a>
-        </h2>
-        <p class="article-content">{{ post['content'] }}</p>
+    {% include 'components/listing_preview.html' %}
 
-        <span class="badge badge-primary">{{ post['date_posted'].strftime('%Y-%m-%d') }}</span>
-        <span class="badge badge-primary">Posted by: {{ post['author'].username }}</span>
-
-    </div>
-    <hr>
     {% endfor %}
-
+    {% endwith %}
+</div>
 {% endblock prof_content %}

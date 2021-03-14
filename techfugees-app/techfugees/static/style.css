@@ -7,6 +7,10 @@ p{
     overflow-wrap: break-word;
 }
 
+.text-small{
+    font-size:11pt;
+}
+
 .listing-preview{
     position:relative;
     overflow-wrap: break-word;
@@ -41,5 +45,16 @@ table.listing-table td{
 }
 
 .carousel-item{
-    max-height:350px;
+    max-height:400px;
+}
+
+#hero-profile {
+    background-color:#eee;
+}
+
+#hero-index {
+    background-image: url(images/hero_index.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height:350px;
 }
