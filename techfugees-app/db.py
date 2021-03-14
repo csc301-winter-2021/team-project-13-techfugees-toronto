@@ -8,10 +8,9 @@ if __name__ == "__main__":
 
     for i in range (10):
         hashed_password = bcrypt.generate_password_hash("password").decode('utf-8')
-        if (i%3 == 0):
-            user = Refugee(username="user"+str(i), email="user"+str(i)+"@example.com", password=hashed_password)
-        else:
-            user = Landlord(username="landlord"+str(i), email="landlord"+str(i)+"@example.com", password=hashed_password)
-        db.session.add(user)
+        refugee = Refugee(username="refugee"+str(i), email="refugee"+str(i)+"@example.com", password=hashed_password)
+        landlord = Landlord(username="landlord"+str(i), email="landlord"+str(i)+"@example.com", password=hashed_password)
+        db.session.add(refugee)
+        db.session.add(landlord)
         db.session.commit()
 
