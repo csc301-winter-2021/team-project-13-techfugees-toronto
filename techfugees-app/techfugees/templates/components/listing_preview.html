@@ -40,8 +40,9 @@
                 </a>
             </div>
 
+
             {% if current_user.is_authenticated %}
-            {% if current_user.landlord == False %}
+            {% if current_user.checker == 'refugee' %}
             {% if current_user.username in post['wish_user'] %}
             <span class="badge badge-success">Saved to wish list</span>
             {% endif %}
