@@ -48,10 +48,29 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
-class UpdateAccountForm(FlaskForm):
+class UpdateRefugee(FlaskForm):
     username = StringField('Username',validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',validators=[DataRequired(), Email()])
     submit = SubmitField('Update')
+
+    def validate_username(self, username):
+        if username.data != current_user.username: #only want to check availability if changed
+            user = User.query.filter_by(username=username.data).first() #none if no user
+            if user is not None:
+                raise ValidationError('That username is taken. Please choose a different one.')
+
+    def validate_email(self, email):
+        if email.data != current_user.email:
+            user = User.query.filter_by(email=email.data).first() #none if not taken
+            if user is not None:
+                raise ValidationError('That email is taken. Please choose a different one.')
+
+class UpdateLandlord(FlaskForm):
+    username = StringField('Username',validators=[DataRequired(), Length(min=2, max=20)])
+    email = StringField('Email',validators=[DataRequired(), Email()])
+    submit = SubmitField('Update')
+    credit_check = BooleanField('Are willing to accept tenants without a credit score?')
+    first_last = BooleanField('Are you willing to omit first and last month\'s rent deposit?')
 
     def validate_username(self, username):
         if username.data != current_user.username: #only want to check availability if changed
