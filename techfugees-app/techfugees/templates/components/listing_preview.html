@@ -1,4 +1,7 @@
 <div class="col-sm-6 col-md-4 my-3 listing-preview">
+    {% for photo in files_list %}
+    <img src="{{ url_for('static', filename='HousePhoto/' + post['title'] + '/' + photo) }}" class="img-fluid img-responsive">
+    {% endfor %}
     <div class="listing-preview-content">
         <h4>
             <a href="{{ url_for('posts.listing', post_id = post.id) }}">
@@ -18,14 +21,14 @@
         <span class="badge badge-secondary">{{ post['num_bathrooms'] }} Bathroom</span>
         {% endif %}
         <p class="article-content py-2">
-        {% if post['content']|length > 60 %}
-        {{ post['content'][:60] }}...
-        {% elif post['content']|length > 0 %}
-        {{ post['content']}}
-        {% else %}
-        No description for this listing available.
-        {% endif %}
-        <br/>
+            {% if post['content']|length > 60 %}
+            {{ post['content'][:60] }}...
+            {% elif post['content']|length > 0 %}
+            {{ post['content']}}
+            {% else %}
+            No description for this listing available.
+            {% endif %}
+            <br />
         </p>
         <div class="row justify-content-start listing-footer">
             <div class="col align-self-end">

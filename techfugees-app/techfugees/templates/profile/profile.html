@@ -1,23 +1,37 @@
 {% extends 'base.html' %}
+{% block herobg %}profile{% endblock %}
+{% block hero %}
+<div class="container">
+    <div class="row p-1">
+        <div class="col-md-4 text-center p-4">
+            <img src="/static/images/profile/{{ user.image_file }}" width="175"
+                class="m-auto p-3 rounded-circle account-img">
+            <h2 class="account-heading">{{ user.username }}</h2>
 
-{% block content %}
-    <div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 text-center card m-2 p-4">
-                    <img src="/static/images/profile/{{ user.image_file }}" width="175" class="m-auto p-3 rounded-circle account-img">
-                    <h2 class="account-heading">{{ user.username }}</h2>
-                    {% block user_type %}{% endblock %}
-                    {% if current_user.id == user.id %}
-                    <a href="{{ url_for('users.account') }}"><button class="btn">Edit</button></a>
-                    {% endif %}
-                </div>
-                <div class="col-md-7 mx-3">
+            {% if current_user.id == user.id %}
+            <a href="{{ url_for('users.account') }}"><button class="btn btn-secondary btn-sm">Edit</button></a>
+            {% endif %}
+        </div>
+        <div class="col-md-8 p-4 my-4">
+            <h3>Name{% if user.checker == "landlord" %}
+                <h5><span class="badge badge-primary">Landlord</span></h5>
+                {% else %}
+                <h5><span class="badge badge-primary">Refugee</span></h5>
+                {% endif %}</h3>
 
-                    {% block prof_content %}{% endblock prof_content %}
-                </div>
-            </div>
-
+            <h6><i class="fas fa-map-marker-alt"></i> Location</h6>
+            {% block user_type %}{% endblock %}
         </div>
     </div>
+</div>
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-12 mx-3">
+
+            {% block prof_content %}{% endblock prof_content %}
+        </div>
+    </div>
+</div>
+
 {% endblock %}

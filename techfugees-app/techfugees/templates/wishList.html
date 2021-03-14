@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
-
+{% block herobg %}{% endblock %}
 {% block content %}
+<div>
     <h1>{% block title %} Wish List {% endblock %}</h1>
     {% for post in wish_list %}
 
@@ -18,4 +19,5 @@
 
     <hr>
     {% endfor %}
+</div>
 {% endblock %}

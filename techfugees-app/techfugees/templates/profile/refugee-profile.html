@@ -1,7 +1,6 @@
 {% extends 'profile/profile.html' %}
 
 {% block user_type %}
-    <h5>Refugee</h5>
     {% if user.sponsor_name != "none" %}
         <p>Sponsored by {{ user.sponsor_name }}</p>
     {% endif %}
