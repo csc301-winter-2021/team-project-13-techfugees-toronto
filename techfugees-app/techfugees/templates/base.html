@@ -31,6 +31,7 @@
                 {% if current_user.checker == "landlord" %}
                 <a class="nav-item nav-link" href="{{ url_for('posts.new_rental_posting') }}">Add Listing</a>
                 {% endif %}
+
                 {% if current_user.checker == "refugee" %}
                 <a class="nav-item nav-link" href="{{ url_for('users.wishList') }}">Wish List</a>
                 {% endif %}
@@ -40,6 +41,7 @@
                 <a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
                 <a class="nav-item nav-link" href="{{ url_for('users.refugee_register') }}">Refugee Registration</a>
                 <a class="nav-item nav-link" href="{{ url_for('users.landlord_register') }}">Landlord Registration</a>
+
             {% endif %}
         </div>
     </nav>
