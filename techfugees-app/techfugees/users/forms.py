@@ -27,7 +27,7 @@ class LandlordRegistrationForm(FlaskForm):
     email = StringField('Email',validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
-    credit_check = BooleanField('Are willing to accept tenants without a credit score?')
+    credit_check = BooleanField('Are you willing to accept tenants without a credit score?')
     first_last = BooleanField('Are you willing to omit first and last month\'s rent deposit?')
     submit = SubmitField('Sign Up')
 
@@ -69,7 +69,7 @@ class UpdateLandlord(FlaskForm):
     username = StringField('Username',validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',validators=[DataRequired(), Email()])
     submit = SubmitField('Update')
-    credit_check = BooleanField('Are willing to accept tenants without a credit score?')
+    credit_check = BooleanField('Are you willing to accept tenants without a credit score?')
     first_last = BooleanField('Are you willing to omit first and last month\'s rent deposit?')
 
     def validate_username(self, username):
