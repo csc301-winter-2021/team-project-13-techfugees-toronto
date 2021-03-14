@@ -2,16 +2,15 @@
 
 {% block content %}
 
-
 <h1>{% block title %} {{ post['title'] }} {% endblock %}</h1>
 <div class="row">
-    <div class="col-md-8">
-        <img src="https://via.placeholder.com/500x300" class="img-fluid">
+    <div class="col-md-8 col-sm-12">
+        <img src="https://via.placeholder.com/800x450" class="img-fluid img-responsive">
     </div>
-    <div class="col-md-4 text-center card p-4">
+    <div class="col-md-4 col-sm-12 text-center card p-3">
         <img src="/static/images/profile/{{ post['author'].image_file }}" width="175"
-            class="m-auto p-3 rounded-circle account-img">
-        <h2 class="account-heading">{{ post['author'].username }}</h2>
+            class="mx-auto p-3 rounded-circle account-img">
+        <h4 class="account-heading">{{ post['author'].username }}</h4>
         {% if post['author'].credit_check %}
         <p>Does not require a credit check</p>
         {% endif %}
@@ -19,7 +18,7 @@
         <p>Does not require first and last month's payment upfront</p>
         {% endif %}
         <a href="{{ url_for('users.profile', username=post['author'].username) }}">
-            <button type="button" class="btn-block btn-primary btn">Visit Profile</button>
+            <button type="button" class="my-3 btn-block btn-primary btn">Visit Profile</button>
         </a>
     </div>
 </div>
@@ -33,7 +32,7 @@
         <ul class="nav nav-tabs" id="listing_tabs" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab"
-                    aria-controls="details" aria-selected="true">Building details</a>
+                    aria-controls="details" aria-selected=True>Building details</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="amenities-tab" data-toggle="tab" href="#amenities" role="tab"
@@ -42,36 +41,40 @@
         </ul>
         <div class="tab-content" id="listing_tabs_content">
             <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
-                <table class="listing-table">
-                    <tr>
-                        <td><strong>Location:</strong></td>
-                        <td>{{ post['address'] }}<br />
-                            {{ post['city'] }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Building type:</strong></td>
-                        <td>{{ post['type_of_building'] }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Bedrooms:</strong></td>
-                        <td>{{ post['num_bedrooms'] }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Bathrooms:</strong></td>
-                        <td>{{ post['num_bathrooms'] }}</td>
-                    </tr>
-                </table>
+                <div class="row p-3">
+                    <div class="col-12 py-3 border-bottom">
+                        <table class="listing-table">
+                            <tr>
+                                <td><strong>Location:</strong></td>
+                                <td>{{ post['address'] }}<br />
+                                    {{ post['city'] }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Building type:</strong></td>
+                                <td>{{ post['type_of_building'] }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bedrooms:</strong></td>
+                                <td>{{ post['num_bedrooms'] }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bathrooms:</strong></td>
+                                <td>{{ post['num_bathrooms'] }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
             <div class="tab-pane fade" id="amenities" role="tabpanel" aria-labelledby="amenities-tab">
                 <div class="row p-3">
-                    <div class="col-sm-6 col-md-4">
+                    <div class="col-sm-6 col-md-4 py-3 border-bottom">
                         <h6>Appliances</h6>
                         <hr>
                         <table class="listing-table">
                             <tr>
                                 <td><strong>Stove & Oven:</strong></td>
                                 <td>
-                                    {% if post['stove_oven'] == "True" %}
+                                    {% if post['stove_oven'] == True %}
                                     Yes
                                     {% else %}
                                     No
@@ -81,7 +84,7 @@
                             <tr>
                                 <td><strong>Microwave:</strong></td>
                                 <td>
-                                    {% if post['microwave'] == "True" %}
+                                    {% if post['microwave'] == True %}
                                     Yes
                                     {% else %}
                                     No
@@ -91,7 +94,7 @@
                             <tr>
                                 <td><strong>Dishwasher:</strong></td>
                                 <td>
-                                    {% if post['dishwasher'] == "True" %}
+                                    {% if post['dishwasher'] == True %}
                                     Yes
                                     {% else %}
                                     No
@@ -101,7 +104,7 @@
                             <tr>
                                 <td><strong>Washer:</strong></td>
                                 <td>
-                                    {% if post['washer'] == "True" %}
+                                    {% if post['washer'] == True %}
                                     Yes
                                     {% else %}
                                     No
@@ -111,7 +114,7 @@
                             <tr>
                                 <td><strong>Dryer:</strong></td>
                                 <td>
-                                    {% if post['dryer'] == "True" %}
+                                    {% if post['dryer'] == True %}
                                     Yes
                                     {% else %}
                                     No
@@ -120,14 +123,15 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="col-sm-6 col-md-4">
+
+                    <div class="col-sm-6 col-md-4 py-3 border-bottom">
                         <h6>Utilities</h6>
                         <hr>
                         <table class="listing-table">
                             <tr>
                                 <td><strong>Water:</strong></td>
                                 <td>
-                                    {% if post['water'] == "True" %}
+                                    {% if post['water'] == True %}
                                     Yes
                                     {% else %}
                                     No
@@ -137,7 +141,7 @@
                             <tr>
                                 <td><strong>Electricity:</strong></td>
                                 <td>
-                                    {% if post['electricity'] == "True" %}
+                                    {% if post['electricity'] == True %}
                                     Yes
                                     {% else %}
                                     No
@@ -147,7 +151,7 @@
                             <tr>
                                 <td><strong>Air conditioning:</strong></td>
                                 <td>
-                                    {% if post['air_conditioning'] == "True" %}
+                                    {% if post['air_conditioning'] == True %}
                                     Yes
                                     {% else %}
                                     No
@@ -155,9 +159,9 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><strong>Cable</strong></td>
+                                <td><strong>Cable:</strong></td>
                                 <td>
-                                    {% if post['cable'] == "True" %}
+                                    {% if post['cable'] == True %}
                                     Yes
                                     {% else %}
                                     No
@@ -166,14 +170,14 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="col-sm-6 col-md-4">
+                    <div class="col-sm-6 col-md-4 py-3 border-bottom">
                         <h6>Extras</h6>
                         <hr>
                         <table class="listing-table">
                             <tr>
                                 <td><strong>Pets allowed:</strong></td>
                                 <td>
-                                    {% if post['pet'] == "True" %}
+                                    {% if post['pet'] == True %}
                                     Yes
                                     {% else %}
                                     No
@@ -183,7 +187,7 @@
                             <tr>
                                 <td><strong>Smoking allowed:</strong></td>
                                 <td>
-                                    {% if post['smoking'] == "True" %}
+                                    {% if post['smoking'] == True %}
                                     Yes
                                     {% else %}
                                     No
@@ -193,7 +197,7 @@
                             <tr>
                                 <td><strong>Balcony:</strong></td>
                                 <td>
-                                    {% if post['balcony'] == "True" %}
+                                    {% if post['balcony'] == True %}
                                     Yes
                                     {% else %}
                                     No
