@@ -28,10 +28,11 @@ A feature which is only accessible to users that have the landlord role. Landlor
 #### Listings Index
 Displays a preview of the nine most recently posted rental listings. Users can choose to click on any of the previews and be taken to a more detailed breakdown of the rental posting, where they can also leave a review, or visit the profile of the listing's author. The listings index page is paginated, and sorted by most to least recent by default.
 
-#### Add listing reviews
+#### Add Listing Reviews
 
-#### Search tab
+#### Search Tab
 
+#### Wish List
 Landlords signup to post property listings with pictures and basic information like location, number of rooms, etc. 
 Refugees can sign up to view housings, search through them by number of bedrooms, bathrooms, building type, reviews, landlord's name and reviews. 
 The website allows wish listing properties as well.
@@ -41,10 +42,24 @@ The website allows wish listing properties as well.
  * How do you access it? Are accounts pre-created or does a user register? Where do you start? etc. 
  * Provide clear steps for using each feature described above
  * This section is critical to testing your application and must be done carefully and thoughtfully
+
+ #### General Instructions
+ Unauthenticated user's are greeted with the same rental preview index page as authenticatd users. User's can choose to browse anonymously, and retain access to the listings index page, view an individual listings breakdown and use the search functionality. Users can choose to login by entering their details in the form found in the login tab from the navigation bar. Once authenticated, users are granted permissions to view other user profiles, which can be accessed by clicking on a username. 
+ 
+ Authenticated users can also edit their own profile details, by clicking on the profile tab in the navigation bar, where they will be taken to a form that is pre-filled with their current details. The update and delete buttons function as implied. 
+
+ Landlord Specifics:
+ 
+ Refugee Specifics
+
+ 
+
  
  ## Development requirements
  * If a developer were to set this up on their machine or a remote server, what are the technical requirements (e.g. OS, libraries, etc.)?
  * Briefly describe instructions for setting up and running the application (think a true README).
+
+
  
  ## Deployment and GitHub Workflow
 
