@@ -39,3 +39,7 @@ table.listing-table td{
     vertical-align: top;
     padding:5px 15px 5px 0;
 }
+
+.carousel-item{
+    max-height:350px;
+}
