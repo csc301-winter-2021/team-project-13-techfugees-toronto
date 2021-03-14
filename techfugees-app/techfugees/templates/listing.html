@@ -72,13 +72,39 @@
         <span class="badge badge-primary">{{ post['author'].checker }}</span>
     </div>
 
-    {% if post.author == current_user %}
-        <div>
-            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.update_listing', post_id=post.id) }}">Update</a>
-            <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
-        </div>
 
-    {% endif %}
+    <div>
+        <a class="btn btn-primary btn-sm mt-1 mb-1" href="{{ url_for('posts.new_review', post_id=post.id) }}">Review</a>
+        {% if post.author == current_user %}
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.update_listing', post_id=post.id) }}">Update</a>
+        <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
+        {% endif %}
+    </div>
+
+    <div id="review_div" style="margin: 20px">
+        {% for r in reviews %}
+
+        <div class="border border-primary rounded" style="margin: 10px; position: relative; min-height: 150px">
+            <div style="height: 120px; width: 120px; float: left">
+                <img style="border-radius: 50%; width: 100%; height: auto; margin: 1%"
+                     src="https://i.pinimg.com/originals/5f/df/91/5fdf914e80e58a43f052a219343e60b1.png" alt="icon">
+                <span style="left: 50px; margin-bottom: 3%; position: relative">{{ r.user.username }}</span>
+            </div>
+            <div style="float: left">
+                <p>
+                    {{ r.comment }}
+                </p>
+            </div>
+            <div>
+                <span class="badge badge-primary">{{ r.date_posted }}</span>
+            </div>
+            {% if r.user == current_user %}
+            <a class="btn btn-primary btn-sm mt-1 mb-1" style="float: right; margin: 10px"
+               href="{{ url_for('posts.delete_review', post_id=post.id, review_id=r.id) }}">Delete</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
 
     <hr>
 

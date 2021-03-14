@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <legend> Search </legend>
+        <fieldset class=form-group>
+            <div class=form-group>
+                {{ form.address.label(class="form-control-label") }}
+
+                {% if form.address.errors %}
+                {{ form.address(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.address.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.address(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class=form-group>
+                {{ form.city.label(class="form-control-label") }}
+
+                {% if form.city.errors %}
+                {{ form.city(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.city.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.city(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class=form-group>
+                <p>
+                    {{form.num_bedrooms.label}}<br>
+                    {% if form.num_bedrooms.errors %}
+                    {{ form.num_bedrooms(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.num_bedrooms.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.num_bedrooms(class="form-control form-control-lg") }}
+                {% endif %}
+                </p>
+            </div>
+
+            <div class=form-group>
+                <p>
+                    {{form.num_bathrooms.label}}<br>
+                    {% if form.num_bathrooms.errors %}
+                    {{ form.num_bathrooms(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.num_bathrooms.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.num_bathrooms(class="form-control form-control-lg") }}
+                {% endif %}
+                </p>
+            </div>
+
+            <div class=form-group>
+                {{ form.type_of_building.label(class="form-control-label") }}
+
+                {% if form.type_of_building.errors %}
+                {{ form.type_of_building(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.type_of_building.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.type_of_building(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <p>Basic Info</p>
+            <div class=form-group>
+                <span style="margin-right: 25px;">{{ form.pet.label }} {{ form.pet() }} </span>
+                <span style="margin-right: 25px;">{{ form.smoking.label }} {{ form.smoking() }} </span>
+                <span style="margin-right: 25px;">{{ form.balcony.label }} {{ form.balcony() }} </span>
+                <span style="margin-right: 25px;">{{ form.air_conditioning.label }} {{ form.air_conditioning() }} </span>
+                <span style="margin-right: 25px;">{{ form.stove_oven.label }} {{ form.stove_oven() }} </span>
+                <span style="margin-right: 25px;">{{ form.washer.label }} {{ form.washer() }} </span>
+                <span style="margin-right: 25px;">{{ form.dryer.label }} {{ form.dryer() }} </span>
+                <span style="margin-right: 25px;">{{ form.dishwasher.label }} {{ form.dishwasher() }} </span>
+                <span style="margin-right: 25px;">{{ form.microwave.label }} {{ form.microwave() }} </span>
+                <span style="margin-right: 25px;">{{ form.cable.label }} {{ form.cable() }} </span>
+                <span style="margin-right: 25px;">{{ form.water.label }} {{ form.water() }} </span>
+                <span style="margin-right: 25px;">{{ form.electricity.label }} {{ form.electricity() }}</span>
+            </div>
+
+        </fieldset>
+
+        <div class=form-group>
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+
+        {% if posts != [] %}
+        {% for post in posts %}
+
+        <div>
+            <h2>
+                <a href="{{ url_for('posts.listing', post_id = post.id) }}">
+                    {{ post['title'] }}
+                </a>
+            </h2>
+            <p class="article-content">{{ post['content'] }}</p>
+
+            <span class="badge badge-primary">{{ post['date_posted'] }}</span>
+            <span class="badge badge-primary">{{ post['author'].username }}</span>
+            {% if current_user.is_authenticated %}
+            {% if current_user.checker == 'refugee' %}
+            {% if current_user.username in post['wish_user'] %}
+            <span class="badge badge-success">wish</span>
+            {% endif %}
+            {% endif %}
+            {% endif %}
+        </div>
+        <hr>
+        {% endfor %}
+        {% else %}
+        <h1>No results found</h1>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}

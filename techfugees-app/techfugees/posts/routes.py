@@ -1,8 +1,8 @@
 from flask import render_template, url_for, flash, redirect, request, abort, Blueprint
 from flask_login import current_user, login_required
 from techfugees import db
-from techfugees.models import Post, User, Refugee
-from techfugees.posts.forms import NewListingForm
+from techfugees.models import Post, User, Refugee, Review
+from techfugees.posts.forms import NewListingForm, NewReviewForm, NewSearchForm
 from techfugees import app
 import os
 import time
@@ -70,24 +70,42 @@ def new_rental_posting():
         return redirect(url_for('main.index'))
 
 
+@posts.route('/post/<int:post_id>/new_review', methods=['GET', 'POST'])
+@login_required
+def new_review(post_id):
+    form = NewReviewForm()
+    if form.validate_on_submit():
+        review = Review(stars=form.stars.data,  comment=form.comment.data)
+        review.user_id = current_user.id
+        review.post_id = post_id
+        db.session.add(review)
+        db.session.commit()
+        flash('Review Added!', 'success')
+        return redirect(url_for('posts.listing', post_id=post_id))
+    return render_template('create_review.html', title='Add review', form=form)
+
 
 @posts.route('/post/<int:post_id>', methods=['GET', 'POST'])
 def listing(post_id):
     wish = False
     listing = Post.query.get_or_404(post_id)
+
     file_path = os.path.join(app.config['UPLOAD_FOLDER'], listing.title)
     files_list = os.listdir(file_path)
+    reviews = listing.reviews
+
     if current_user.is_authenticated:
         if current_user.checker == 'refugee':
             user = Refugee.query.filter_by(username=current_user.username).first()
             wishes = user.wish_list.split(",")
             if str(post_id) in wishes:
                 wish = True
-            return render_template('listing.html', title=listing.title, post=listing, wish=wish, user_type=0, files_list=files_list)
+            return render_template('listing.html', title=listing.title, post=listing, wish=wish, user_type=0, files_list=files_list, reviews=reviews)
         elif current_user.checker == 'landlord':
-            return render_template('listing.html', title=listing.title, post=listing, user_type=1, files_list=files_list)
+            return render_template('listing.html', title=listing.title, post=listing, user_type=1, files_list=files_list, reviews=reviews)
     else:
-        return render_template('listing.html', title=listing.title, post=listing, user_type=-1, files_list=files_list)
+        return render_template('listing.html', title=listing.title, post=listing, user_type=-1, files_list=files_list, reviews=reviews)
+
 
 
 @posts.route('/post/<int:post_id>/update', methods=['GET', 'POST'])
@@ -114,6 +132,18 @@ def update_listing(post_id):
         form.content.data = listing.content
 
     return render_template('create_post.html', title='Update Post', form=form)
+
+
+@posts.route('/post/<int:post_id>/<int:review_id>/delete_review', methods=['GET', 'POST'])
+@login_required
+def delete_review(post_id, review_id):
+    review = Review.query.get_or_404(review_id)
+    if review.user != current_user:
+        abort(403)
+    db.session.delete(review)
+    db.session.commit()
+    flash('Your review has been deleted!', 'success')
+    return redirect(url_for('posts.listing', post_id=post_id))
 
 
 @posts.route("/post/<int:post_id>/delete", methods=['POST'])
@@ -183,3 +213,83 @@ def unWish(post_id):
 
     db.session.commit()
     return redirect(url_for('posts.listing', post_id=post_id))
+
+
+@posts.route("/post/search", methods=['GET', 'POST'])
+def search():
+    form = NewSearchForm()
+    form.address.choices = [("-1", "N/A")] + list(set([(p.address, p.address) for p in Post.query.order_by(Post.address)]))
+    form.city.choices = [("-1", "N/A")] + list(set([(p.city, p.city) for p in Post.query.order_by(Post.city)]))
+    form.type_of_building.choices = [("-1", "N/A")] + list(set([(p.type_of_building, p.type_of_building) for p in Post.query.order_by(Post.type_of_building)]))
+    form.num_bedrooms.choices = [("-1", "N/A")] + list(set([(str(p.num_bedrooms), str(p.num_bedrooms)) for p in Post.query.order_by(Post.num_bedrooms)]))
+    form.num_bathrooms.choices = [("-1", "N/A")] + list(set([(str(p.num_bathrooms), str(p.num_bathrooms)) for p in Post.query.order_by(Post.num_bathrooms)]))
+    if form.validate_on_submit():
+
+        """
+        clean c
+        
+        temp_post = get all post:
+        for i in temp_post:
+           if 
+
+        posts = all post met c
+        """
+
+        if form.address.data != "-1" and form.city.data != "-1":
+            posts = Post.query.filter_by(address=form.address.data, city=form.city.data).all()
+        elif form.address.data != "-1":
+            posts = Post.query.filter_by(address=form.address.data).all()
+        elif form.city.data != "-1":
+            posts = Post.query.filter_by(city=form.city.data).all()
+        else:
+            posts = Post.query.filter_by().all()
+
+        if form.num_bedrooms.data != "-1":
+            posts = [post for post in posts if str(post.num_bedrooms) == form.num_bedrooms.data]
+
+        if form.num_bathrooms.data != "-1":
+            posts = [post for post in posts if str(post.num_bathrooms) == form.num_bathrooms.data]
+
+        if form.type_of_building.data != "-1":
+            posts = [post for post in posts if post.type_of_building == form.type_of_building.data]
+
+        if form.pet.data:
+            posts = [post for post in posts if post.pet]
+
+        if form.smoking.data:
+            posts = [post for post in posts if post.smoking]
+
+        if form.balcony.data:
+            posts = [post for post in posts if post.balcony]
+
+        if form.air_conditioning.data:
+            posts = [post for post in posts if post.air_conditioning]
+
+        if form.stove_oven.data:
+            posts = [post for post in posts if post.stove_oven]
+
+        if form.washer.data:
+            posts = [post for post in posts if post.washer]
+
+        if form.dryer.data:
+            posts = [post for post in posts if post.dryer]
+
+        if form.dishwasher.data:
+            posts = [post for post in posts if post.dishwasher]
+
+        if form.microwave.data:
+            posts = [post for post in posts if post.microwave]
+
+        if form.cable.data:
+            posts = [post for post in posts if post.cable]
+
+        if form.water.data:
+            posts = [post for post in posts if post.water]
+
+        if form.electricity.data:
+            posts = [post for post in posts if post.electricity]
+
+        return render_template('search.html', form=form, posts=posts)
+    return render_template('search.html', form=form)
+
+

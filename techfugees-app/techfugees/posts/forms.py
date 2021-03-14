@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, IntegerField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, IntegerField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from techfugees.models import User
 
@@ -26,3 +26,30 @@ class NewListingForm(FlaskForm):
     num_bathrooms = IntegerField('# of bathrooms', validators=[DataRequired()])
     type_of_building = StringField('Type of Building', validators=[DataRequired()])
     submit = SubmitField('Post')
+
+
+class NewReviewForm(FlaskForm):
+    stars = IntegerField('# of Stars', validators=[DataRequired()])
+    comment = TextAreaField('comment', validators=[DataRequired()])
+    submit = SubmitField('Post')
+
+
+class NewSearchForm(FlaskForm):
+    address = SelectField('Address')
+    city = SelectField('City')
+    type_of_building = SelectField('Type of Building')
+    num_bedrooms = SelectField('# of Bedrooms')
+    num_bathrooms = SelectField('# of bathrooms')
+    pet = BooleanField('Pet Friendly')
+    smoking = BooleanField('Smoking Allow')
+    balcony = BooleanField('Balcony')
+    air_conditioning = BooleanField('Air conditioning')
+    stove_oven = BooleanField('Stove and Oven')
+    washer = BooleanField('Washer')
+    dryer = BooleanField('Dryer')
+    dishwasher = BooleanField('Dishwasher')
+    microwave = BooleanField('Microwave')
+    cable = BooleanField('Cable')
+    water = BooleanField('Water')
+    electricity = BooleanField('Electricity')
+    submit = SubmitField('Search')
