@@ -8,7 +8,7 @@ import os
 import time
 import shutil
 
-app.config['UPLOAD_FOLDER'] = 'techfugees-app/techfugees/static/HousePhoto'
+app.config['UPLOAD_FOLDER'] = app.root_path + "/HousePhoto"
 posts = Blueprint('posts', __name__)
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'JPG', 'PNG'])
 
