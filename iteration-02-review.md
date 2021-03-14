@@ -7,8 +7,8 @@
 
 ## Iteration XX - Review & Retrospect
 
- * When: FILL IN THE DATE WHEN YOU ACTUALLY HAD YOUR REVIEW MEETING
- * Where: PHYSICAL LOCATION AND/OR ONLINE
+ * When: 03/14/2021
+ * Where: Zoom meeting
 
 ## Process - Reflection
 
@@ -22,6 +22,9 @@ List **process-related** (i.e. team organization and how you work) decisions tha
  * Ordered from most to least important.
  * Explain why (i.e. give a supporting argument) you consider a decision to be successful.
  * Feel free to refer/link to process artifact(s).
+
+ * Switching from mobile application to web application: With approval from our client, we initially made this decision based on overall familiarity with mobile development after taking time constraints into account. The decision allowed our group to circumvent many of the roadblocks associated with learning a new technology. We believe this resulted in a more refined prototype for deliverable 2. Additionally, having key functionality already implemented facilitated a discussion which was more end-user focused, allowing us to further polish the product with the client's business objectives in mind.  
+
 
  * Having every new feature implemented in its own branch, and only merge a branch when it's tested. 
    This helped isolate new changes and potential bugs, which made everything easier to test and fix.
@@ -39,7 +42,6 @@ List **process-related** (i.e. team organization and how you work) decisions tha
  * Explain why (i.e. give a supporting argument) you consider a decision to be unsuccessful
  * Feel free to refer/link to process artifact(s).
 
-
 #### Q3. Planned changes
 
 List any **process-related** (i.e. team organization and how you work) changes you are planning to make (if there are any)
@@ -52,9 +54,13 @@ List any **process-related** (i.e. team organization and how you work) changes y
 
 #### Q4. How was your product demo?
  * How did you prepare your demo?
+ We pre-populated our database with placeholder rental listings and users, and ran our application on a local development server. We held a zoom meeting with our partner and demoed the product via screen share.
  * What did you manage to demo to your partner?
+ Key features of our app, including login/registration, profile viewing/updating, rental listing creation, listing updates, adding items to wishlist, and search functionality, with emphasis on a sperate user experience for tenants and landlords.
  * Did your partner accept the features?
+ As a rental app, many key features were determined and agreed upon at the time deliverable 1, these were accepted by our partner with minor modifications requested. The wishlist feature was an additional feature, that the client liked and accepted. 
  * Were there change requests?
+ The client brought our attention to langauge sensitivity and suggested we refer to refugees as tenants. The client also proposed the inclusion of an admin role, which would be used by refugee settlement organizations. Additionally based on the vulnerability of some end users, the client requested that the names of tenants be obscured to general users.
  * What did you learn from the demo from either a process or product perspective?
  * *This section will be marked very leniently so keep it brief and just make sure the points are addressed*
 
@@ -62,3 +68,4 @@ List any **process-related** (i.e. team organization and how you work) changes y
  * Screen shared on Zoom.
  * Most features were accepted by our partner.
  * There were minor change requests like using "Tenants" instead of "Refugees".
+
