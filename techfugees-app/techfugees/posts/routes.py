@@ -6,8 +6,9 @@ from techfugees.posts.forms import NewListingForm
 from techfugees import app
 import os
 import time
+import shutil
 
-app.config['UPLOAD_FOLDER'] = 'techfugees-app/techfugees/static/HousePhoto'
+app.config['UPLOAD_FOLDER'] = app.root_path + "/static/HousePhoto"
 posts = Blueprint('posts', __name__)
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'JPG', 'PNG'])
 
@@ -56,8 +57,6 @@ def new_rental_posting():
                 for im in uploaded_file:
                     file_path = os.path.join(app.config['UPLOAD_FOLDER'], form.title.data + '/' + "{}.{}".format(time.time(), im.filename[-3:]))
                     if allowed_file(im.filename):
-                        print(im.filename)
-                        print(allowed_file(im.filename))
                         im.save(file_path)
                     i = i + 1
             db.session.add(listing)
@@ -71,21 +70,24 @@ def new_rental_posting():
         return redirect(url_for('main.index'))
 
 
+
 @posts.route('/post/<int:post_id>', methods=['GET', 'POST'])
 def listing(post_id):
     wish = False
     listing = Post.query.get_or_404(post_id)
+    file_path = os.path.join(app.config['UPLOAD_FOLDER'], listing.title)
+    files_list = os.listdir(file_path)
     if current_user.is_authenticated:
         if current_user.checker == 'refugee':
             user = Refugee.query.filter_by(username=current_user.username).first()
             wishes = user.wish_list.split(",")
             if str(post_id) in wishes:
                 wish = True
-            return render_template('listing.html', title=listing.title, post=listing, wish=wish, user_type=0)
+            return render_template('listing.html', title=listing.title, post=listing, wish=wish, user_type=0, files_list=files_list)
         elif current_user.checker == 'landlord':
-            return render_template('listing.html', title=listing.title, post=listing, user_type=1)
+            return render_template('listing.html', title=listing.title, post=listing, user_type=1, files_list=files_list)
     else:
-        return render_template('listing.html', title=listing.title, post=listing, user_type=-1)
+        return render_template('listing.html', title=listing.title, post=listing, user_type=-1, files_list=files_list)
 
 
 @posts.route('/post/<int:post_id>/update', methods=['GET', 'POST'])
@@ -99,6 +101,11 @@ def update_listing(post_id):
         # SQLalchemy convention, post refers to Post class, and is lowercase here
         listing.title = form.title.data
         listing.content = form.content.data
+        uploaded_file = request.files.getlist("file[]")
+        for im in uploaded_file:
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], form.title.data + '/' + "{}.{}".format(time.time(), im.filename[-3:]))
+            if allowed_file(im.filename):
+                im.save(file_path)
         db.session.commit()
         flash('Post updated', 'success')
         return redirect(url_for('posts.listing', post_id=listing.id))
@@ -117,6 +124,7 @@ def delete_post(post_id):
         abort(403)
     db.session.delete(post)
     db.session.commit()
+    shutil.rmtree(os.path.join(app.config['UPLOAD_FOLDER'], post.title))
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('main.index'))
 

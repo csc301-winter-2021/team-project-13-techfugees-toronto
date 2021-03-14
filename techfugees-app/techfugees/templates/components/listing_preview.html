@@ -21,7 +21,7 @@
         {% if post['content']|length > 60 %}
         {{ post['content'][:60] }}...
         {% elif post['content']|length > 0 %}
-        { post['content']}}
+        {{ post['content']}}
         {% else %}
         No description for this listing available.
         {% endif %}
