@@ -3,7 +3,7 @@ from techfugees import db, bcrypt
 
 if __name__ == "__main__":
     from techfugees.models import User, Landlord, Refugee
-    from techfugees.models import Post
+    from techfugees.models import Post, Review
     db.create_all()
 
     for i in range (10):
@@ -14,3 +14,4 @@ if __name__ == "__main__":
             user = Landlord(username="landlord"+str(i), email="landlord"+str(i)+"@example.com", password=hashed_password)
         db.session.add(user)
         db.session.commit()
+

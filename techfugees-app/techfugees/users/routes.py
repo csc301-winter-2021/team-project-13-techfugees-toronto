@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect, request, Blueprint,
 from flask_login import login_user, current_user, logout_user, login_required
 from techfugees import db, bcrypt
 from techfugees.models import User, Post, Refugee, Landlord
-from techfugees.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, LandlordRegistrationForm
+from techfugees.users.forms import RegistrationForm, LoginForm, UpdateLandlord, UpdateRefugee, LandlordRegistrationForm
 
 
 users = Blueprint('users', __name__)
@@ -21,7 +21,7 @@ def refugee_register():
 
         flash('Account Created!', 'success')
         return redirect(url_for('users.login'))
-    return render_template('register.html', title="Create A Refugee Account", form=form)
+    return render_template('register/refugee-register.html', title="Create A Refugee Account", form=form)
 
 @users.route('/register/landlord', methods=['GET', 'POST'])
 def landlord_register():
@@ -31,29 +31,14 @@ def landlord_register():
     if form.validate_on_submit():
         #password hashing to lessen impact of man in the middle attacks
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = Landlord(username=form.username.data, email=form.email.data, password=hashed_password)
+        user = Landlord(username=form.username.data, email=form.email.data, password=hashed_password, credit_check=form.credit_check, first_last=form.first_last)
         db.session.add(user)
         db.session.commit()
 
         flash('Account Created!', 'success')
         return redirect(url_for('users.login'))
-    return render_template('register.html', title="Create A Landlord Account", form=form)
+    return render_template('register/landlord-register.html', title="Create A Landlord Account", form=form)
 
-@users.route('/register/landlord', methods=['GET', 'POST'])
-def LandRegister():
-    if current_user.is_authenticated:
-        return redirect(url_for('main.index'))
-    form = LandlordRegistrationForm()
-    if form.validate_on_submit():
-        #password hashing to lessen impact of man in the middle attacks
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = Landlord(username=form.username.data, email=form.email.data, password=hashed_password)
-        db.session.add(user)
-        db.session.commit()
-
-        flash('Account Created!', 'success')
-        return redirect(url_for('users.login'))
-    return render_template('register.html', title="Create an Account", form=form)
 
 @users.route('/login', methods=['GET','POST'])
 def login():
@@ -80,17 +65,31 @@ def logout():
 @users.route('/account', methods=['GET','POST'])
 @login_required
 def account():
-    form = UpdateAccountForm()
+    if current_user.checker == "landlord": 
+        form = UpdateLandlord()
+    elif current_user.checker == "refugee":
+        form = UpdateRefugee()
+        
     if form.validate_on_submit():
         current_user.username = form.username.data
         current_user.email = form.email.data
+        if current_user.checker == "landlord":
+            current_user.credit_check = form.credit_check.data
+            current_user.first_last = form.first_last.data
         db.session.commit()
         flash('Account Updated!', 'success') #second param is for bootstrap class
         return redirect(url_for('users.account'))
     elif request.method == 'GET': #populate fields
         form.username.data = current_user.username
         form.email.data = current_user.email
-    return render_template('account.html', title='Account', form=form)
+        if current_user.checker == "landlord":
+            form.credit_check.data = current_user.credit_check 
+            form.first_last.data = current_user.first_last    
+    
+    if current_user.checker == "landlord": 
+        return render_template('account/landlord-account.html', title='Account', form=form)
+    else:
+        return render_template('account/refugee-account.html', title='Account', form=form)
 
 
 # show wish list
