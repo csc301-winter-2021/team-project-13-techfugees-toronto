@@ -32,11 +32,11 @@
         </p>
         <div class="row justify-content-start listing-footer">
             <div class="col align-self-end">
-                <span class="badge badge-primary">{{ post['date_posted'].strftime('%Y-%m-%d') }}</span>
+                <span class="badge badge-primary"><i class="fas fa-calendar-day fa-sm" style="vertical-align: top;"></i>&nbsp;{{ post['date_posted'].strftime('%Y-%m-%d') }}</span>
             </div>
             <div class="col align-self-end">
                 <a href="{{ url_for('users.profile', username=post['author'].username) }}">
-                    <span class="badge badge-primary">Posted by: {{ post['author'].username }}</span>
+                    <span class="badge badge-primary"><i class="fas fa-user fa-sm" style="vertical-align: top;"></i>&nbsp;{{ post['author'].username }}</span>
                 </a>
             </div>
 
