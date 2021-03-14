@@ -23,6 +23,13 @@ List **process-related** (i.e. team organization and how you work) decisions tha
  * Explain why (i.e. give a supporting argument) you consider a decision to be successful.
  * Feel free to refer/link to process artifact(s).
 
+ * Having every new feature implemented in its own branch, and only merge a branch when it's tested. 
+   This helped isolate new changes and potential bugs, which made everything easier to test and fix.
+   
+ * Using a trello board to add tasks, where every task is a small feature that anyone can work on. 
+   This made it easier to keep track of who was working on what, and provided a clearer roadmap for our work.
+
+
 #### Q2. Decisions that did not turn out as well as we hoped
 
 List **process-related** (i.e. team organization and how you work) decisions that, in retrospect, were not as successful as you thought they would be.
@@ -50,3 +57,8 @@ List any **process-related** (i.e. team organization and how you work) changes y
  * Were there change requests?
  * What did you learn from the demo from either a process or product perspective?
  * *This section will be marked very leniently so keep it brief and just make sure the points are addressed*
+
+ * Ran the latest stable build of the web app and showed the features from the user's perspective.
+ * Screen shared on Zoom.
+ * Most features were accepted by our partner.
+ * There were minor change requests like using "Tenants" instead of "Refugees".
