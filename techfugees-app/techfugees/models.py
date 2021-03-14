@@ -59,7 +59,7 @@ class Refugee(User):
 class Post(db.Model):
     __tablename__ = 'post'
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(20), nullable=False, unique=True)
+    title = db.Column(db.String(20), nullable=False)
     content = db.Column(db.String(120), nullable=False)
     address = db.Column(db.String(120), nullable=False)
     city = db.Column(db.String(20), nullable=False)

@@ -157,7 +157,7 @@ def update_listing(post_id):
         form.stove_oven.data = listing.stove_oven
         form.washer.data = listing.washer
         form.dryer.data = listing.dryer
-        form.dishwasher.data = listitng.dishwasher
+        form.dishwasher.data = listing.dishwasher
         form.microwave.data = listing.microwave
         form.cable.data = listing.cable
         form.water.data = listing.water

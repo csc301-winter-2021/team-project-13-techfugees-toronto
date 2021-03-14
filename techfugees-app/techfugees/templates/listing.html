@@ -1,131 +1,268 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} {{ post['title'] }} {% endblock %}</h1>
-    <div>
-        {% if current_user.is_authenticated %}
-            {% if post.author != current_user %}
-                {% if user_type == 0 %}
-                    {% if wish == False %}
-                    <form action="{{ url_for('posts.wish_list', post_id=post.id) }}" method="POST">
-                        <input style="float: right" class="btn btn-info btn-sm mt-1 mb-1" type="submit" value="Wish list">
-                    </form>
-                    {% else %}
-                    <form action="{{ url_for('posts.unWish', post_id=post.id) }}" method="POST">
-                        <input style="float: right" class="btn btn-secondary btn-sm mt-1 mb-1" type="submit" value="Remove Wish">
-                    </form>
-                    {% endif %}
-                {% endif %}
-            {% endif %}
-        {% endif %}
 
-        <h4>Address</h4>
-        <span class="article-content">{{ post['address'] }}</span>
-        <span class="article-content">{{ post['city'] }}</span>
-        <h4>Type of Building</h4>
-        <p class="article-content">{{ post['type_of_building'] }}</p>
-        <h4>Basic Info</h4>
-        <div>
-          <span># of bedrooms</span>
-          <span class="article-content">{{ post['num_bedrooms'] }}</span>
-          <br />
-          <span># of bathrooms</span>
-          <span class="article-content">{{ post['num_bathrooms'] }}</span>
+<h1>{% block title %} {{ post['title'] }} {% endblock %}</h1>
+<div class="row">
+    <div class="col-md-8 col-sm-12">
+        <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                {% for photo in files_list %}
+                <li data-target="#carouselIndicators" data-slide-to="{{ loop.index }}" class="item{% if loop.index == 1 %} active{% endif %}"></li>
+                {% endfor %}
+            </ol>
+        <div class="carousel-inner">
+            {% for photo in files_list %}
+            <div class="carousel-item{% if loop.index == 1 %} active{% endif %}">
+                <img src="{{ url_for('static', filename='HousePhoto/' + title + '/' + photo) }}" class="d-block w-100 img-fluid img-responsive">
+            </div>
+            {% endfor %}
+            <!-- Controls -->
+            <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
         </div>
-        <div>
-          <span>Pet</span>
-          <span class="article-content" style="margin-right: 25px;">{{ post['pet'] }}</span>
-          <span>Smoking</span>
-          <span class="article-content" style="margin-right: 25px;">{{ post['smoking'] }}</span>
-          <span>Balcony</span>
-          <span class="article-content" style="margin-right: 25px;">{{ post['balcony'] }}</span>
-          <span>Air Conditioning</span>
-          <span class="article-content" style="margin-right: 25px;">{{ post['air_conditioning'] }}</span>
-          <span>Stove & Oven</span>
-          <span class="article-content" style="margin-right: 25px;">{{ post['stove_oven'] }}</span>
-          <span>Washer</span>
-          <span class="article-content" style="margin-right: 25px;">{{ post['washer'] }}</span>
-          <span>Dryer</span>
-          <span class="article-content" style="margin-right: 25px;">{{ post['dryer'] }}</span>
-          <span>Dishwasher</span>
-          <span class="article-content" style="margin-right: 25px;">{{ post['dishwasher'] }}</span>
-          <span>Microwave</span>
-          <span class="article-content" style="margin-right: 25px;">{{ post['microwave'] }}</span>
-          <span>Cable</span>
-          <span class="article-content" style="margin-right: 25px;">{{ post['cable'] }}</span>
-          <span>Water</span>
-          <span class="article-content" style="margin-right: 25px;">{{ post['water'] }}</span>
-          <span>Electricity</span>
-          <span class="article-content" style="margin-right: 25px;">{{ post['electricity'] }}</span>
         </div>
-        <h4>Content</h4>
+    </div>
+    <div class="col-md-4 col-sm-12 text-center card p-3">
+        <img src="/static/images/profile/{{ post['author'].image_file }}" width="175"
+            class="mx-auto p-3 rounded-circle account-img">
+        <h4 class="account-heading">{{ post['author'].username }}</h4>
+        {% if post['author'].credit_check %}
+        <p>Does not require a credit check</p>
+        {% endif %}
+        {% if post['author'].first_last %}
+        <p>Does not require first and last month's payment upfront</p>
+        {% endif %}
+        <a href="{{ url_for('users.profile', username=post['author'].username) }}">
+            <button type="button" class="my-3 btn-block btn-primary btn">Visit Profile</button>
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 py-4">
         <p class="article-content">{{ post['content'] }}</p>
-        <div>
-          {% for photo in files_list %}
-            <span>
-              <img src="{{ url_for('static', filename='HousePhoto/' + title + '/' + photo) }}" width="112" height="112">
-            </span>
-          {% endfor %}
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <ul class="nav nav-tabs" id="listing_tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab"
+                    aria-controls="details" aria-selected=True>Building details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="amenities-tab" data-toggle="tab" href="#amenities" role="tab"
+                    aria-controls="amenities" aria-selected="false">Amenities</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="listing_tabs_content">
+            <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
+                <div class="row p-3">
+                    <div class="col-12 py-3 border-bottom">
+                        <table class="listing-table">
+                            <tr>
+                                <td><strong>Location:</strong></td>
+                                <td>{{ post['address'] }}<br />
+                                    {{ post['city'] }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Building type:</strong></td>
+                                <td>{{ post['type_of_building'] }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bedrooms:</strong></td>
+                                <td>{{ post['num_bedrooms'] }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bathrooms:</strong></td>
+                                <td>{{ post['num_bathrooms'] }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="amenities" role="tabpanel" aria-labelledby="amenities-tab">
+                <div class="row p-3">
+                    <div class="col-sm-6 col-md-4 py-3 border-bottom">
+                        <h6>Appliances</h6>
+                        <hr>
+                        <table class="listing-table">
+                            <tr>
+                                <td><strong>Stove & Oven:</strong></td>
+                                <td>
+                                    {% if post['stove_oven'] == True %}
+                                    Yes
+                                    {% else %}
+                                    No
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Microwave:</strong></td>
+                                <td>
+                                    {% if post['microwave'] == True %}
+                                    Yes
+                                    {% else %}
+                                    No
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dishwasher:</strong></td>
+                                <td>
+                                    {% if post['dishwasher'] == True %}
+                                    Yes
+                                    {% else %}
+                                    No
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Washer:</strong></td>
+                                <td>
+                                    {% if post['washer'] == True %}
+                                    Yes
+                                    {% else %}
+                                    No
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dryer:</strong></td>
+                                <td>
+                                    {% if post['dryer'] == True %}
+                                    Yes
+                                    {% else %}
+                                    No
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col-sm-6 col-md-4 py-3 border-bottom">
+                        <h6>Utilities</h6>
+                        <hr>
+                        <table class="listing-table">
+                            <tr>
+                                <td><strong>Water:</strong></td>
+                                <td>
+                                    {% if post['water'] == True %}
+                                    Yes
+                                    {% else %}
+                                    No
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Electricity:</strong></td>
+                                <td>
+                                    {% if post['electricity'] == True %}
+                                    Yes
+                                    {% else %}
+                                    No
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Air conditioning:</strong></td>
+                                <td>
+                                    {% if post['air_conditioning'] == True %}
+                                    Yes
+                                    {% else %}
+                                    No
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cable:</strong></td>
+                                <td>
+                                    {% if post['cable'] == True %}
+                                    Yes
+                                    {% else %}
+                                    No
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-sm-6 col-md-4 py-3 border-bottom">
+                        <h6>Extras</h6>
+                        <hr>
+                        <table class="listing-table">
+                            <tr>
+                                <td><strong>Pets allowed:</strong></td>
+                                <td>
+                                    {% if post['pet'] == True %}
+                                    Yes
+                                    {% else %}
+                                    No
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Smoking allowed:</strong></td>
+                                <td>
+                                    {% if post['smoking'] == True %}
+                                    Yes
+                                    {% else %}
+                                    No
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Balcony:</strong></td>
+                                <td>
+                                    {% if post['balcony'] == True %}
+                                    Yes
+                                    {% else %}
+                                    No
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
         </div>
-        <span class="badge badge-primary">{{ post['date_posted'] }}</span>
-        <a href="{{ url_for('users.profile', username=post['author'].username) }}"><span class="badge badge-primary">{{ post['author'].username }}</span></a>
-        <span class="badge badge-primary">{{ post['author'].checker }}</span>
     </div>
+</div>
+{% if post.author == current_user %}
+<div class="d-flex flex-row-reverse">
+    <a class="btn btn-secondary btn-sm mt-1 mb-1"
+        href="{{ url_for('posts.update_listing', post_id=post.id) }}">Update</a>
+    <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"
+        data-target="#deleteModal">Delete</button>
+</div>
+<hr>
+{% endif %}
 
-
-    <div>
-        <a class="btn btn-primary btn-sm mt-1 mb-1" href="{{ url_for('posts.new_review', post_id=post.id) }}">Review</a>
-        {% if post.author == current_user %}
-        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.update_listing', post_id=post.id) }}">Update</a>
-        <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
-        {% endif %}
-    </div>
-
-    <div id="review_div" style="margin: 20px">
-        {% for r in reviews %}
-
-        <div class="border border-primary rounded" style="margin: 10px; position: relative; min-height: 150px">
-            <div style="height: 120px; width: 120px; float: left">
-                <img style="border-radius: 50%; width: 100%; height: auto; margin: 1%"
-                     src="https://i.pinimg.com/originals/5f/df/91/5fdf914e80e58a43f052a219343e60b1.png" alt="icon">
-                <span style="left: 50px; margin-bottom: 3%; position: relative">{{ r.user.username }}</span>
-            </div>
-            <div style="float: left">
-                <p>
-                    {{ r.comment }}
-                </p>
-            </div>
-            <div>
-                <span class="badge badge-primary">{{ r.date_posted }}</span>
-            </div>
-            {% if r.user == current_user %}
-            <a class="btn btn-primary btn-sm mt-1 mb-1" style="float: right; margin: 10px"
-               href="{{ url_for('posts.delete_review', post_id=post.id, review_id=r.id) }}">Delete</a>
-            {% endif %}
-        </div>
-        {% endfor %}
-    </div>
-
-    <hr>
-
-    <!-- Bootstrap Modal -->
-  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteModalLabel">Delete Post?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete Post?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <form action="{{ url_for('posts.delete_post', post_id=post.id) }}" method="POST">
+                    <input class="btn btn-danger" type="submit" value="Delete">
+                </form>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <form action="{{ url_for('posts.delete_post', post_id=post.id) }}" method="POST">
-            <input class="btn btn-danger" type="submit" value="Delete">
-          </form>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
 {% endblock %}

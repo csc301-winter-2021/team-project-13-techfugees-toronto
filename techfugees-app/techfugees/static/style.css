@@ -1,0 +1,45 @@
+
+.container{
+    padding: 2rem;
+}
+
+p{
+    overflow-wrap: break-word;
+}
+
+.listing-preview{
+    position:relative;
+    overflow-wrap: break-word;
+}
+
+.listing-preview p {
+    font-size: 11pt;
+}
+
+.listing-preview-content {
+    position:relative;
+    padding:1rem;
+    background-color: #eee;
+    border-radius: 6px;
+    height:100%;
+}
+
+.listing-footer{
+    position:absolute;
+    bottom:0;
+    padding: 15px;
+}
+
+.listing-footer>.col {
+    padding:0;
+    margin-right:4px;
+}
+
+table.listing-table td{
+    vertical-align: top;
+    padding:5px 15px 5px 0;
+}
+
+.carousel-item{
+    max-height:350px;
+}
