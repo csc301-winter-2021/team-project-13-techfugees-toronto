@@ -36,8 +36,8 @@ Tenants can add their favorite listings to their wish list, or remove a listing 
 
 #### Search tab 
 Landlords signup to post property listings with pictures and basic information like location, number of rooms, etc. 
-Refugees can sign up to view housings, search through them by number of location, number of bedrooms, number of bathrooms, building type, landlord's name and reviews. 
-The search options come from every existing listing.
+Refugees can sign up to view housing, search through them by location, number of bedrooms, number of bathrooms, building type, landlord's name, reviews and other options. 
+The search options come from all existing listing.
 
 ## Instructions
  * Clear instructions for how to use the application from the end-user's perspective
