@@ -60,6 +60,9 @@ The search options come from all existing listing.
  ## Development requirements
  * If a developer were to set this up on their machine or a remote server, what are the technical requirements (e.g. OS, libraries, etc.)?
  * Briefly describe instructions for setting up and running the application (think a true README).
+
+
+   #### Getting Started
     
     (You must have Python-3 and a package manager [pip] installed on your computer before you start)
     1. Install virtual environment in the team-project-13-techfugees-toronto folder:
