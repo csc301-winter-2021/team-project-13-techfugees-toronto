@@ -1,4 +1,4 @@
-# Techfugees Rental App/Team-project-13-techfugees-toronto
+# Techfugees Toronto Housing App
 
 > _Note:_ This document is intended to be relatively short. Be concise and precise. Assume the reader has no prior knowledge of your application and is non-technical.
 
@@ -12,10 +12,10 @@ This web application aims to solve the problems that refugees face when searchin
 ## Key Features
 
 #### Separate Registration for Landlords and Tenants
-In addition to basic user information, landlord and refugee registration has been seperated due to necessity of role specific questions which seek to improve transparency. Landlord registration includes qustions which assesss payment and credit history leniency, whereas tenants are asked to provide sponsor names. We felt it was pertinent to require these fields during registration due to the nature of our app, as a landlord's tolerance of missing credit history can often be a deal breaker during negotiations.
+In addition to basic user information, landlord and tenant registration has been seperated due to the necessity of role-specific questions that seek to improve transparency. Landlord registration includes qustions which assesss payment and credit leniency, whereas tenants are asked to provide sponsor names. We felt it was pertinent to require these fields during registration due to the goal of our app - facilitating the house-seeking process for refugees.
 
 #### Profiles for Landlords and Tenants
-Users can access their own profile and the profiles of other users. Landlord profiles display basic user information, role specific information, and displays all the landlord's listings if present. Refugee profiles follow a similar structure. User's can also edit their own profile, which is auto-filled with their current information.
+Users can access their own profile and the profiles of other users. Landlord profiles display basic user information, role specific information, and displays all the landlord's listings if present. Tenant profiles follow a similar structure. User's can also edit their own profile, which is auto-filled with their current information.
 
 #### Add/Update Listings
 A feature which is only accessible to users that have the landlord role. Landlord's can add new rental postings. Once added, the listing is viewable by all users on the listings index. Only the landlord who created the post can edit the details of the rental posting.
@@ -35,10 +35,6 @@ Tenants can sign up to view housing, search through them by location, number of 
 The search options come from all existing listing.
 
 ## Instructions
- * Clear instructions for how to use the application from the end-user's perspective
- * How do you access it? Are accounts pre-created or does a user register? Where do you start? etc.
- * Provide clear steps for using each feature described above
- * This section is critical to testing your application and must be done carefully and thoughtfully
 
 #### Features
 
@@ -86,13 +82,10 @@ Users with the tenant role can leave a review on a listing by accessing the list
 
 
 ## Development requirements
- * If a developer were to set this up on their machine or a remote server, what are the technical requirements (e.g. OS, libraries, etc.)?
- * Briefly describe instructions for setting up and running the application (think a true README).
-
 
 #### Getting Started
 
-You must have Python-3 and a package manager [pip] installed on your computer before you start
+You must have Python-3 and a package manager [pip] installed on your computer before you start.
 
 1. Install virtual environment in the team-project-13-techfugees-toronto folder:
 
@@ -119,26 +112,14 @@ You must have Python-3 and a package manager [pip] installed on your computer be
    ```python techfugees-app/run.py```
 
 
- ## Deployment and GitHub Workflow
+## Deployment and GitHub Workflow
 
 Describe your Git / GitHub workflow. Essentially, we want to understand how your team members shares a codebase, avoid conflicts and deploys the application.
 
- * Be concise, yet precise. For example, "we use pull-requests" is not a precise statement since it leaves too many open questions - Pull-requests from where to where? Who reviews the pull-requests? Who is responsible for merging them? etc.
- * If applicable, specify any naming conventions or standards you decide to adopt.
- * Describe your overall deployment process from writing code to viewing a live application
- * What deployment tool(s) are you using and how
- * Don't forget to **briefly explain why** you chose this workflow or particular aspects of it!
+Since our project is already on GitHub, we decided to use GitHub Actions to automatically run the test scripts for Flask, our backend framework. Another pro-factor of using GitHub Actions is that it also has templates for workflows and auto suggests them based on the repository’s files.
 
-We used GitHub Actions to automatically run the test scripts for flask, our backend framework.
-On any push or merge, the workflow is run to make sure the newly added files don't break compatibility.
-Merges from branches were regularly reviewed by Andi Fan and Kim Le.
-Whenever a new feature was being worked on, a new branch was created for it. After making sure it's working correctly, it gets merged back into main, our stable branch.
-We used GitHub Actions for convenience, since it's already on GitHub. It also has templates for workflows and auto suggests them based on the repo’s files.
+On any push or merge, the workflow is run to make sure the newly added files don't break compatibility. Merges from branches and merge conflicts are regularly reviewed by Andi Fan and Kim Le. Whenever a new feature is being worked on, a new branch is created for it. After making sure it is working as intended, it gets merged back into main, our stable branch. We have specified the local project files in the `.gitignore` file.
 
- ## Licenses
+## Licenses
 
- Keep this section as brief as possible. You may read this [Github article](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository) for a start.
-
- * What type of license will you apply to your codebase?
- * What affect does it have on the development and use of your codebase?
- * Why did you or your partner make this choice?
+We will apply the MIT license to our codebase. It is a permissive license, thus allowing a wide range of permissions for our partner with very little restrictions.
