@@ -1,7 +1,5 @@
 # Techfugees Toronto Housing App
 
-> _Note:_ This document is intended to be relatively short. Be concise and precise. Assume the reader has no prior knowledge of your application and is non-technical.
-
 ## Description
 Our team is working with Techfugees Toronto to build a web application that facilitates the housing search process for refugees and establishes a better mutual understanding and support between refugees, outreach workers, and housing providers.
 
@@ -18,10 +16,10 @@ In addition to basic user information, landlord and tenant registration has been
 Users can access their own profile and the profiles of other users. Landlord profiles display basic user information, role specific information, and displays all the landlord's listings if present. Tenant profiles follow a similar structure. User's can also edit their own profile, which is auto-filled with their current information.
 
 #### Add/Update Listings
-A feature which is only accessible to users that have the landlord role. Landlord's can add new rental postings. Once added, the listing is viewable by all users on the listings index. Only the landlord who created the post can edit the details of the rental posting.
+A feature which is only accessible to users that have the landlord role. Landlord's can add new property listings. Once added, the listing is viewable by all users on the listings index. Only the landlord who created the property listing can edit its details.
 
 #### Listings Index
-Displays a preview of the nine most recently posted rental listings. Users can choose to click on any of the previews and be taken to a more detailed breakdown of the rental posting, where they can also leave a review, or visit the profile of the listing's author. The listings index page is paginated, and sorted by most to least recent by default.
+Displays a preview of the nine most recently posted property listings. Users can choose to click on any of the previews and be taken to a more detailed breakdown of the listing, where they can also leave a review, or visit the profile of the listing's author. The listings index page is paginated, and sorted by most to least recent by default.
 
 #### Wish List
 Tenants can add their favorite listings to their wish list, or remove a listing from the wish list.  Also if a listing is in the wish list, it will be marked in the list on the main page.
@@ -39,7 +37,7 @@ The search options come from all existing listing.
 #### Features
 
 ##### Guest users
-Unauthenticated users are greeted with the same rental preview index page as authenticatd users. Users can choose to browse anonymously, and with limited access to the only the index page containing the listings, the individual listings pages, and the search page.
+Unauthenticated users are greeted with the same listing preview index page as authenticatd users. Users can choose to browse anonymously, and with limited access to the only the index page containing the listings, the individual listings pages, and the search page.
 
 ##### Accessing a listing's page
 All users of the app (registered and unregistered) are able to view a listing's details on the listing page. To do so, click on the title of the listing that appears on the index page.
@@ -64,7 +62,7 @@ To access a user's own profile, click on the "Profile" tab in the navigation bar
 Authenticated users can edit their own user details by clicking on the "Profile" tab in the navigation bar, where they will be taken to a form that is pre-filled with their current details. The update and delete buttons function as implied.
 
 ##### Landlord specific: Creating a post
-Users with the landlord role are able to create and publish a listing to the site by accessing the "Add Listing" tab in the navigation bar. The resulting page is a form with details to be filled out for a rental posting. Landlord are also able to upload photos of their listed property.
+Users with the landlord role are able to create and publish a listing to the site by accessing the "Add Listing" tab in the navigation bar. The resulting page is a form with details to be filled out for a property listing. Landlords are also able to upload photos of their listed property.
 
 ##### Landlord specific: Updating a post
 Users with the landlord role are able to edit their existing listings by heading to the listing page and cllicking the "Update" button at the bottom of the page. The resulting page is a form identical to the one displayed when creating a post, except the form is pre-filled with the listing's existing details. Landlords are able to make changes as desired. The changes will be applied upon submitting the form.
