@@ -3,11 +3,7 @@
 > _Note:_ This document is intended to be relatively short. Be concise and precise. Assume the reader has no prior knowledge of your application and is non-technical.
 
 ## Description
- * Provide a high-level description of your application and it's value from an end-user's perspective
- * What is the problem you're trying to solve?
- * Is there any context required to understand **why** the application solves this problem?
-
-Our team is working with Techfugees Totonto to build a web application that facilitates the housing search process for refugees and establishes a better mutual understanding and support between refugees, outreach workers, and housing providers.
+Our team is working with Techfugees Toronto to build a web application that facilitates the housing search process for refugees and establishes a better mutual understanding and support between refugees, outreach workers, and housing providers.
 
 In Toronto, only about half of refugees who have gone through the city’s shelter system in the past two years have been settled into permanent housing. Additionally, Toronto’s shelter system is operating at nearly 100% capacity. 40% of people staying in Toronto shelters are refugees. Additionally, settlement organizations that assist refugees in finding housing are understaffed and their employees are overworked.
 
@@ -57,11 +53,6 @@ All users of the app (registered and unregistered) are able to searh for listing
 
 ##### Registering an account
 Users without an account can create an acccount as a landlord or a tenant. There are two types of registration links in the navigation bar, "Landlord Registration" and "Tenant Registration". Both links lead to their respective registration forms, which creates the user with the appropriate role and according to the information provided in the registration form.
-
-Account creation will be successful if:
-* The provided username does not already exist in the databse
-* The provided email does not already exist in the databse
-* The provided passwords match
 
 ##### Logging in
 Users can log into the app by entering their details in the form found in the "Login" tab from the navigation bar.
