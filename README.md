@@ -34,48 +34,48 @@ The search options come from all existing listing.
 
 ## Instructions
 
-#### Features
+### Features
 
-##### Guest users
+#### Guest users
 Unauthenticated users are greeted with the same listing preview index page as authenticatd users. Users can choose to browse anonymously, and with limited access to the only the index page containing the listings, the individual listings pages, and the search page.
 
-##### Accessing a listing's page
+#### Accessing a listing's page
 All users of the app (registered and unregistered) are able to view a listing's details on the listing page. To do so, click on the title of the listing that appears on the index page.
 
-##### Searching for a listing
+#### Searching for a listing
 All users of the app (registered and unregistered) are able to searh for listings based on the filters. The search page is accessible by clicking on the "Search" link in the navigation bar. To search for listings, fill out the form fields as desired.
 
-##### Registering an account
+#### Registering an account
 Users without an account can create an acccount as a landlord or a tenant. There are two types of registration links in the navigation bar, "Landlord Registration" and "Tenant Registration". Both links lead to their respective registration forms, which creates the user with the appropriate role and according to the information provided in the registration form.
 
-##### Logging in
+#### Logging in
 Users can log into the app by entering their details in the form found in the "Login" tab from the navigation bar.
 
 Once authenticated, users are granted permissions to access other pages, such user profiles. Additonally, logged-in users can perform actions based on their roles (e.g. add a listing to their wish list, posting a listing).
 
-##### Accessing profiles
+#### Accessing profiles
 All registered users of the app have a profile with the appropriate information for their user role.
 
 To access a user's own profile, click on the "Profile" tab in the navigation bar. To access another user's profile, users can click on their username (where it appears) to be led to their profile page, or click on the "Visit Profile" link on an individual listing page to see that landlord's profile.
 
-##### Editing user information
+#### Editing user information
 Authenticated users can edit their own user details by clicking on the "Profile" tab in the navigation bar, where they will be taken to a form that is pre-filled with their current details. The update and delete buttons function as implied.
 
-##### Landlord specific: Creating a post
+#### Landlord specific: Creating a post
 Users with the landlord role are able to create and publish a listing to the site by accessing the "Add Listing" tab in the navigation bar. The resulting page is a form with details to be filled out for a property listing. Landlords are also able to upload photos of their listed property.
 
-##### Landlord specific: Updating a post
+#### Landlord specific: Updating a post
 Users with the landlord role are able to edit their existing listings by heading to the listing page and cllicking the "Update" button at the bottom of the page. The resulting page is a form identical to the one displayed when creating a post, except the form is pre-filled with the listing's existing details. Landlords are able to make changes as desired. The changes will be applied upon submitting the form.
 
-##### Landlord specific: Deleting a post
+#### Landlord specific: Deleting a post
 Users with the landlord role are able to delete their existing listings by heading to the listing page and cllicking the "Delete" button at the bottom of the page. A prompt to confirm their decision to delete will appear. Upon confirming deletion, the listing will be removed from the database.
 
-##### Tenant specific: Wish list
+#### Tenant specific: Wish list
 Users with the tenant role have a personal wish list, which they can view and edit. A user can access their wish list by clicking the "Wish List" link in the navigation bar.
 
 Users can add listings to their wishlist by visiting the listing's details page and clicking on the "Wish List" button at the bottom of the page. Users can also remove a listing from their wish list by accessing the listing's details page and clicking the "Remove Wish" button at the bottom of the page.
 
-##### Tenant specific: Leave a review
+#### Tenant specific: Leave a review
 Users with the tenant role can leave a review on a listing by accessing the listing's details page and clicking on the "Review" button at the bottom of the page. Users are then prompted to fill out a review form, and their review will be posted to the listing upon submitting.
 
 
