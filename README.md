@@ -105,20 +105,25 @@ Users with the tenant role can leave a review on a listing by accessing the list
    1. Install virtual environment in the team-project-13-techfugees-toronto folder:
 
       Mac/Linux: ```python3 -m venv venv```
+
       Windows: ```py -3 -m venv venv```
 
    2. Activate the virtual environment:
 
       Mac/Linux: ```. venv/bin/activate```
+
       Windows: ```venv\Scripts\activate```
 
    3. Install the dependencies in requirements.txt:
+
       ```pip install -r requirements.txt```
 
    4. Run the database script (Note: if `database.db` exists, delete the file before running the command below):
+
       ```python techfugees-app/db.py```
 
    5. Run the local development server:
+
       ```python techfugees-app/run.py```
 
 
