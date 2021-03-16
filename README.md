@@ -99,32 +99,33 @@ Users with the tenant role can leave a review on a listing by accessing the list
  * Briefly describe instructions for setting up and running the application (think a true README).
 
 
-   #### Getting Started
+#### Getting Started
 
-   (You must have Python-3 and a package manager [pip] installed on your computer before you start)
-   1. Install virtual environment in the team-project-13-techfugees-toronto folder:
+You must have Python-3 and a package manager [pip] installed on your computer before you start
 
-      Mac/Linux: ```python3 -m venv venv```
+1. Install virtual environment in the team-project-13-techfugees-toronto folder:
 
-      Windows: ```py -3 -m venv venv```
+   Mac/Linux: ```python3 -m venv venv```
 
-   2. Activate the virtual environment:
+   Windows: ```py -3 -m venv venv```
 
-      Mac/Linux: ```. venv/bin/activate```
+2. Activate the virtual environment:
 
-      Windows: ```venv\Scripts\activate```
+   Mac/Linux: ```. venv/bin/activate```
 
-   3. Install the dependencies in requirements.txt:
+   Windows: ```venv\Scripts\activate```
 
-      ```pip install -r requirements.txt```
+3. Install the dependencies in requirements.txt:
 
-   4. Run the database script (Note: if `database.db` exists, delete the file before running the command below):
+   ```pip install -r requirements.txt```
 
-      ```python techfugees-app/db.py```
+4. Run the database script (Note: if `database.db` exists, delete the file before running the command below):
 
-   5. Run the local development server:
+   ```python techfugees-app/db.py```
 
-      ```python techfugees-app/run.py```
+5. Run the local development server:
+
+   ```python techfugees-app/run.py```
 
 
  ## Deployment and GitHub Workflow
