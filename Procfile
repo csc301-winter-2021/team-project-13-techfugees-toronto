@@ -1,1 +1,1 @@
-web: gunicorn --chdir techfugees-app/techfugees __init__.py:server
+web: gunicorn --chdir techfugees-app/techfugees run.py:app
