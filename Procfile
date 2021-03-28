@@ -1,1 +1,1 @@
-web: gunicorn --chdir techfugees-app/techfugees app:app --preload
+web: gunicorn --chdir techfugees-app run:app --preload
