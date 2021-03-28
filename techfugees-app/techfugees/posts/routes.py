@@ -254,22 +254,12 @@ def unWish(post_id):
 @posts.route("/post/search", methods=['GET', 'POST'])
 def search():
     form = NewSearchForm()
-    form.address.choices = [("-1", "N/A")] + list(set([(p.address, p.address) for p in Post.query.order_by(Post.address)]))
-    form.city.choices = [("-1", "N/A")] + list(set([(p.city, p.city) for p in Post.query.order_by(Post.city)]))
-    form.type_of_building.choices = [("-1", "N/A")] + list(set([(p.type_of_building, p.type_of_building) for p in Post.query.order_by(Post.type_of_building)]))
-    form.num_bedrooms.choices = [("-1", "N/A")] + list(set([(str(p.num_bedrooms), str(p.num_bedrooms)) for p in Post.query.order_by(Post.num_bedrooms)]))
-    form.num_bathrooms.choices = [("-1", "N/A")] + list(set([(str(p.num_bathrooms), str(p.num_bathrooms)) for p in Post.query.order_by(Post.num_bathrooms)]))
+    form.address.choices = [("-1", "N/A")] + sorted(list(set([(p.address, p.address) for p in Post.query.order_by(Post.address)])))
+    form.city.choices = [("-1", "N/A")] + sorted(list(set([(p.city, p.city) for p in Post.query.order_by(Post.city)])))
+    form.type_of_building.choices = [("-1", "N/A")] + sorted(list(set([(p.type_of_building, p.type_of_building) for p in Post.query.order_by(Post.type_of_building)])))
+    form.num_bedrooms.choices = [("-1", "N/A")] + sorted(list(set([(str(p.num_bedrooms), str(p.num_bedrooms)) for p in Post.query.order_by(Post.num_bedrooms)])))
+    form.num_bathrooms.choices = [("-1", "N/A")] + sorted(list(set([(str(p.num_bathrooms), str(p.num_bathrooms)) for p in Post.query.order_by(Post.num_bathrooms)])))
     if form.validate_on_submit():
-
-        """
-        clean c
-        
-        temp_post = get all post:
-        for i in temp_post:
-           if 
-
-        posts = all post met c
-        """
 
         if form.address.data != "-1" and form.city.data != "-1":
             posts = Post.query.filter_by(address=form.address.data, city=form.city.data).all()
