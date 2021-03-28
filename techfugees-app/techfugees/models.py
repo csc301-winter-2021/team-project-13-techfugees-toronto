@@ -11,7 +11,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-#need to split User into refugee and landlord classes dad
+#need to split User into tenant and landlord classes
 class User(db.Model, Base, UserMixin):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
@@ -48,14 +48,14 @@ class Landlord(User):
     def __repr__(self):
         return f"User('{self.username}')"
 
-class Refugee(User):
-    __tablename__ = 'refugee'
+class Tenant(User):
+    __tablename__ = 'tenant'
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
     sponsor_name = db.Column(db.String(20), default="none")
-    checker = db.Column(db.String(20), default="refugee")
+    checker = db.Column(db.String(20), default="tenant")
     wish_list = db.Column(db.String(200), default='')
     __mapper_args__ = {
-        'polymorphic_identity':'refugee'
+        'polymorphic_identity':'tenant'
     }
 
 #template class, eventually change to fit rental postings

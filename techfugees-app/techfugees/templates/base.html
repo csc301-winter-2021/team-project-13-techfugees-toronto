@@ -17,7 +17,7 @@
 
 <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url_for('main.index')}}">Techfugees</a>
+        <a class="navbar-brand" href="{{ url_for('main.index')}}">Techfugees Toronto</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -38,14 +38,14 @@
             <a class="nav-item nav-link" href="{{ url_for('posts.new_rental_posting') }}">Add Listing</a>
             {% endif %}
 
-            {% if current_user.checker == "refugee" %}
+            {% if current_user.checker == "tenant" %}
             <a class="nav-item nav-link" href="{{ url_for('users.wishList') }}">Wish List</a>
             {% endif %}
             <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a>
 
             {% else %}
             <a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
-            <a class="nav-item nav-link" href="{{ url_for('users.refugee_register') }}">Tenant Registration</a>
+            <a class="nav-item nav-link" href="{{ url_for('users.tenant_register') }}">Tenant Registration</a>
             <a class="nav-item nav-link" href="{{ url_for('users.landlord_register') }}">Landlord Registration</a>
 
             {% endif %}

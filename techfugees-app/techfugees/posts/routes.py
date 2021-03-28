@@ -1,7 +1,7 @@
 from flask import render_template, url_for, flash, redirect, request, abort, Blueprint
 from flask_login import current_user, login_required
 from techfugees import db
-from techfugees.models import Post, User, Refugee, Review
+from techfugees.models import Post, User, Tenant, Review
 from techfugees.posts.forms import NewListingForm, NewReviewForm, NewSearchForm
 from techfugees import app
 import os
@@ -63,7 +63,7 @@ def new_rental_posting():
             db.session.commit()
             flash('Listing Added!', 'success')
             return redirect(url_for('main.index'))
-        else: 
+        else:
             #form not submitted
             return render_template('create_post.html', title='Add New Listing', form=form)
     else:
@@ -95,8 +95,8 @@ def listing(post_id):
     reviews = listing.reviews
 
     if current_user.is_authenticated:
-        if current_user.checker == 'refugee':
-            user = Refugee.query.filter_by(username=current_user.username).first()
+        if current_user.checker == 'tenant':
+            user = Tenant.query.filter_by(username=current_user.username).first()
             wishes = user.wish_list.split(",")
             if str(post_id) in wishes:
                 wish = True
@@ -199,7 +199,7 @@ def delete_post(post_id):
 @posts.route("/post/<int:post_id>/wish", methods=['POST'])
 @login_required
 def wish_list(post_id):
-    user = Refugee.query.get_or_404(current_user.id)
+    user = Tenant.query.get_or_404(current_user.id)
     wishes = user.wish_list.split(",")
     if wishes == [""]:
         wishes = []
@@ -221,7 +221,7 @@ def wish_list(post_id):
 @posts.route("/post/<int:post_id>/unwish", methods=['POST'])
 @login_required
 def unWish(post_id):
-    user = Refugee.query.get_or_404(current_user.id)
+    user = Tenant.query.get_or_404(current_user.id)
     wishes = user.wish_list.split(",")
     if wishes == [""]:
         return redirect(url_for('main.index'))

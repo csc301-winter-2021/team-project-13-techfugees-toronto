@@ -3,7 +3,7 @@ from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_login import current_user
-from techfugees.models import User, Landlord, Refugee
+from techfugees.models import User, Landlord, Tenant
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username',validators=[DataRequired(), Length(min=2, max=20)])
@@ -52,7 +52,7 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
-class UpdateRefugee(FlaskForm):
+class UpdateTenant(FlaskForm):
     username = StringField('Username',validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',validators=[DataRequired(), Email()])
     location = StringField('location')

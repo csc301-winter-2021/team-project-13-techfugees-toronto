@@ -1,21 +1,21 @@
 from flask import render_template, url_for, flash, redirect, request, Blueprint, abort
 from flask_login import login_user, current_user, logout_user, login_required
 from techfugees import db, bcrypt
-from techfugees.models import User, Post, Refugee, Landlord
-from techfugees.users.forms import RegistrationForm, LoginForm, UpdateLandlord, UpdateRefugee, LandlordRegistrationForm
+from techfugees.models import User, Post, Tenant, Landlord
+from techfugees.users.forms import RegistrationForm, LoginForm, UpdateLandlord, UpdateTenant, LandlordRegistrationForm
 
 
 users = Blueprint('users', __name__)
 
-@users.route('/register/refugee', methods=['GET', 'POST'])
-def refugee_register():
+@users.route('/register/tenant', methods=['GET', 'POST'])
+def tenant_register():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
     form = RegistrationForm()
     if form.validate_on_submit():
         #password hashing to lessen impact of man in the middle attacks
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = Refugee(
+        user = Tenant(
             username=form.username.data, 
             email=form.email.data, 
             location=form.location.data,
@@ -26,7 +26,7 @@ def refugee_register():
 
         flash('Account Created!', 'success')
         return redirect(url_for('users.login'))
-    return render_template('register/refugee-register.html', title="Create A Refugee Account", form=form)
+    return render_template('register/tenant-register.html', title="Create A Tenant Account", form=form)
 
 @users.route('/register/landlord', methods=['GET', 'POST'])
 def landlord_register():
@@ -81,8 +81,8 @@ def logout():
 def account():
     if current_user.checker == "landlord":
         form = UpdateLandlord()
-    elif current_user.checker == "refugee":
-        form = UpdateRefugee()
+    elif current_user.checker == "tenant":
+        form = UpdateTenant()
 
     if form.validate_on_submit():
         current_user.username = form.username.data
@@ -113,7 +113,7 @@ def account():
     if current_user.checker == "landlord":
         return render_template('account/landlord-account.html', title='Account', form=form)
     else:
-        return render_template('account/refugee-account.html', title='Account', form=form)
+        return render_template('account/tenant-account.html', title='Account', form=form)
 
 
 # show wish list
@@ -121,7 +121,7 @@ def account():
 @login_required
 def wishList():
     post = Post.query.filter_by().all()
-    user = Refugee.query.get_or_404(current_user.id)
+    user = Tenant.query.get_or_404(current_user.id)
     wishes = user.wish_list.split(",")
     if wishes == [""]:
         wishes = []
@@ -160,8 +160,8 @@ def profile(username):
         else:
             return render_template('profile/landlord-profile.html', title='Other Landlord Profile', listings=listings, user=user)
 
-    elif user.checker == "refugee":
-        return render_template('profile/refugee-profile.html', title='Refugee Profile', user=user)
+    elif user.checker == "tenant":
+        return render_template('profile/tenant-profile.html', title='Tenant Profile', user=user)
 
 
 

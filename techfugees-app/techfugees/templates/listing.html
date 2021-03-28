@@ -270,10 +270,10 @@
         </div>
     </div>
 </div>
-{% if current_user.checker == "refugee" %}
+{% if current_user.checker == "tenant" %}
 <div class="d-flex flex-row-reverse">
     <a class="btn btn-primary btn-sm mt-1 mb-1" href="{{ url_for('posts.new_review', post_id=post.id) }}">Review</a>
-    {% if current_user.checker == "refugee" %}
+    {% if current_user.checker == "tenant" %}
     &nbsp;
     {% if wish == False %}
     <form action="{{ url_for('posts.wish_list', post_id=post.id) }}" method="POST">
