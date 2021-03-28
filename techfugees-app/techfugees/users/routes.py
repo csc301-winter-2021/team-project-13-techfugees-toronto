@@ -15,7 +15,12 @@ def refugee_register():
     if form.validate_on_submit():
         #password hashing to lessen impact of man in the middle attacks
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = Refugee(username=form.username.data, email=form.email.data, password=hashed_password)
+        user = Refugee(
+            username=form.username.data, 
+            email=form.email.data, 
+            location=form.location.data,
+            password=hashed_password
+        )
         db.session.add(user)
         db.session.commit()
 
@@ -35,7 +40,18 @@ def landlord_register():
             form.credit_check = False;
         if form.first_last != True:
             form.first_last = False;
-        user = Landlord(username=form.username.data, email=form.email.data, password=hashed_password, credit_check=form.credit_check, first_last=form.first_last)
+        if form.no_cosigner != True:
+            form.no_cosigner = False
+        user = Landlord(
+            username=form.username.data, 
+            email=form.email.data,
+            phone_number=form.phone_number.data,
+            location=form.location.data,
+            password=hashed_password, 
+            credit_check=form.credit_check, 
+            first_last=form.first_last,
+            no_cosigner=form.no_cosigner
+        )
         db.session.add(user)
         db.session.commit()
 
@@ -77,18 +93,28 @@ def account():
     if form.validate_on_submit():
         current_user.username = form.username.data
         current_user.email = form.email.data
+        current_user.location = form.location.data
         if current_user.checker == "landlord":
+            current_user.phone_number = form.phone_number.data
+            current_user.no_cosigner = form.no_cosigner.data
             current_user.credit_check = form.credit_check.data
             current_user.first_last = form.first_last.data
         db.session.commit()
         flash('Account Updated!', 'success') #second param is for bootstrap class
         return redirect(url_for('users.account'))
+    
     elif request.method == 'GET': #populate fields
         form.username.data = current_user.username
         form.email.data = current_user.email
+        form.location.data = current_user.location
         if current_user.checker == "landlord":
-            form.credit_check.data = current_user.credit_check
-            form.first_last.data = current_user.first_last
+            form.phone_number.data = current_user.phone_number
+            if current_user.no_cosigner:
+                form.no_cosigner.data = 1
+            if current_user.credit_check:
+                form.credit_check.data = 1
+            if current_user.first_last:
+                form.first_last.data = 1
 
     if current_user.checker == "landlord":
         return render_template('account/landlord-account.html', title='Account', form=form)

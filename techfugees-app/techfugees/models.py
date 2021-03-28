@@ -19,8 +19,9 @@ class User(db.Model, Base, UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False)
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     password = db.Column(db.String(60), nullable=False)
-    type = db.Column(db.String(50))
+    location = db.Column(db.String(20), unique=False, nullable=True)
     reviews = db.relationship('Review', backref='user')
+    type = db.Column(db.String(50))
 
     __mapper_args__ = {
         'polymorphic_on':type,
@@ -35,6 +36,8 @@ class Landlord(User):
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
     credit_check = db.Column(db.Boolean, default=False)
     first_last = db.Column(db.Boolean, default=False)
+    no_cosigner = db.Column(db.Boolean, default=False)
+    phone_number = db.Column(db.String(20), unique=False, nullable=True)
     posts = db.relationship('Post', backref='author', lazy="joined")
     checker = db.Column(db.String(20), default="landlord")
 

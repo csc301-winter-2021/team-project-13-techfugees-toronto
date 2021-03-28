@@ -10,6 +10,7 @@ class RegistrationForm(FlaskForm):
     email = StringField('Email',validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    location = StringField('location')
     submit = SubmitField('Sign Up')
 
     def validate_username(self, username):
@@ -25,10 +26,13 @@ class RegistrationForm(FlaskForm):
 class LandlordRegistrationForm(FlaskForm):
     username = StringField('Username',validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',validators=[DataRequired(), Email()])
+    phone_number = StringField('Phone Number')
+    location = StringField('location')
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     credit_check = BooleanField('Are you willing to accept tenants without a credit score?')
     first_last = BooleanField('Are you willing to omit first and last month\'s rent deposit?')
+    no_cosigner = BooleanField('Are you willing to accept tenants who don\'t have a co-signer for the rental agreement?')
     submit = SubmitField('Sign Up')
 
     def validate_username(self, username):
@@ -51,6 +55,7 @@ class LoginForm(FlaskForm):
 class UpdateRefugee(FlaskForm):
     username = StringField('Username',validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',validators=[DataRequired(), Email()])
+    location = StringField('location')
     submit = SubmitField('Update')
 
     def validate_username(self, username):
@@ -68,9 +73,12 @@ class UpdateRefugee(FlaskForm):
 class UpdateLandlord(FlaskForm):
     username = StringField('Username',validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',validators=[DataRequired(), Email()])
-    submit = SubmitField('Update')
+    phone_number = StringField('Phone Number')
+    location = StringField('location')
     credit_check = BooleanField('Are you willing to accept tenants without a credit score?')
     first_last = BooleanField('Are you willing to omit first and last month\'s rent deposit?')
+    no_cosigner = BooleanField('Are you willing to accept tenants who don\'t have a co-signer for the rental agreement?')
+    submit = SubmitField('Update')
 
     def validate_username(self, username):
         if username.data != current_user.username: #only want to check availability if changed
