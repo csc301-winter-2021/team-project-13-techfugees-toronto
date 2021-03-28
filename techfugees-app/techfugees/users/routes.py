@@ -36,21 +36,15 @@ def landlord_register():
     if form.validate_on_submit():
         #password hashing to lessen impact of man in the middle attacks
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        if form.credit_check != True:
-            form.credit_check = False;
-        if form.first_last != True:
-            form.first_last = False;
-        if form.no_cosigner != True:
-            form.no_cosigner = False
         user = Landlord(
             username=form.username.data, 
             email=form.email.data,
             phone_number=form.phone_number.data,
             location=form.location.data,
             password=hashed_password, 
-            credit_check=form.credit_check, 
-            first_last=form.first_last,
-            no_cosigner=form.no_cosigner
+            credit_check=form.credit_check.data, 
+            first_last=form.first_last.data,
+            no_cosigner=form.no_cosigner.data
         )
         db.session.add(user)
         db.session.commit()
