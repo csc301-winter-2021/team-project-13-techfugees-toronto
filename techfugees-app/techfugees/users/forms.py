@@ -4,24 +4,44 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextA
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_login import current_user
 from techfugees.models import User, Landlord, Tenant
+import re
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username',validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    password = PasswordField('Password (need at least one digit, uppercase letter, lowercase letter and special character)', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     location = StringField('location')
     submit = SubmitField('Sign Up')
 
     def validate_username(self, username):
-        user = User.query.filter_by(username=username.data).first() #none if no user
+        data = username.data
+        user = User.query.filter_by(username=data).first() #none if no user
         if user is not None:
             raise ValidationError('That username is taken. Please choose a different one.')
 
     def validate_email(self, email):
-        user = User.query.filter_by(email=email.data).first() #none if not taken
+        data = email.data
+        user = User.query.filter_by(email=data).first() #none if not taken
         if user is not None:
             raise ValidationError('That email is taken. Please choose a different one.')
+        if data.count('@') != 1 or (data[-4:] not in [".com"] and data[-3:] not in [".ca"]):
+            raise ValidationError('Wrong format, email needs to be in xxx@xxx.com or xxx@xxx.ca format.')
+        
+    def validate_password(self, password):
+        data = password.data
+        if len(data) < 8:
+            raise ValidationError('Minimum length of password is 8.')
+        if len(data.strip()) != len(data):
+            raise ValidationError('No space at the start or end please.')
+        if re.search(r"\d", data) is None:
+            raise ValidationError('Need at least one digit.')
+        if re.search(r"[A-Z]", data) is None:
+            raise ValidationError('Need at least one uppercase letter.')
+        if re.search(r"[a-z]", data) is None:
+            raise ValidationError('Need at least one lowercase letter.')
+        if re.search(r"\W", data) is None:
+            raise ValidationError('Need at least one special character. (!@#$...)')
 
 class LandlordRegistrationForm(FlaskForm):
     username = StringField('Username',validators=[DataRequired(), Length(min=2, max=20)])
