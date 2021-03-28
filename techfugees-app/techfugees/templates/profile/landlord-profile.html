@@ -8,6 +8,9 @@
     {% if user.first_last %}
     <p><i class="fas fa-check-circle"></i> Does not require first and last month's payment upfront</p>
     {% endif %}
+    {% if user.no_cosigner %}
+    <p><i class="fas fa-check-circle"></i> Does not require co-signer</p>
+    {% endif %}
     <a href="mailto:{{user.email}}"><i class="fas fa-envelope-square fa-lg"></i></a>
     <a href="tel:0"><i class="fas fa-phone-square fa-lg"></i></a>
 </div>
