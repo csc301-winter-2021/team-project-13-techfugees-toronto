@@ -9,7 +9,7 @@ import re
 def check_email(email):
     if email.count('@') != 1:
         return False
-    if data[-4:] not in [".com", '.org'] and data[-3:] not in [".ca"]:
+    if email[-4:] not in [".com", '.org'] and email[-3:] not in [".ca"]:
         return False
     return True
 
