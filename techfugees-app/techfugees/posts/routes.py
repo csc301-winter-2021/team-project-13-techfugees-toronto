@@ -75,7 +75,8 @@ def new_rental_posting():
 def new_review(post_id):
     form = NewReviewForm()
     if form.validate_on_submit():
-        review = Review(stars=form.stars.data,  comment=form.comment.data)
+        star = int(form.stars.data)
+        review = Review(stars=star,  comment=form.comment.data)
         review.user_id = current_user.id
         review.post_id = post_id
         db.session.add(review)

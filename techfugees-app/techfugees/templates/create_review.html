@@ -8,7 +8,6 @@
         <fieldset class=form-group>
             <div>
                 {{ form.stars.label(class="form-control-label") }}<br/>
-
                 {% if form.stars.errors %}
                 <div class="invalid-feedback">
                     {% for error in form.stars.errors %}
@@ -16,7 +15,7 @@
                     {% endfor %}
                 </div>
                 {% else %}
-                {{ form.stars(class="form-control form-control-lg") }}
+                {{ form.stars() }}
                 {% endif %}
             </div><br/>
 
