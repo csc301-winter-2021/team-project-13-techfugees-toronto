@@ -139,6 +139,9 @@ def update_listing(post_id):
         listing.num_bedrooms=form.num_bedrooms.data
         listing.type_of_building=form.type_of_building.data
         listing.author=current_user
+        folder = os.path.join(app.config['UPLOAD_FOLDER'], str(listing.id))
+        shutil.rmtree(folder)
+        os.mkdir(folder)
         uploaded_file = request.files.getlist("file[]")
         for im in uploaded_file:
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], str(post_id) + '/' + "{}.{}".format(time.time(), im.filename[-3:]))
@@ -192,7 +195,7 @@ def delete_post(post_id):
         abort(403)
     db.session.delete(post)
     db.session.commit()
-    shutil.rmtree(os.path.join(app.config['UPLOAD_FOLDER'], post.title))
+    shutil.rmtree(os.path.join(app.config['UPLOAD_FOLDER'], str(post.id)))
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('main.index'))
 
