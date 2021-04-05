@@ -48,19 +48,19 @@ def new_rental_posting():
                         type_of_building=form.type_of_building.data,
                         content=form.content.data,
                         author=current_user)
+            db.session.add(listing)
+            db.session.commit()
             uploaded_file = request.files.getlist("file[]")
             if uploaded_file != []:
-                folder = os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], form.title.data))
+                folder = os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], str(listing.id)))
                 if not folder:
-                    os.makedirs(os.path.join(app.config['UPLOAD_FOLDER'], form.title.data))
+                    os.makedirs(os.path.join(app.config['UPLOAD_FOLDER'], str(listing.id)))
                 i = 1
                 for im in uploaded_file:
-                    file_path = os.path.join(app.config['UPLOAD_FOLDER'], form.title.data + '/' + "{}.{}".format(time.time(), im.filename[-3:]))
+                    file_path = os.path.join(app.config['UPLOAD_FOLDER'], str(listing.id) + '/' + "{}.{}".format(time.time(), im.filename[-3:]))
                     if allowed_file(im.filename):
                         im.save(file_path)
                     i = i + 1
-            db.session.add(listing)
-            db.session.commit()
             flash('Listing Added!', 'success')
             return redirect(url_for('main.index'))
         else:
@@ -90,8 +90,10 @@ def listing(post_id):
     wish = False
     listing = Post.query.get_or_404(post_id)
 
-    file_path = os.path.join(app.config['UPLOAD_FOLDER'], listing.title)
+    file_path = os.path.join(app.config['UPLOAD_FOLDER'], str(post_id))
+    print(file_path)
     files_list = os.listdir(file_path)
+    print(files_list)
     reviews = listing.reviews
 
     if current_user.is_authenticated:
@@ -100,11 +102,11 @@ def listing(post_id):
             wishes = user.wish_list.split(",")
             if str(post_id) in wishes:
                 wish = True
-            return render_template('listing.html', title=listing.title, post=listing, wish=wish, user_type=0, files_list=files_list, reviews=reviews)
+            return render_template('listing.html', post_id = str(post_id), post=listing, wish=wish, user_type=0, files_list=files_list, reviews=reviews)
         elif current_user.checker == 'landlord':
-            return render_template('listing.html', title=listing.title, post=listing, user_type=1, files_list=files_list, reviews=reviews)
+            return render_template('listing.html', post_id = str(post_id), post=listing, user_type=1, files_list=files_list, reviews=reviews)
     else:
-        return render_template('listing.html', title=listing.title, post=listing, user_type=-1, files_list=files_list, reviews=reviews)
+        return render_template('listing.html', post_id = str(post_id), post=listing, user_type=-1, files_list=files_list, reviews=reviews)
 
 
 
@@ -139,7 +141,7 @@ def update_listing(post_id):
         listing.author=current_user
         uploaded_file = request.files.getlist("file[]")
         for im in uploaded_file:
-            file_path = os.path.join(app.config['UPLOAD_FOLDER'], form.title.data + '/' + "{}.{}".format(time.time(), im.filename[-3:]))
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], str(post_id) + '/' + "{}.{}".format(time.time(), im.filename[-3:]))
             if allowed_file(im.filename):
                 im.save(file_path)
         db.session.commit()
