@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect, request, Blueprint,
 from flask_login import login_user, current_user, logout_user, login_required
 from techfugees import db, bcrypt
 from techfugees.models import User, Post, Tenant, Landlord
-from techfugees.users.forms import RegistrationForm, LoginForm, UpdateLandlord, UpdateTenant, LandlordRegistrationForm
+from techfugees.users.forms import RegistrationForm, LoginForm, UpdateLandlord, UpdateTenant, LandlordRegistrationForm, TenantRegistrationForm
 
 
 users = Blueprint('users', __name__)
@@ -11,7 +11,7 @@ users = Blueprint('users', __name__)
 def tenant_register():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
-    form = RegistrationForm()
+    form = TenantRegistrationForm()
     if form.validate_on_submit():
         #password hashing to lessen impact of man in the middle attacks
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -19,7 +19,11 @@ def tenant_register():
             username=form.username.data, 
             email=form.email.data, 
             location=form.location.data,
-            password=hashed_password
+            password=hashed_password,
+            sponsor_name = form.sponsor_name.data,
+            num_of_people = form.num_of_people.data,
+            length_of_stay = form.length_of_stay.data,
+            special_requirements = form.special_requirements.data
         )
         db.session.add(user)
         db.session.commit()
@@ -93,6 +97,12 @@ def account():
             current_user.no_cosigner = form.no_cosigner.data
             current_user.credit_check = form.credit_check.data
             current_user.first_last = form.first_last.data
+        else:
+            current_user.sponsor_name = form.sponsor_name.data
+            current_user.num_of_people = form.num_of_people.data
+            current_user.length_of_stay = form.length_of_stay.data
+            current_user.special_requirements = form.special_requirements.data
+
         db.session.commit()
         flash('Account Updated!', 'success') #second param is for bootstrap class
         return redirect(url_for('users.account'))
@@ -109,6 +119,11 @@ def account():
                 form.credit_check.data = 1
             if current_user.first_last:
                 form.first_last.data = 1
+        else:
+            form.sponsor_name.data = current_user.sponsor_name
+            form.num_of_people.data = current_user.num_of_people
+            form.length_of_stay.data = current_user.length_of_stay
+            form.special_requirements.data = current_user.special_requirements
 
     if current_user.checker == "landlord":
         return render_template('account/landlord-account.html', title='Account', form=form)

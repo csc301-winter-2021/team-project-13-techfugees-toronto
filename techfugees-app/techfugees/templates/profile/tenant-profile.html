@@ -2,6 +2,9 @@
 
 {% block user_type %}
     {% if user.sponsor_name != "none" %}
-        <p>Sponsored by {{ user.sponsor_name }}</p>
+        <p>Sponsored: {{ user.sponsor_name }}</p>
+        <p>Find a house for {{ user.num_of_people }} people</p>
+        <p>preferred length of stay {{ user.length_of_stay }} month</p>
+        <p>Special Requirements: {{ user.special_requirements }}</p>
     {% endif %}
 {% endblock %}

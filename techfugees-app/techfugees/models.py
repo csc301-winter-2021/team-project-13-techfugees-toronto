@@ -52,6 +52,10 @@ class Tenant(User):
     __tablename__ = 'tenant'
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
     sponsor_name = db.Column(db.String(20), default="none")
+    preferred_location = db.Column(db.String(50), default="none")
+    num_of_people = db.Column(db.Integer, default="none")
+    length_of_stay = db.Column(db.Integer, default="none")
+    special_requirements = db.Column(db.String(120), default="none")
     checker = db.Column(db.String(20), default="tenant")
     wish_list = db.Column(db.String(200), default='')
     __mapper_args__ = {

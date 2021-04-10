@@ -1,3 +1,69 @@
 {% extends 'account/account.html' %}
 
-{% block type_specifics %}{% endblock type_specifics %}
+{% block type_specifics %}
+
+    <div class=form-group>
+        {{ form.sponsor_name.label(class="form-control-label") }}
+
+        {% if form.sponsor_name.errors %}
+        {{ form.sponsor_name(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+            {% for error in form.sponsor_name.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+        <select name='sponsor_name'>
+            <option value="privately sponsored">privately sponsored</option>
+            <option value="government sponsored">government sponsored</option>
+            <option value="asylum">asylum</option>
+        </select>
+        {% endif %}
+    </div>
+
+    <div class=form-group>
+        {{ form.num_of_people.label(class="form-control-label") }}
+
+        {% if form.num_of_people.errors %}
+        {{ form.num_of_people(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+            {% for error in form.num_of_people.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+        {{ form.num_of_people(class="form-control form-control-lg") }}
+        {% endif %}
+    </div>
+    
+    <div class=form-group>
+        {{ form.length_of_stay.label(class="form-control-label") }}
+
+        {% if form.length_of_stay.errors %}
+        {{ form.length_of_stay(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+            {% for error in form.length_of_stay.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+        {{ form.length_of_stay(class="form-control form-control-lg") }}
+        {% endif %}
+    </div>
+
+    <div class=form-group>
+        {{ form.special_requirements.label(class="form-control-label") }}
+
+        {% if form.special_requirements.errors %}
+        {{ form.special_requirements(class="form-control form-control-lg is-invalid") }}
+        <div class="invalid-feedback">
+            {% for error in form.special_requirements.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+        {{ form.special_requirements(class="form-control form-control-lg") }}
+        {% endif %}
+    </div>
+
+{% endblock type_specifics %}
