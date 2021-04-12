@@ -214,7 +214,7 @@
 
         {% block content %} {% endblock %}
     </div>
-    <div id='space_div' style="height:200px; width:100%; clear:both;"></div>
+    <div id='space_div' style="height:1px; width:100%; clear:both;"></div>
     <footer id="footer">
         <div class = 'footer_container'>
             <div class = 'sec aboutus'>
@@ -268,7 +268,7 @@
         let footer = document.getElementById('footer')
         let rect = footer.getBoundingClientRect();
         let space = document.getElementById('space_div')
-        let fix = 1500
+        let fix = 1320
         if (rect.top < fix){
             space.style.height = (fix - rect.top).toString() + 'px'
         }
