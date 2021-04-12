@@ -246,7 +246,7 @@
                     <div class="col-12 py-3 border-bottom">
                         {% for r in reviews %}
 
-                        <div class="row">
+                        <div class="row" style="position: relative">
                             <div class="text-center col-md-2 col-xs-4">
                                 <img src="/static/images/profile/{{ r.user.image_file }}" width="100" class="rounded-circle account-img">
                                 <h6 class="p-3">{{ r.user.username}}</h6>
@@ -257,12 +257,17 @@
                                     {{ r.comment }}
                                 </p>
                             </div>
+                            <div style="position: absolute; right: 1%; bottom: 30%">
+                                {% for s in range(r.stars) %}
+                                <img src="/static/images/star.png" style="height: 20px; width: 20px">
+                                {% endfor %}
+                            </div>
                             <div class="col-md-2 col-xs-12 text-right">
                                 {% if r.user == current_user %}
                                 <a class="btn btn-danger btn-sm mt-1 mb-1" href="{{ url_for('posts.delete_review', post_id=post.id, review_id=r.id) }}">Delete review</a>
                                 {% endif %}
                             </div>
-                            </div>
+                        </div>
                         {% endfor %}
                     </div>
                 </div>
