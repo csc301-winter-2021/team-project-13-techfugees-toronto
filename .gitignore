@@ -3,3 +3,4 @@ venv/
 **/__pycache__*
 **/.DS_Store*
 techfugees-app/techfugees/database.db
+techfugees-app/techfugees/static/HousePhoto/
