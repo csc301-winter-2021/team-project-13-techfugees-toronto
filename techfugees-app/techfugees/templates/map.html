@@ -1,5 +1,24 @@
+<script type="text/javascript" src = 'https://code.jquery.com/jquery-3.4.1.min.js'>
+    var data = {{mymap|safe}}
+    $(document).ready(function () {
+                      var latitude = parseFloat("51.515252");
+                      var longitude = parseFloat("-0.189852");
+                      var latlngPos = new google.maps.LatLng(latitude, longitude);
+                      // Set up options for the Google map
+                      var myOptions = {
+                      zoom: 10,
+                      center: latlngPos,
+                      mapTypeId: google.maps.MapTypeId.ROADMAP
+                      };
+                      // Define the map
+                      map = new google.maps.Map(document.getElementById("map"), myOptions);
+                      data.forEach(function(p) {
+                          var point = new google.maps.LatLng(p.lat, p.lng);
+                          var marker = new google.maps.Marker({position: point,
+                                            map: map,
+                                            title: p.title
+                                            });
 
-<script type="text/javascript">
-    let a = {{ mymap|safe }}
-    console.log(a)
+                             })
+                      });
 </script>

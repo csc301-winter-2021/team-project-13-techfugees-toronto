@@ -359,6 +359,7 @@ def map():
             info['icon'] = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
             info['lat'] = float(p.latitude)
             info['lng'] = float(p.longitude)
+            info['title'] = p.title
             info['infobox'] = "<p>" + p.address + "</p>"
             markers.append(info)
         """
