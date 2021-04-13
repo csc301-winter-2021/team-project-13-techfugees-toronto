@@ -16,8 +16,10 @@
 
 <h1>{% block title %}Property Listings{% endblock %}</h1>
 <div class="row">
-    {% for post in posts %}
+    {% for i in range(posts|length) %}
+    {% with post=posts[i], files_list=files_lists[i] %}
     {% include 'components/listing_preview.html' %}
+    {% endwith %}
     {% endfor %}
 </div>
 
