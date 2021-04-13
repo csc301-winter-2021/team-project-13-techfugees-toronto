@@ -7,6 +7,19 @@ from techfugees import app
 import os
 import time
 import shutil
+import googlemaps
+
+# trash
+from flask_googlemaps import GoogleMaps
+from flask_googlemaps import Map
+
+import json
+
+api = "AIzaSyBgDy3WJoB5prBHOZBhSEwWZC_GQp04s9w"
+gmaps = googlemaps.Client(key=api)
+
+# trash
+GoogleMaps(app, key=api)
 
 app.config['UPLOAD_FOLDER'] = app.root_path + "/static/HousePhoto"
 posts = Blueprint('posts', __name__)
@@ -28,6 +41,14 @@ def new_rental_posting():
     form = NewListingForm()
     if current_user.checker == 'landlord':
         if form.validate_on_submit():
+            address = form.address.data + ', ' + form.city.data + ', CA'
+            geocode_result = gmaps.geocode(address)
+            if geocode_result[0]:
+                lat = geocode_result[0]['geometry']['location']['lat']
+                lng = geocode_result[0]['geometry']['location']['lng']
+            else:
+                lat = ''
+                lng = ''
             listing = Post(title=form.title.data,
                         address=form.address.data,
                         city=form.city.data,
@@ -47,7 +68,9 @@ def new_rental_posting():
                         num_bedrooms=form.num_bedrooms.data,
                         type_of_building=form.type_of_building.data,
                         content=form.content.data,
-                        author=current_user)
+                        author=current_user,
+                        latitude=lat,
+                        longitude=lng)
             db.session.add(listing)
             db.session.commit()
             uploaded_file = request.files.getlist("file[]")
@@ -323,5 +346,45 @@ def search():
 
         return render_template('search.html', form=form, posts=posts)
     return render_template('search.html', form=form)
+
+@posts.route("/post/map", methods=['GET', 'POST'])
+def map():
+    if request.method == 'POST':
+        pass
+    else:
+        posts = Post.query.order_by(Post.address)
+        markers = []
+        for p in posts:
+            info = {}
+            info['icon'] = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+            info['lat'] = float(p.latitude)
+            info['lng'] = float(p.longitude)
+            info['infobox'] = "<p>" + p.address + "</p>"
+            markers.append(info)
+        """
+        map = Map(
+            identifier="house_map",
+            lat=37.4419,
+            lng=-122.1419,
+            markers=[
+                {
+                    'icon': 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+                    'lat': 37.4419,
+                    'lng': -122.1419,
+                    'infobox': "<b>Hello World</b>"
+                },
+                {
+                    'icon': 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+                    'lat': 37.4300,
+                    'lng': -122.1400,
+                    'infobox': "<b>Hello World from other place</b>"
+                }
+            ]
+        )
+        """
+
+        return render_template('map.html', mymap=json.dumps(markers))
+
+
 
 
