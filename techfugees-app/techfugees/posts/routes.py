@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect, request, abort, Blu
 from flask_login import current_user, login_required
 from techfugees import db
 from techfugees.models import Post, User, Tenant, Review
-from techfugees.posts.forms import NewListingForm, NewReviewForm, NewSearchForm
+from techfugees.posts.forms import NewListingForm, NewReviewForm, NewSearchForm, MapSearchForm
 from techfugees import app
 import os
 import time
@@ -349,14 +349,29 @@ def search():
 
 @posts.route("/post/map", methods=['GET', 'POST'])
 def map():
+    form = MapSearchForm()
+    form.type_of_building.choices = [("-1", "N/A")] + sorted(
+        list(set([(p.type_of_building, p.type_of_building) for p in Post.query.order_by(Post.type_of_building)])))
     if request.method == 'POST':
-        pass
+        if form.validate_on_submit():
+            posts = Post.query.order_by(Post.address)
+            if form.type_of_building.data != "-1":
+                posts = [post for post in posts if post.type_of_building == form.type_of_building.data]
+            markers = []
+            for p in posts:
+                info = {}
+                info['lat'] = float(p.latitude)
+                info['lng'] = float(p.longitude)
+                info['title'] = p.title
+                info['infobox'] = "<p>" + p.address + "</p>"
+                markers.append(info)
+            return render_template('map.html', mymap=json.dumps(markers), form=form)
+
     else:
         posts = Post.query.order_by(Post.address)
         markers = []
         for p in posts:
             info = {}
-            info['icon'] = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
             info['lat'] = float(p.latitude)
             info['lng'] = float(p.longitude)
             info['title'] = p.title
@@ -384,7 +399,7 @@ def map():
         )
         """
 
-        return render_template('map.html', mymap=json.dumps(markers))
+        return render_template('map.html', mymap=json.dumps(markers), form=form)
 
 
 

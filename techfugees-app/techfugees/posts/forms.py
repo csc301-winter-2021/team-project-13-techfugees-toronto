@@ -55,3 +55,8 @@ class NewSearchForm(FlaskForm):
     water = BooleanField('Water')
     electricity = BooleanField('Electricity')
     submit = SubmitField('Search')
+
+
+class MapSearchForm(FlaskForm):
+    type_of_building = SelectField('Type of Building')
+    submit = SubmitField('Search')
