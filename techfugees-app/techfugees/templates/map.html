@@ -34,18 +34,28 @@
         let longitude = parseFloat("-79.387670");
         let latlngPos = new google.maps.LatLng(latitude, longitude);
         let myOptions = {
-            zoom: 10,
-            center: latlngPos,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+          zoom: 10,
+          center: latlngPos,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         let map = new google.maps.Map(document.getElementById("map"), myOptions);
         data.forEach(function(p) {
             let point = new google.maps.LatLng(p.lat, p.lng);
-            let marker = new google.maps.Marker({position: point,
-                map: map,
-                title: p.title
+            let marker = new google.maps.Marker({
+              position: point,
+              map: map,
+              title: p.title
+            });
+            const infowindow = new google.maps.InfoWindow({
+              content: p.content
+            });
+            marker.addListener("click", () => {
+              infowindow.open(map, marker);
             });
         })
     }
     techMap()
+</script>
+
+<script type="text/javascript">
 </script>

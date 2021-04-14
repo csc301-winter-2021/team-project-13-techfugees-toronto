@@ -363,10 +363,21 @@ def map():
                 info['lat'] = float(p.latitude)
                 info['lng'] = float(p.longitude)
                 info['title'] = p.title
-                info['infobox'] = "<p>" + p.address + "</p>"
+                lst = []
+                lst.append('<div id="content">')
+                lst.append('<h1 id="firstHeading" class="firstHeading">')
+                lst.append(p.title)
+                lst.append('</h1>')
+                lst.append('<h2>')
+                lst.append(p.address)
+                lst.append('</h2>')                
+                lst.append('<div id="bodyContent">')
+                lst.append(p.content)
+                lst.append('</div>')
+                lst.append('</div>')
+                info['content'] = '\n'.join(lst)
                 markers.append(info)
             return render_template('map.html', mymap=json.dumps(markers), form=form)
-
     else:
         posts = Post.query.order_by(Post.address)
         markers = []
@@ -375,7 +386,19 @@ def map():
             info['lat'] = float(p.latitude)
             info['lng'] = float(p.longitude)
             info['title'] = p.title
-            info['infobox'] = "<p>" + p.address + "</p>"
+            lst = []
+            lst.append('<div id="content">')
+            lst.append('<h1 id="firstHeading" class="firstHeading">')
+            lst.append(p.title)
+            lst.append('</h1>')
+            lst.append('<h2>')
+            lst.append(p.address)
+            lst.append('</h2>')                
+            lst.append('<div id="bodyContent">')
+            lst.append(p.content)
+            lst.append('</div>')
+            lst.append('</div>')
+            info['content'] = '\n'.join(lst)
             markers.append(info)
         """
         map = Map(
