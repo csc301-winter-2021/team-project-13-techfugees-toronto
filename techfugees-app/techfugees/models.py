@@ -91,6 +91,7 @@ class Post(db.Model):
     reviews = db.relationship('Review', backref='post')
     latitude = db.Column(db.String, default='')
     longitude = db.Column(db.String, default='')
+    price = db.Column(db.String, default='')
 
     def __repr__(self):
         return f"Post('{self.title}, {self.id}, {self.date_posted}, {self.address}, {self.city}, {self.pet}, {self.smoking}, {self.balcony}, {self.air_conditioning}, {self.stove_oven}, {self.washer}, {self.dryer}, {self.dishwasher}, {self.microwave}, {self.cable}, {self.water}, {self.electricity}, {self.num_bathrooms}, {self.num_bedrooms}, {self.type_of_building},')"

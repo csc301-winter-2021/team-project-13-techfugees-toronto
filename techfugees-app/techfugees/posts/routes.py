@@ -64,7 +64,8 @@ def new_rental_posting():
                         content=form.content.data,
                         author=current_user,
                         latitude=lat,
-                        longitude=lng)
+                        longitude=lng,
+                        price=form.price.data)
             db.session.add(listing)
             db.session.commit()
             uploaded_file = request.files.getlist("file[]")
