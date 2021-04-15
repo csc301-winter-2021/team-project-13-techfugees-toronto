@@ -320,10 +320,11 @@ def map():
         info['lat'] = float(p.latitude)
         info['lng'] = float(p.longitude)
         info['title'] = p.title
+        url = request.url_root + 'post/' + str(p.id)
         info['content'] = \
             '<div id="content">' + '\n' + \
             '<h1 id="firstHeading" class="firstHeading">' + '\n' + \
-            p.title + '\n' + \
+            '<a href="{}">{}</a>'.format(url, p.title) + '\n' + \
             '</h1>' + '\n' + \
             '<h2>' + '\n' + \
             p.address + '\n' + \
