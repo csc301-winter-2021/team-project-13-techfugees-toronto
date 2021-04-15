@@ -307,15 +307,46 @@ def search():
 
 @posts.route("/post/map", methods=['GET', 'POST'])
 def map():
-    form = MapSearchForm()
+    form = NewSearchForm()
+    form.address.choices = [("-1", "N/A")] + sorted(
+        list(set([(p.address, p.address) for p in Post.query.order_by(Post.address)])))
+    form.city.choices = [("-1", "N/A")] + sorted(list(set([(p.city, p.city) for p in Post.query.order_by(Post.city)])))
     form.type_of_building.choices = [("-1", "N/A")] + sorted(
         list(set([(p.type_of_building, p.type_of_building) for p in Post.query.order_by(Post.type_of_building)])))
+    form.num_bedrooms.choices = [("-1", "N/A")] + sorted(
+        list(set([(str(p.num_bedrooms), str(p.num_bedrooms)) for p in Post.query.order_by(Post.num_bedrooms)])))
+    form.num_bathrooms.choices = [("-1", "N/A")] + sorted(
+        list(set([(str(p.num_bathrooms), str(p.num_bathrooms)) for p in Post.query.order_by(Post.num_bathrooms)])))
     posts = Post.query.order_by(Post.address)
     if request.method == 'POST':
         if not form.validate_on_submit():
             return
-        if form.type_of_building.data != "-1":
-            posts = [post for post in posts if post.type_of_building == form.type_of_building.data]
+        if form.address.data != "-1" and form.city.data != "-1":
+            posts = Post.query.filter_by(address=form.address.data, city=form.city.data)
+        elif form.address.data != "-1":
+            posts = Post.query.filter_by(address=form.address.data)
+        elif form.city.data != "-1":
+            posts = Post.query.filter_by(city=form.city.data)
+        else:
+            posts = Post.query.filter_by()
+        filter_list_boolean = ["pet", "smoking", "balcony", "air_conditioning", "stove_oven", "washer", "dryer",
+                               "dishwasher", "microwave", "cable", "water", "electricity"]
+        for filter_name in filter_list_boolean:
+            if getattr(form, filter_name).data:
+                posts = posts.filter(getattr(Post, filter_name).is_(True))
+        filter_list_int = ["num_bedrooms", "num_bathrooms"]
+        for filter_name in filter_list_int:
+            n = getattr(form, filter_name).data
+            if n != "-1":
+                posts = posts.filter(getattr(Post, filter_name).is_(int(n)))
+        filter_list_string = ["type_of_building"]
+        for filter_name in filter_list_string:
+            n = getattr(form, filter_name).data
+            if n != "-1":
+                posts = posts.filter(getattr(Post, filter_name).is_(n))
+        posts = posts.all()
+
+
     markers = []
     for p in posts:
         info = {}
