@@ -156,6 +156,7 @@ def update_listing(post_id):
         listing.num_bedrooms=form.num_bedrooms.data
         listing.type_of_building=form.type_of_building.data
         listing.author=current_user
+        listing.price=form.price.data
         folder = os.path.join(app.config['UPLOAD_FOLDER'], str(listing.id))
         shutil.rmtree(folder)
         os.mkdir(folder)
@@ -187,6 +188,7 @@ def update_listing(post_id):
         form.num_bathrooms.data = listing.num_bathrooms
         form.num_bedrooms.data = listing.num_bedrooms
         form.type_of_building.data = listing.type_of_building
+        form.price.data = listing.price
     return render_template('create_post.html', title='Update Post', form=form)
 
 
