@@ -324,7 +324,7 @@ def map():
         info['content'] = \
             '<div id="content">' + '\n' + \
             '<h1 id="firstHeading" class="firstHeading">' + '\n' + \
-            '<a href="{}">{}</a>'.format(url, p.title) + '\n' + \
+            '<a id="map_a" href="{}">{}</a>'.format(url, p.title) + '\n' + \
             '</h1>' + '\n' + \
             '<h2>' + '\n' + \
             p.address + '\n' + \
