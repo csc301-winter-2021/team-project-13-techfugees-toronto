@@ -26,6 +26,7 @@ class NewListingForm(FlaskForm):
     num_bedrooms = IntegerField('# of Bedrooms', validators=[DataRequired()])
     num_bathrooms = IntegerField('# of bathrooms', validators=[DataRequired()])
     type_of_building = StringField('Type of Building', validators=[DataRequired()])
+    price = StringField('Price description', validators=[DataRequired()])
     submit = SubmitField('Post')
 
 
@@ -54,4 +55,9 @@ class NewSearchForm(FlaskForm):
     cable = BooleanField('Cable')
     water = BooleanField('Water')
     electricity = BooleanField('Electricity')
+    submit = SubmitField('Search')
+
+
+class MapSearchForm(FlaskForm):
+    type_of_building = SelectField('Type of Building')
     submit = SubmitField('Search')

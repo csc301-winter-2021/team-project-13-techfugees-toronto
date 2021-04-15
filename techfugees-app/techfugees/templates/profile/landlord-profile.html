@@ -13,6 +13,10 @@
     {% endif %}
     <a href="mailto:{{user.email}}"><i class="fas fa-envelope-square fa-lg"></i></a>
     <a href="tel:0"><i class="fas fa-phone-square fa-lg"></i></a>
+    <br>
+    {% if user.email_confirmed == false %}
+    <button> Confirm Email </button>
+    {% endif %}
 </div>
 {% endblock %}
 {% block prof_content %}
@@ -20,12 +24,10 @@
 
 <hr>
 <div class="row">
-    {% with files_list=files_list %}
-    {% for post in listings %}
-
+    {% for i in range(listings|length) %}
+    {% with post=listings[i], files_list=files_lists[i] %}
     {% include 'components/listing_preview.html' %}
-
-    {% endfor %}
     {% endwith %}
+    {% endfor %}
 </div>
 {% endblock prof_content %}

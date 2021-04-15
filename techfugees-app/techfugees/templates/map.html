@@ -1,0 +1,117 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+    #submit {
+        margin: 5px;
+        background-color: #303030;
+        color: aliceblue;
+        border-radius: 4px;
+        height: 35px;
+        border: none;
+    }
+    #submit:hover {
+        background-color: #757575;
+        transition: background-color 0.2s ease-out;
+        cursor: pointer;
+    }
+
+    #map {
+        margin: 20px;
+    }
+
+    h1 {
+        margin: 5px;
+        font-family: 'Nunito', sans-serif;
+    }
+
+    h2 {
+        margin: 5px;
+        font-family: 'Nunito', sans-serif;
+    }
+
+    #map_a {
+        padding: 4px;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+    #map_a:link {
+        text-decoration: none;
+    }
+
+    #map_a:visited {
+        text-decoration: none;
+    }
+
+    #map_a:hover{
+        color: #00cc66;
+        transition: color 0.1s linear;
+    }
+
+</style>
+{% extends 'base.html' %}
+{% block herobg %}{% endblock %}
+{% block content %}
+<form method="POST" action="" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <legend> Search </legend>
+    <fieldset class=form-group>
+        <div class=form-group>
+            {{ form.type_of_building.label(class="form-control-label") }}
+
+            {% if form.type_of_building.errors %}
+            {{ form.type_of_building(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.type_of_building.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.type_of_building(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+    </fieldset>
+
+    <div class=form-group>
+        {{ form.submit(class="btn btn-outline-info") }}
+    </div>
+</form>
+
+<script src="http://maps.google.com/maps/api/js?key=AIzaSyBgDy3WJoB5prBHOZBhSEwWZC_GQp04s9w"></script>
+<script type="text/javascript">
+
+    let map_div = document.createElement('div')
+    map_div.id = 'map'
+    map_div.style.height = '80%'
+    document.getElementsByTagName("BODY")[0].appendChild(map_div)
+
+    let data = {{mymap|safe}}
+    function techMap() {
+        let latitude = parseFloat("43.663908");
+        let longitude = parseFloat("-79.387670");
+        let latlngPos = new google.maps.LatLng(latitude, longitude);
+        let myOptions = {
+          zoom: 10,
+          center: latlngPos,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        let map = new google.maps.Map(document.getElementById("map"), myOptions);
+        data.forEach(function(p) {
+            let point = new google.maps.LatLng(p.lat, p.lng);
+            let marker = new google.maps.Marker({
+              position: point,
+              map: map,
+              title: p.title
+            });
+            const infowindow = new google.maps.InfoWindow({
+              content: p.content
+            });
+            marker.addListener("click", () => {
+              infowindow.open(map, marker);
+            });
+        })
+    }
+    techMap()
+</script>
+
+<script type="text/javascript">
+</script>
+{% endblock %}

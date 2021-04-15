@@ -6,6 +6,7 @@ from techfugees.posts.forms import NewListingForm
 from techfugees.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 from techfugees import app
+import os
 
 main = Blueprint('main', __name__)
 
@@ -17,5 +18,10 @@ def index():
         page, app.config['POSTS_PER_PAGE'], False)
     next_url = url_for('main.index', page=posts.next_num) if posts.has_next else None
     prev_url = url_for('main.index', page=posts.prev_num) if posts.has_prev else None
-
-    return render_template('index.html', posts=posts.items, next_url=next_url, prev_url=prev_url)
+    
+    files_lists = []
+    for p in posts.items:
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], str(p.id))
+        files_lists.append(os.listdir(file_path))
+        
+    return render_template('index.html', posts=posts.items, next_url=next_url, prev_url=prev_url, files_lists=files_lists)

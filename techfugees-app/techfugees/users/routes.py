@@ -3,6 +3,8 @@ from flask_login import login_user, current_user, logout_user, login_required
 from techfugees import db, bcrypt
 from techfugees.models import User, Post, Tenant, Landlord
 from techfugees.users.forms import RegistrationForm, LoginForm, UpdateLandlord, UpdateTenant, LandlordRegistrationForm, TenantRegistrationForm
+from techfugees import app
+import os
 
 
 users = Blueprint('users', __name__)
@@ -170,10 +172,16 @@ def profile(username):
         for p in post_arr:
             if p.user_id == user.id:
                 listings.append(p)
+                
+        files_lists = []
+        for p in listings:
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], str(p.id))
+            files_lists.append(os.listdir(file_path))
+        
         if current_user.username == user.username:
-            return render_template('profile/landlord-profile.html', title='My Profile', listings=listings, user=current_user)
+            return render_template('profile/landlord-profile.html', title='My Profile', listings=listings, user=current_user, files_lists=files_lists)
         else:
-            return render_template('profile/landlord-profile.html', title='Other Landlord Profile', listings=listings, user=user)
+            return render_template('profile/landlord-profile.html', title='Other Landlord Profile', listings=listings, user=user, files_lists=files_lists)
 
     elif user.checker == "tenant":
         return render_template('profile/tenant-profile.html', title='Tenant Profile', user=user)
