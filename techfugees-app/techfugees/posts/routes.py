@@ -8,25 +8,19 @@ import os
 import time
 import shutil
 import googlemaps
-
-# trash
-from flask_googlemaps import GoogleMaps
-from flask_googlemaps import Map
-
 import json
+
 
 api = "AIzaSyBgDy3WJoB5prBHOZBhSEwWZC_GQp04s9w"
 gmaps = googlemaps.Client(key=api)
-
-# trash
-GoogleMaps(app, key=api)
-
 app.config['UPLOAD_FOLDER'] = app.root_path + "/static/HousePhoto"
 posts = Blueprint('posts', __name__)
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'JPG', 'PNG'])
 
+
 def allowed_file(filename):
     return '.' in filename and filename.split('.')[-1] in ALLOWED_EXTENSIONS
+
 
 @app.route('/post/new')
 @login_required
@@ -119,7 +113,6 @@ def listing(post_id):
     files_list = os.listdir(file_path)
     print(files_list)
     reviews = listing.reviews
-
     if current_user.is_authenticated:
         if current_user.checker == 'tenant':
             user = Tenant.query.filter_by(username=current_user.username).first()
@@ -131,7 +124,6 @@ def listing(post_id):
             return render_template('listing.html', post_id = str(post_id), post=listing, user_type=1, files_list=files_list, reviews=reviews)
     else:
         return render_template('listing.html', post_id = str(post_id), post=listing, user_type=-1, files_list=files_list, reviews=reviews)
-
 
 
 @posts.route('/post/<int:post_id>/update', methods=['GET', 'POST'])
@@ -194,8 +186,6 @@ def update_listing(post_id):
         form.num_bathrooms.data = listing.num_bathrooms
         form.num_bedrooms.data = listing.num_bedrooms
         form.type_of_building.data = listing.type_of_building
-
-
     return render_template('create_post.html', title='Update Post', form=form)
 
 
@@ -234,7 +224,6 @@ def wish_list(post_id):
         wishes = []
     wishes += [post_id]
     user.wish_list = ",".join([str(x) for x in wishes])
-
     post = Post.query.get_or_404(post_id)
     wish_users = post.wish_user.split(",")
     if wish_users == [""]:
@@ -242,7 +231,6 @@ def wish_list(post_id):
     if user.username not in wish_users:
         wish_users += [user.username]
     post.wish_user = ",".join(wish_users)
-
     db.session.commit()
     return redirect(url_for('posts.listing', post_id=post_id))
 
@@ -262,7 +250,6 @@ def unWish(post_id):
         user.wish_list = str(wishes[0])
     else:
         user.wish_list = ",".join([str(x) for x in wishes])
-
     post = Post.query.get_or_404(post_id)
     wish_users = post.wish_user.split(",")
     if wish_users == [""]:
@@ -275,7 +262,6 @@ def unWish(post_id):
         post.wish_user = str(wish_users[0])
     else:
         post.wish_user = ",".join(wish_users)
-
     db.session.commit()
     return redirect(url_for('posts.listing', post_id=post_id))
 
@@ -289,141 +275,61 @@ def search():
     form.num_bedrooms.choices = [("-1", "N/A")] + sorted(list(set([(str(p.num_bedrooms), str(p.num_bedrooms)) for p in Post.query.order_by(Post.num_bedrooms)])))
     form.num_bathrooms.choices = [("-1", "N/A")] + sorted(list(set([(str(p.num_bathrooms), str(p.num_bathrooms)) for p in Post.query.order_by(Post.num_bathrooms)])))
     if form.validate_on_submit():
-
         if form.address.data != "-1" and form.city.data != "-1":
-            posts = Post.query.filter_by(address=form.address.data, city=form.city.data).all()
+            posts = Post.query.filter_by(address=form.address.data, city=form.city.data)
         elif form.address.data != "-1":
-            posts = Post.query.filter_by(address=form.address.data).all()
+            posts = Post.query.filter_by(address=form.address.data)
         elif form.city.data != "-1":
-            posts = Post.query.filter_by(city=form.city.data).all()
+            posts = Post.query.filter_by(city=form.city.data)
         else:
-            posts = Post.query.filter_by().all()
-
-        if form.num_bedrooms.data != "-1":
-            posts = [post for post in posts if str(post.num_bedrooms) == form.num_bedrooms.data]
-
-        if form.num_bathrooms.data != "-1":
-            posts = [post for post in posts if str(post.num_bathrooms) == form.num_bathrooms.data]
-
-        if form.type_of_building.data != "-1":
-            posts = [post for post in posts if post.type_of_building == form.type_of_building.data]
-
-        if form.pet.data:
-            posts = [post for post in posts if post.pet]
-
-        if form.smoking.data:
-            posts = [post for post in posts if post.smoking]
-
-        if form.balcony.data:
-            posts = [post for post in posts if post.balcony]
-
-        if form.air_conditioning.data:
-            posts = [post for post in posts if post.air_conditioning]
-
-        if form.stove_oven.data:
-            posts = [post for post in posts if post.stove_oven]
-
-        if form.washer.data:
-            posts = [post for post in posts if post.washer]
-
-        if form.dryer.data:
-            posts = [post for post in posts if post.dryer]
-
-        if form.dishwasher.data:
-            posts = [post for post in posts if post.dishwasher]
-
-        if form.microwave.data:
-            posts = [post for post in posts if post.microwave]
-
-        if form.cable.data:
-            posts = [post for post in posts if post.cable]
-
-        if form.water.data:
-            posts = [post for post in posts if post.water]
-
-        if form.electricity.data:
-            posts = [post for post in posts if post.electricity]
-
+            posts = Post.query.filter_by()
+        filter_list_boolean = ["pet", "smoking", "balcony", "air_conditioning", "stove_oven", "washer", "dryer", "dishwasher", "microwave", "cable", "water", "electricity"]
+        for filter_name in filter_list_boolean:
+            if getattr(form, filter_name).data:
+                posts = posts.filter(getattr(Post, filter_name).is_(True))
+        filter_list_int = ["num_bedrooms", "num_bathrooms"]
+        for filter_name in filter_list_int:
+            n = getattr(form, filter_name).data
+            if n != "-1":
+                posts = posts.filter(getattr(Post, filter_name).is_(int(n)))
+        filter_list_string = ["type_of_building"]
+        for filter_name in filter_list_string:
+            n = getattr(form, filter_name).data
+            if n != "-1":
+                posts = posts.filter(getattr(Post, filter_name).is_(n))
+        posts = posts.all()
         return render_template('search.html', form=form, posts=posts)
     return render_template('search.html', form=form)
+
 
 @posts.route("/post/map", methods=['GET', 'POST'])
 def map():
     form = MapSearchForm()
     form.type_of_building.choices = [("-1", "N/A")] + sorted(
         list(set([(p.type_of_building, p.type_of_building) for p in Post.query.order_by(Post.type_of_building)])))
+    posts = Post.query.order_by(Post.address)
     if request.method == 'POST':
-        if form.validate_on_submit():
-            posts = Post.query.order_by(Post.address)
-            if form.type_of_building.data != "-1":
-                posts = [post for post in posts if post.type_of_building == form.type_of_building.data]
-            markers = []
-            for p in posts:
-                info = {}
-                info['lat'] = float(p.latitude)
-                info['lng'] = float(p.longitude)
-                info['title'] = p.title
-                lst = []
-                lst.append('<div id="content">')
-                lst.append('<h1 id="firstHeading" class="firstHeading">')
-                lst.append(p.title)
-                lst.append('</h1>')
-                lst.append('<h2>')
-                lst.append(p.address)
-                lst.append('</h2>')                
-                lst.append('<div id="bodyContent">')
-                lst.append(p.content)
-                lst.append('</div>')
-                lst.append('</div>')
-                info['content'] = '\n'.join(lst)
-                markers.append(info)
-            return render_template('map.html', mymap=json.dumps(markers), form=form)
-    else:
-        posts = Post.query.order_by(Post.address)
-        markers = []
-        for p in posts:
-            info = {}
-            info['lat'] = float(p.latitude)
-            info['lng'] = float(p.longitude)
-            info['title'] = p.title
-            lst = []
-            lst.append('<div id="content">')
-            lst.append('<h1 id="firstHeading" class="firstHeading">')
-            lst.append(p.title)
-            lst.append('</h1>')
-            lst.append('<h2>')
-            lst.append(p.address)
-            lst.append('</h2>')                
-            lst.append('<div id="bodyContent">')
-            lst.append(p.content)
-            lst.append('</div>')
-            lst.append('</div>')
-            info['content'] = '\n'.join(lst)
-            markers.append(info)
-        """
-        map = Map(
-            identifier="house_map",
-            lat=37.4419,
-            lng=-122.1419,
-            markers=[
-                {
-                    'icon': 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-                    'lat': 37.4419,
-                    'lng': -122.1419,
-                    'infobox': "<b>Hello World</b>"
-                },
-                {
-                    'icon': 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-                    'lat': 37.4300,
-                    'lng': -122.1400,
-                    'infobox': "<b>Hello World from other place</b>"
-                }
-            ]
-        )
-        """
-
-        return render_template('map.html', mymap=json.dumps(markers), form=form)
-
-
-
-
+        if not form.validate_on_submit():
+            return
+        if form.type_of_building.data != "-1":
+            posts = [post for post in posts if post.type_of_building == form.type_of_building.data]
+    markers = []
+    for p in posts:
+        info = {}
+        info['lat'] = float(p.latitude)
+        info['lng'] = float(p.longitude)
+        info['title'] = p.title
+        info['content'] = \
+            '<div id="content">' + '\n' + \
+            '<h1 id="firstHeading" class="firstHeading">' + '\n' + \
+            p.title + '\n' + \
+            '</h1>' + '\n' + \
+            '<h2>' + '\n' + \
+            p.address + '\n' + \
+            '</h2>' + '\n' + \
+            '<div id="bodyContent">' + '\n' + \
+            p.content + '\n' + \
+            '</div>' + '\n' + \
+            '</div>'
+        markers.append(info)
+    return render_template('map.html', mymap=json.dumps(markers), form=form)
